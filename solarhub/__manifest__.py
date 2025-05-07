@@ -1,3 +1,4 @@
 {
-    'name': "solar hub management"
+    'name': "solar hub management",
+    'version':'LGPL-3',
 }
