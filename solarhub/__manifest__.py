@@ -8,6 +8,7 @@
         'views/solaremployee.xml',
         'views/view_customer.xml',
         'views/solarpanel.xml',
+        'views/battery.xml',
         'data/ir_sequence.xml',
         'views/menu.xml',
     ],

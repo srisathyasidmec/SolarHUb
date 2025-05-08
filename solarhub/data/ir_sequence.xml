@@ -6,4 +6,13 @@
         <field name="prefix">#SOL-</field>
         <field name="padding">4</field>
     </record>
+
+
+
+    <record id="seq_patient_id" model="ir.sequence">
+        <field name="name">battery</field>
+        <field name="code">solar.battery</field>
+        <field name="prefix">#BAT-</field>
+        <field name="padding">4</field>
+    </record>
 </odoo>
