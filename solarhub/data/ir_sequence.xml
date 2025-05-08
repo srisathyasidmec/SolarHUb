@@ -13,4 +13,11 @@
         <field name="prefix">#BAT-</field>
         <field name="padding">4</field>
     </record>
+
+    <record id="seq_inverter" model="ir.sequence">
+        <field name="name">inverter</field>
+        <field name="code">inverter</field>
+        <field name="prefix">#INV-</field>
+        <field name="padding">4</field>
+    </record>
 </odoo>
