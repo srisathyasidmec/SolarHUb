@@ -6,7 +6,13 @@
             <form string="Solarhub">
                 <sheet>
                     <sheet>
-                        <group>
+                        <div class="oe_title">
+                            <h1 style="color: #00aaff;">
+                                <field name="solar_sequence" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group col="3">
+                            <separator string="SOLAR PANEL" colspan="4"/>
                             <group>
                                 <field name="company_name"/>
                                 <field name="panel"/>
@@ -29,7 +35,8 @@
                     </sheet>
                     <br/>
                     <sheet>
-                        <group>
+                        <group col="3">
+                            <separator string="ENERGY DETAIL" colspan="4"/>
                             <group>
                                 <field name="energyproduce"/>
                                 <field name="gridexport"/>
@@ -51,21 +58,20 @@
         </field>
     </record>
 
-
     <record id="view_solar_list" model="ir.ui.view">
         <field name="name">solar</field>
         <field name="model">solar.panel</field>
         <field name="arch" type="xml">
             <list string="solarhub">
-                <field name="solar_sequence"/>
-                <field name="model"/>
-                <field name="company_name"/>
-                <field name="serial"/>
-                <field name="panel"/>
-                <field name="availablestock"/>
-                <field name="price"/>
-                <!--                    <field name="tax"/>-->
-                <field name="total_cost"/>
+                <field name="solar_sequence" string="SOLAR PANEL" optional="show"/>
+                <field name="model" string="MODEL NAME" optional="show"/>
+                <field name="company_name" string="COMPANY NAME" optional="show"/>
+                <field name="serial" string="SERIAL NUMBER" optional="show"/>
+                <field name="panel" string="PANEL TYPE" optional="show"/>
+                <field name="availablestock" string="AVAILABLE STOCK" optional="show"/>
+                <field name="price" string="PRICE" optional="show"/>
+                <!--                    <field name="tax" string="TAX" optional="show"/>-->
+                <field name="total_cost" string="TOTAL COST" optional="show"/>
             </list>
         </field>
     </record>

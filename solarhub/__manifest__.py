@@ -5,6 +5,7 @@
     'depends':['hr','contacts','mail',],
     'data': [
         'security/ir.model.access.csv',
+        'data/ir_sol_sequence.xml',
         'views/solaremployee.xml',
         'views/view_customer.xml',
         'views/solarpanel.xml',
