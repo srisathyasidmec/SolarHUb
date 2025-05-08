@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_res_partner,access_res_partner,model_res_partner,,1,1,1,1
+access_solar_panel,access_solar_panel,model_solar_panel,,1,1,1,1

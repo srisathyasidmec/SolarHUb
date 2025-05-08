@@ -1,1 +1,1 @@
-from . import customer
+from . import solarpanel
