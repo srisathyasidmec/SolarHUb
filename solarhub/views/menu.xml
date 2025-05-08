@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="menu_solar_business" name="Business management"/>
+
+    <menuitem id="menu_employee" name="Employee" parent="menu_solar_business" action="action_solar_employee"/>
+</odoo>
