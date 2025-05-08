@@ -5,43 +5,45 @@
         <field name="arch" type="xml">
             <form string="Solarhub">
                 <sheet>
-                    <group>
+                    <sheet>
                         <group>
-                            <field name="company_name"/>
-                            <field name="panel"/>
-                            <field name="current"/>
-                            <!-- <field name="tax"/> -->
+                            <group>
+                                <field name="company_name"/>
+                                <field name="panel"/>
+                                <field name="current"/>
+                                <!-- <field name="tax"/> -->
+                            </group>
+                            <group>
+                                <field name="model"/>
+                                <field name="wattage"/>
+                                <field name="degrade"/>
+                                <field name="total_cost"/>
+                            </group>
+                            <group>
+                                <field name="serial"/>
+                                <field name="voltage"/>
+                                <field name="price"/>
+                                <field name="availablestock"/>
+                            </group>
                         </group>
-                        <group>
-                            <field name="model"/>
-                            <field name="wattage"/>
-                            <field name="degrade"/>
-                            <field name="total_cost"/>
-                        </group>
-                        <group>
-                            <field name="serial"/>
-                            <field name="voltage"/>
-                            <field name="price"/>
-                            <field name="availablestock"/>
-                        </group>
-                    </group>
-                </sheet>
+                    </sheet>
 
-                <sheet>
-                    <group>
+                    <sheet>
                         <group>
-                            <field name="energyproduce"/>
-                            <field name="gridexport"/>
+                            <group>
+                                <field name="energyproduce"/>
+                                <field name="gridexport"/>
+                            </group>
+                            <group>
+                                <field name="energyconsume"/>
+                                <field name="warrantycover"/>
+                            </group>
+                            <group>
+                                <field name="batterystorage"/>
+                                <field name="warrantynotcover"/>
+                            </group>
                         </group>
-                        <group>
-                            <field name="energyconsume"/>
-                            <field name="warrantycover"/>
-                        </group>
-                        <group>
-                            <field name="batterystorage"/>
-                            <field name="warrantynotcover"/>
-                        </group>
-                    </group>
+                    </sheet>
                 </sheet>
                 <chatter/>
             </form>

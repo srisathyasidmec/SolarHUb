@@ -1,29 +1,29 @@
 from odoo import models, fields, api
 
 
-class TaskCustomer(models.Model):
+class SolarCustomer(models.Model):
     _name = 'solar.panel'
     _description = 'solar panel'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    solar_sequence= fields.Char("patient sequence")
+    solar_sequence= fields.Char("solar sequence")
 
     company_name = fields.Char("Company name")
-    model = fields.Text("Model name")
-    serial = fields.Text("Serial number")
+    model = fields.Char("Model name")
+    serial = fields.Char("Serial number")
     panel = fields.Char("panel type")
     wattage= fields.Integer( "Wattage")
-    voltage = fields.Integer("Company")
+    voltage = fields.Integer("Voltage")
     current=fields.Integer("Current")
     degrade=fields.Integer("Degradation rate")
     price=fields.Integer("Price")
     # tax=fields.Many2one("Tax")
-    total_cost=fields.Integer("Total_cost")
-    availablestock=fields.Integer("Available_stock")
-    energyproduce=fields.Integer("Energy_produced")
-    energyconsume=fields.Integer("Energy_consumed")
-    batterystorage=fields.Integer("Battery_storage")
-    gridexport=fields.Integer("Grid_export")
-    warrantycover=fields.Text("warranty_covered")
-    warrantynotcover=fields.Text("Warranty not covered")
+    total_cost=fields.Integer("Total cost")
+    availablestock=fields.Integer("Available stock")
+    energyproduce=fields.Integer("Energy produced")
+    energyconsume=fields.Integer("Energy consumed")
+    batterystorage=fields.Integer("Battery storage")
+    gridexport=fields.Integer("Grid export")
+    warrantycover=fields.Boolean("Warranty covered")
+    warrantynotcover=fields.Boolean("Warranty not covered")
 
