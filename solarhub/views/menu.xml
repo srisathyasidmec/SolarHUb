@@ -5,4 +5,5 @@
     <menuitem id="menu_employee" name="Employee" parent="menu_solar_business" action="action_solar_employee" sequence="1"/>
     <menuitem id="menu_customer" name="Customer" action="action_customer" parent="menu_solar_business" sequence="2"/>
     <menuitem id="menu_solar_panel" name="Solar Panel" action="action_solar_panel" parent="menu_solar_business" sequence="3"/>
+    <menuitem id="menu_inverter" name="Inverter" action="action_inverter" parent="menu_solar_business" sequence="5"/>
 </odoo>

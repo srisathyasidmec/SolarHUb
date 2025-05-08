@@ -9,6 +9,7 @@
         'views/solaremployee.xml',
         'views/view_customer.xml',
         'views/solarpanel.xml',
+        "views/inverter.xml",
         'views/menu.xml',
     ],
 }

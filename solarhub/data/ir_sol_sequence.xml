@@ -6,4 +6,11 @@
         <field name="prefix">#SOL-</field>
         <field name="padding">4</field>
     </record>
+
+     <record id="seq_inverter_id" model="ir.sequence">
+        <field name="name">inverter</field>
+        <field name="code">inverter</field>
+        <field name="prefix">#INV-</field>
+        <field name="padding">4</field>
+    </record>
 </odoo>
