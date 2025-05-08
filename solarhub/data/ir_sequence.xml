@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="seq_patient_id" model="ir.sequence">
+    <record id="seq_solarpanel_id" model="ir.sequence">
         <field name="name">solar</field>
         <field name="code">solar.panel</field>
         <field name="prefix">#SOL-</field>
         <field name="padding">4</field>
     </record>
 
-    <record id="seq_patient_id" model="ir.sequence">
+    <record id="seq_bat_id" model="ir.sequence">
         <field name="name">battery</field>
         <field name="code">solar.battery</field>
         <field name="prefix">#BAT-</field>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="seq_inverter" model="ir.sequence">
+        <field name="name">inverter</field>
+        <field name="code">inverter</field>
+        <field name="prefix">#INV-</field>
         <field name="padding">4</field>
     </record>
 </odoo>
