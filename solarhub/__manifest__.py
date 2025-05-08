@@ -5,11 +5,12 @@
     'depends':['hr','contacts','mail',],
     'data': [
         'security/ir.model.access.csv',
-        'data/ir_sol_sequence.xml',
         'views/solaremployee.xml',
         'views/view_customer.xml',
         'views/solarpanel.xml',
-        "views/inverter.xml",
+        'views/battery.xml',
+        'views/inverter.xml',
+        'data/ir_sequence.xml',
         'views/menu.xml',
     ],
 }

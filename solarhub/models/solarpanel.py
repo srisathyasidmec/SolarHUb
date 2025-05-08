@@ -1,12 +1,12 @@
 from odoo import models, fields, api
 
 
-class SolarPanel(models.Model):
+class TaskCustomer(models.Model):
     _name = 'solar.panel'
     _description = 'solar panel'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    solar_sequence= fields.Char("patient sequence", default="NEW")
+    solar_sequence= fields.Char("SOLAR PANEL", default="NEW")
 
     company_name = fields.Char("Company Name")
     model = fields.Char("Model Name")
@@ -27,7 +27,8 @@ class SolarPanel(models.Model):
     warrantycover=fields.Boolean("Warranty Covered")
     warrantynotcover=fields.Boolean("Warranty not covered")
 
-    @api.model
+
     def create(self, vals):
         vals["solar_sequence"] = self.env['ir.sequence'].next_by_code('solar.panel')
-        return super(SolarPanel, self).create(vals)
+        return super(TaskCustomer, self).create(vals)
+
