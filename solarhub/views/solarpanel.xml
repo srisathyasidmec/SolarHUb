@@ -6,7 +6,11 @@
             <form string="Solarhub">
                 <sheet>
                     <sheet>
-                        <group>
+                        <group col="3">
+                            <h1 style="color: #00aaff;">
+                                <field name="solar_sequence" readonly="1" />
+                            </h1>
+                            <separator string="SOLAR PANEL" colspan="4"/>
                             <group>
                                 <field name="company_name"/>
                                 <field name="panel"/>
@@ -27,23 +31,25 @@
                             </group>
                         </group>
                     </sheet>
-
+                    <br/>
                     <sheet>
-                        <group>
+                        <group col="3">
+                            <separator string="ENERGY DETAIL" colspan="4"/>
                             <group>
                                 <field name="energyproduce"/>
                                 <field name="gridexport"/>
                             </group>
                             <group>
                                 <field name="energyconsume"/>
-                                <field name="warrantycover"/>
+                                <field name="warrantycover" widget="boolean"/>
                             </group>
                             <group>
                                 <field name="batterystorage"/>
-                                <field name="warrantynotcover"/>
+                                <field name="warrantynotcover" widget="boolean"/>
                             </group>
                         </group>
                     </sheet>
+
                 </sheet>
                 <chatter/>
             </form>
@@ -56,15 +62,15 @@
         <field name="model">solar.panel</field>
         <field name="arch" type="xml">
             <list string="solarhub">
-                <field name="solar_sequence"/>
-                <field name="model"/>
-                <field name="company_name"/>
-                <field name="serial"/>
-                <field name="panel"/>
-                <field name="availablestock"/>
-                <field name="price"/>
+                <field name="solar_sequence" optional="show"/>
+                <field name="model" optional="show"/>
+                <field name="company_name" optional="show"/>
+                <field name="serial" optional="show"/>
+                <field name="panel" optional="show"/>
+                <field name="availablestock" optional="show" widget="integer"/>
+                <field name="price" optional="show"/>
                 <!--                    <field name="tax"/>-->
-                <field name="total_cost"/>
+                <field name="total_cost" optional="show"/>
             </list>
         </field>
     </record>

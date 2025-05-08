@@ -1,14 +1,14 @@
 {
-    'name': "solar hub management",
+    'name':'solar hub management',
     'version':'18.0',
     'author':"krisnaveni and sri sathya",
-    'depends':['contacts','hr',],
+    'depends':['hr','contacts','mail',],
     'data': [
         'security/ir.model.access.csv',
+        'views/solaremployee.xml',
         'views/view_customer.xml',
         'views/solarpanel.xml',
-        'views/solaremployee.xml',
+        'data/ir_sequence.xml',
         'views/menu.xml',
-
     ],
 }
