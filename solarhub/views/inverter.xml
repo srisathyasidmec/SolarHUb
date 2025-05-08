@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_inverter_form" model="ir.ui.view">
+        <field name="model">inverter</field>
+        <field name="arch" type="xml">
+            <form string="Inverter">
+                <sheet>
+
+                    <div class="oe_title">
+                        <h1 style="color: #00aaff;">
+                            <field name="inverter_sequence" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group col="3">
+                        <separator string="INVERTER" colspan="3"/>
+                        <group>
+                            <field name="company_name"/>
+                            <field name="inverter_type"/>
+                            <field name="price"/>
+                            <field name="available_stocks"/>
+                        </group>
+                        <group>
+                            <field name="model"/>
+                            <field name="capacity"/>
+                            <!--                                <field name="tax"/>-->
+                            <field name="warrantycover"/>
+                        </group>
+                        <group>
+                            <field name="serial"/>
+                            <field name="efficiency"/>
+                            <field name="price"/>
+                            <field name="warrantynotcover"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_inverter_list" model="ir.ui.view">
+        <field name="name">inverter</field>
+        <field name="model">inverter</field>
+        <field name="arch" type="xml">
+            <list string="Inverter">
+                <field name="inverter_sequence" string="INVERTER" optional="show"/>
+                <field name="model" string="MODEL NAME" optional="show"/>
+                <field name="capacity" string="CAPACITY" optional="show"/>
+                <field name="company_name" string="COMPANY NAME" optional="show"/>
+                <field name="serial" string="SERIAL NUMBER" optional="show"/>
+                <field name="efficiency" string="EFFICIENCY" optional="show"/>
+                <field name="inverter_type" string="INVERTER TYPE" optional="show"/>
+                <field name="available_stocks" string="AVAILABLE STOCK" optional="show"/>
+                <field name="price" string="PRICE" optional="show"/>
+                <!--                    <field name="tax" string="TAX" optional="show"/>-->
+            </list>
+        </field>
+    </record>
+
+    <record id="action_inverter" model="ir.actions.act_window">
+        <field name="name">inverter</field>
+        <field name="res_model">inverter</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_inverter_list"/>
+    </record>
+</odoo>

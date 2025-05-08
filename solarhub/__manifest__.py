@@ -9,6 +9,7 @@
         'views/view_customer.xml',
         'views/solarpanel.xml',
         'views/battery.xml',
+        'views/inverter.xml',
         'data/ir_sequence.xml',
         'views/menu.xml',
     ],

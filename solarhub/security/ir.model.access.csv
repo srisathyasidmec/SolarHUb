@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_solar_panel,access_solar_panel,model_solar_panel,,1,1,1,1
 access_solar_battery,access_solar_battery,model_solar_battery,,1,1,1,1
+access_inverter,access_inverter,model_inverter,,1,1,1,1
