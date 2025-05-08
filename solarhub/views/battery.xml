@@ -8,7 +8,7 @@
                     <h1 style="color: #00aaff;">
                         <field name="battery_sequence" readonly="1"/>
                     </h1>
-                    <group>
+                    <group col="3">
                         <group>
                             <field name="company_name"/>
                             <field name="battery_type"/>
