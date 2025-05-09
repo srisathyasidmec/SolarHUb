@@ -18,6 +18,8 @@ class SolarPanel(models.Model):
     degrade=fields.Integer("Degradation rate")
     price=fields.Integer("Price")
     # taxes=fields.Many2many("account.tax","Tax")
+    # tax=fields.Many2many("account.tax", string:"Tax")
+    tax_ids=fields.Many2many("account.tax",string="Tax")
     total_cost=fields.Integer("Total Cost")
     availablestock=fields.Integer("Available Stock")
     energyproduce=fields.Integer("Energy Produced")

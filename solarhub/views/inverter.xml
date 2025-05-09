@@ -23,6 +23,7 @@
                             <field name="model"/>
                             <field name="capacity"/>
 <!--                            <field name="taxes" widget="many2many"/>-->
+                            <field name="tax_ids" widget="many2many_tags"/>
                             <field name="warrantycover"/>
                         </group>
                         <group>
@@ -53,6 +54,7 @@
                 <field name="available_stocks" string="AVAILABLE STOCK" optional="show"/>
                 <field name="price" string="PRICE" optional="show"/>
 <!--                <field name="taxes" string="TAX" optional="show"/>-->
+               <field name="tax_ids" string="TAX" widget="many2many_tax_tags" optional="show"/>
             </list>
         </field>
     </record>

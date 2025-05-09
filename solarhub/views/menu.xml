@@ -9,4 +9,9 @@
     <menuitem id="menu_solar_battery" name="Battery" action="action_solar_battery" parent="menu_solar_business" sequence="4"/>
     <menuitem id="menu_inverter" name="Inverter" action="action_inverter" parent="menu_solar_business" sequence="5"/>
 
+    <menuitem id="menu_system_service" name="Service Type" action="action_system_service" parent="menu_system" />
+    <menuitem id="menu_system_property" name="Property Type" action="action_system_property" parent="menu_system" />
+    <menuitem id="menu_system_assurance" name="Assurance Type" action="action_system_assurance" parent="menu_system" />
+    <menuitem id="menu_system_assurance_subtype" name="Assurance SubType" action="action_system_assurance_subtype" parent="menu_system" />
+    <menuitem id="menu_system_tax" name="Item Tax" action="action_system_tax" parent="menu_system" />
 </odoo>

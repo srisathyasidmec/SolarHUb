@@ -12,6 +12,12 @@
         'views/inverter.xml',
         'views/solarhub_product_template.xml',
         'data/ir_sequence.xml',
+        'views/service_type.xml',
+        'views/property_type.xml',
+        'views/assurance_type.xml',
+        'views/assurance_subtype.xml',
+        'views/tax.xml',
         'views/menu.xml',
+
     ],
 }

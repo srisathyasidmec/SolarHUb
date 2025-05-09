@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 
+
 class SolarBattery(models.Model):
     _name = 'solar.battery'
     _description = 'solar battery'
@@ -13,6 +14,8 @@ class SolarBattery(models.Model):
     price = fields.Integer("Price")
     battery_type=fields.Char("Battery Type")
     capacity=fields.Char("Capacity")
+    # tax=fields.Many2many("account.tax","Tax")
+    tax_ids = fields.Many2many("account.tax", string="Tax")
     # taxes=fields.Many2many("account.tax","Tax")
     total_cost = fields.Integer("Total Cost")
     availablestock = fields.Integer("Available Stock")

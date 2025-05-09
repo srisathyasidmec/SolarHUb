@@ -2,3 +2,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_solar_panel,access_solar_panel,model_solar_panel,,1,1,1,1
 access_solar_battery,access_solar_battery,model_solar_battery,,1,1,1,1
 access_inverter,access_inverter,model_inverter,,1,1,1,1
+access_system_service,access_system_service,model_system_service,,1,1,1,1
+access_system_property,access_system_property,model_system_property,,1,1,1,1
+access_system_assurance,access_system_assurance,model_system_assurance,,1,1,1,1
+access_assurance_subtype,access_assurance_subtype,model_assurance_subtype,,1,1,1,1
