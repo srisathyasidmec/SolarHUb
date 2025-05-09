@@ -35,13 +35,6 @@ class SolarBattery(models.Model):
         self.env['product.product'].create(product)
         return super(SolarBattery, self).create(vals)
 
-    # @api.model
-    # def write(self, vals):
-    #     product = {'name': vals['battery_sequence'],
-    #                'list_price': vals['price']}
-    #     self.env['product.product'].write(product)
-    #     return super(SolarBattery, self).write(vals)
-
     @api.model
     def write(self, vals):
         battery_sequence = vals.get('battery_sequence', self.battery_sequence)
