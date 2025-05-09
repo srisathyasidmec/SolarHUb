@@ -6,3 +6,5 @@ access_system_service,access_system_service,model_system_service,,1,1,1,1
 access_system_property,access_system_property,model_system_property,,1,1,1,1
 access_system_assurance,access_system_assurance,model_system_assurance,,1,1,1,1
 access_assurance_subtype,access_assurance_subtype,model_assurance_subtype,,1,1,1,1
+access_solarhub_order,access_solarhub_order,model_solarhub_order,,1,1,1,1
+access_solarhub_order_lines,access_solarhub_order_lines,model_solarhub_order_lines,,1,1,1,1

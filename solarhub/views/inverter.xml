@@ -22,14 +22,13 @@
                         <group>
                             <field name="model"/>
                             <field name="capacity"/>
-<!--                            <field name="taxes" widget="many2many"/>-->
                             <field name="tax_ids" widget="many2many_tags"/>
                             <field name="warrantycover"/>
                         </group>
                         <group>
                             <field name="serial"/>
                             <field name="efficiency"/>
-                            <field name="price"/>
+                            <field name="total_cost"/>
                             <field name="warrantynotcover"/>
                         </group>
                     </group>
@@ -53,7 +52,6 @@
                 <field name="inverter_type" string="INVERTER TYPE" optional="show"/>
                 <field name="available_stocks" string="AVAILABLE STOCK" optional="show"/>
                 <field name="price" string="PRICE" optional="show"/>
-<!--                <field name="taxes" string="TAX" optional="show"/>-->
                <field name="tax_ids" string="TAX" widget="many2many_tax_tags" optional="show"/>
             </list>
         </field>

@@ -4,6 +4,7 @@
     'author':"krisnaveni and sri sathya",
     'depends':['hr','contacts','mail',],
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/solaremployee.xml',
         'views/view_customer.xml',
@@ -11,6 +12,7 @@
         'views/battery.xml',
         'views/inverter.xml',
         'views/solarhub_product_template.xml',
+        'views/solarhub_order.xml',
         'data/ir_sequence.xml',
         'views/service_type.xml',
         'views/property_type.xml',
@@ -18,6 +20,5 @@
         'views/assurance_subtype.xml',
         'views/tax.xml',
         'views/menu.xml',
-
     ],
 }

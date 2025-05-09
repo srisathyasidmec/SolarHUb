@@ -6,3 +6,4 @@ from . import property_type
 from . import assurance_type
 from . import assurance_subtype
 from . import productproducts
+from . import solarhuborder

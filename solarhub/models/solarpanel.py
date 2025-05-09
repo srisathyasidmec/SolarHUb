@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class SolarPanel(models.Model):
     _name = 'solar.panel'
     _description = 'solar panel'
+    _rec_name = 'solar_sequence'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     solar_sequence= fields.Char("SOLAR PANEL", default="NEW")
@@ -16,11 +17,9 @@ class SolarPanel(models.Model):
     voltage = fields.Integer("Voltage")
     current=fields.Integer("Current")
     degrade=fields.Integer("Degradation rate")
-    price=fields.Integer("Price")
-    # taxes=fields.Many2many("account.tax","Tax")
-    # tax=fields.Many2many("account.tax", string:"Tax")
+    price=fields.Float("Price")
     tax_ids=fields.Many2many("account.tax",string="Tax")
-    total_cost=fields.Integer("Total Cost")
+    total_cost=fields.Float("Total Cost", compute="compute_total_cost")
     availablestock=fields.Integer("Available Stock")
     energyproduce=fields.Integer("Energy Produced")
     energyconsume=fields.Integer("Energy Consumed")
@@ -29,13 +28,20 @@ class SolarPanel(models.Model):
     warrantycover=fields.Boolean("Warranty Covered")
     warrantynotcover=fields.Boolean("Warranty not covered")
 
+    @api.depends('price', 'tax_ids')
+    def compute_total_cost(self):
+        for rec in self:
+            total_tax_percent = sum(rec.tax_ids.mapped('amount'))
+            rec.total_cost = rec.price + (rec.price * total_tax_percent / 100)
+
     @api.model
     def create(self, vals):
         vals["solar_sequence"] = self.env['ir.sequence'].next_by_code('solar.panel')
         product = {'name':vals['solar_sequence'],
                     'type': 'consu',
                    'solarhub_type': 'solar panel',
-                   'list_price':vals['price']}
+                   'list_price':vals['price'],
+                   'taxes_id':vals['tax_ids']}
         self.env['product.product'].create(product)
 
         return super(SolarPanel, self).create(vals)

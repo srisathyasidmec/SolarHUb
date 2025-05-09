@@ -20,4 +20,11 @@
         <field name="prefix">#INV-</field>
         <field name="padding">4</field>
     </record>
+
+    <record id="seq_solarorder" model="ir.sequence">
+        <field name="name">Solar Order</field>
+        <field name="code">solarhub.order</field>
+        <field name="prefix">#ORD-</field>
+        <field name="padding">4</field>
+    </record>
 </odoo>

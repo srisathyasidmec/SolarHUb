@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class SolarBattery(models.Model):
     _name = 'solar.battery'
     _description = 'solar battery'
+    _rec_name = 'battery_sequence'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     battery_sequence=fields.Char("BATTERY", default="NEW")
@@ -14,9 +15,7 @@ class SolarBattery(models.Model):
     price = fields.Integer("Price")
     battery_type=fields.Char("Battery Type")
     capacity=fields.Char("Capacity")
-    # tax=fields.Many2many("account.tax","Tax")
     tax_ids = fields.Many2many("account.tax", string="Tax")
-    # taxes=fields.Many2many("account.tax","Tax")
     total_cost = fields.Integer("Total Cost")
     availablestock = fields.Integer("Available Stock")
     warrantycover = fields.Boolean("Warranty Covered")
@@ -28,7 +27,8 @@ class SolarBattery(models.Model):
         product = {'name': vals['battery_sequence'],
                    'type': 'consu',
                    'solarhub_type':'battery',
-                   'list_price': vals['price']}
+                   'list_price': vals['price'],
+                   'taxes_id':vals['tax_ids']}
 
         self.env['product.product'].create(product)
         return super(SolarBattery, self).create(vals)
