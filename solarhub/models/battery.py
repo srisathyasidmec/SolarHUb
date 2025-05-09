@@ -1,8 +1,4 @@
-import typing
-
 from odoo import models, fields, api
-from odoo.api import ValuesType
-
 
 class SolarBattery(models.Model):
     _name = 'solar.battery'
@@ -22,7 +18,6 @@ class SolarBattery(models.Model):
     availablestock = fields.Integer("Available Stock")
     warrantycover = fields.Boolean("Warranty Covered")
     warrantynotcover = fields.Boolean("Warranty not covered")
-
 
     @api.model
     def create(self, vals):
