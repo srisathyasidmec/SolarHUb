@@ -15,7 +15,7 @@
                                 <field name="company_name"/>
                                 <field name="panel"/>
                                 <field name="current"/>
-                                <!-- <field name="tax"/> -->
+<!--                                 <field name="taxes" widget="many2many"/>-->
                             </group>
                             <group>
                                 <field name="model"/>
@@ -69,7 +69,7 @@
                 <field name="panel" optional="show"/>
                 <field name="availablestock" optional="show" widget="integer"/>
                 <field name="price" optional="show"/>
-                <!--                    <field name="tax"/>-->
+<!--                <field name="taxes"/>-->
                 <field name="total_cost" optional="show"/>
             </list>
         </field>

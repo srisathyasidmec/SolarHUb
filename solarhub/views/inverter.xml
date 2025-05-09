@@ -22,7 +22,7 @@
                         <group>
                             <field name="model"/>
                             <field name="capacity"/>
-                            <!--                                <field name="tax"/>-->
+<!--                            <field name="taxes" widget="many2many"/>-->
                             <field name="warrantycover"/>
                         </group>
                         <group>
@@ -52,7 +52,7 @@
                 <field name="inverter_type" string="INVERTER TYPE" optional="show"/>
                 <field name="available_stocks" string="AVAILABLE STOCK" optional="show"/>
                 <field name="price" string="PRICE" optional="show"/>
-                <!--                    <field name="tax" string="TAX" optional="show"/>-->
+<!--                <field name="taxes" string="TAX" optional="show"/>-->
             </list>
         </field>
     </record>

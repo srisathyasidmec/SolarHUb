@@ -15,7 +15,7 @@ class Inverter(models.Model):
 
     model = fields.Char("Model Name")
     capacity = fields.Float("Capacity (Kwh)")
-    # tax = fields.Many2many("Tax")
+    # taxes = fields.Many2many("account.tax","Tax")
     warrantycover=fields.Boolean("Warranty Covered")
 
     serial = fields.Char("Serial Number")
@@ -27,6 +27,21 @@ class Inverter(models.Model):
         vals["inverter_sequence"] = self.env['ir.sequence'].next_by_code('inverter')
         product = {'name': vals['inverter_sequence'],
                    'type': 'consu',
-                   'solarhub_type': 'inverter'}
+                   'solarhub_type': 'inverter',
+                   'list_price': vals['price']}
+
         self.env['product.product'].create(product)
         return super(Inverter, self).create(vals)
+
+    @api.model
+    def write(self, vals):
+        inverter_sequence = vals.get('inverter_sequence', self.inverter_sequence)
+        price = vals.get('price')
+
+        if inverter_sequence and price is not None:
+            # Search the product.template with matching name or reference (adapt field as needed)
+            template = self.env['product.template'].search([('name', '=', inverter_sequence)], limit=1)
+            if template:
+                template.list_price = price
+
+        return super(Inverter, self).write(vals)
