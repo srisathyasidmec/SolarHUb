@@ -4,7 +4,8 @@ from odoo import models, fields, api
 class SolarBattery(models.Model):
     _name = 'solar.battery'
     _description = 'solar battery'
-    _rec_name="battery_type"
+    # _rec_name="battery_type"
+    _rec_name = 'battery_sequence'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     battery_sequence=fields.Char("BATTERY", default="NEW")
@@ -26,7 +27,8 @@ class SolarBattery(models.Model):
         product = {'name': vals['battery_sequence'],
                    'type': 'consu',
                    'solarhub_type':'battery',
-                   'list_price': vals['price']}
+                   'list_price': vals['price'],
+                   'taxes_id':vals['tax_ids']}
 
         self.env['product.product'].create(product)
         return super(SolarBattery, self).create(vals)
@@ -37,6 +39,7 @@ class SolarBattery(models.Model):
         price = vals.get('price')
 
         if battery_sequence and price is not None:
+            # Search the product.template with matching name or reference (adapt field as needed)
             template = self.env['product.template'].search([('name', '=', battery_sequence)], limit=1)
             if template:
                 template.list_price = price

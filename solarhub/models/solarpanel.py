@@ -34,7 +34,8 @@ class SolarPanel(models.Model):
         product = {'name':vals['solar_sequence'],
                     'type': 'consu',
                    'solarhub_type': 'solar panel',
-                   'list_price':vals['price']}
+                   'list_price':vals['price'],
+                   'taxes_id':vals['tax_ids']}
         self.env['product.product'].create(product)
 
         return super(SolarPanel, self).create(vals)
@@ -45,6 +46,7 @@ class SolarPanel(models.Model):
         price = vals.get('price')
 
         if solar_sequence and price is not None:
+            # Search the product.template with matching name or reference (adapt field as needed)
             template = self.env['product.template'].search([('name', '=', solar_sequence)], limit=1)
             if template:
                 template.list_price = price

@@ -8,3 +8,4 @@ from . import assurance_subtype
 from . import productproducts
 from . import contact_diary
 from . import notice_board
+from . import solarhuborder

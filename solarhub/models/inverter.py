@@ -4,7 +4,8 @@ from odoo import models, fields, api
 class Inverter(models.Model):
     _name = 'inverter'
     _description = 'Inverter'
-    _rec_name="inverter_type"
+    # _rec_name="inverter_type"
+    _rec_name = 'inverter_sequence'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     inverter_sequence= fields.Char("Inverter Sequence", default="NEW")
@@ -16,12 +17,14 @@ class Inverter(models.Model):
 
     model = fields.Char("Model Name")
     capacity = fields.Float("Capacity (Kwh)")
+    # taxes = fields.Many2many("account.tax","Tax")
+    # tax = fields.Many2many("account.tax","Tax")
     tax_ids = fields.Many2many("account.tax", string="Tax")
     warrantycover=fields.Boolean("Warranty Covered")
 
     serial = fields.Char("Serial Number")
     efficiency = fields.Float("Efficiency (Kwh)")
-    total_cost=fields.Float("Total Cost",compute="compute_total_cost")
+    total_cost = fields.Float("Total Cost")
     warrantynotcover=fields.Boolean("Warranty not covered")
 
     @api.model
@@ -30,7 +33,8 @@ class Inverter(models.Model):
         product = {'name': vals['inverter_sequence'],
                    'type': 'consu',
                    'solarhub_type': 'inverter',
-                   'list_price': vals['price']}
+                   'list_price': vals['price'],
+                   'taxes_id':vals['tax_ids']}
 
         self.env['product.product'].create(product)
         return super(Inverter, self).create(vals)
@@ -41,6 +45,7 @@ class Inverter(models.Model):
         price = vals.get('price')
 
         if inverter_sequence and price is not None:
+            # Search the product.template with matching name or reference (adapt field as needed)
             template = self.env['product.template'].search([('name', '=', inverter_sequence)], limit=1)
             if template:
                 template.list_price = price
