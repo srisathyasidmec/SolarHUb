@@ -25,4 +25,8 @@ class Inverter(models.Model):
     @api.model
     def create(self, vals):
         vals["inverter_sequence"] = self.env['ir.sequence'].next_by_code('inverter')
+        product = {'name': vals['inverter_sequence'],
+                   'type': 'consu',
+                   'solarhub_type': 'inverter'}
+        self.env['product.product'].create(product)
         return super(Inverter, self).create(vals)

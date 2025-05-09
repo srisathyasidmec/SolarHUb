@@ -23,4 +23,8 @@ class SolarBattery(models.Model):
 
     def create(self, vals):
         vals["battery_sequence"] = self.env['ir.sequence'].next_by_code('solar.battery')
+        product = {'name': vals['battery_sequence'],
+                   'type': 'consu',
+                   'solarhub_type':'battery'}
+        self.env['product.product'].create(product)
         return super(SolarBattery, self).create(vals)

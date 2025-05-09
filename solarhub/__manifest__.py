@@ -10,6 +10,7 @@
         'views/solarpanel.xml',
         'views/battery.xml',
         'views/inverter.xml',
+        'views/solarhub_product_template.xml',
         'data/ir_sequence.xml',
         'views/menu.xml',
     ],

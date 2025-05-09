@@ -30,5 +30,12 @@ class TaskCustomer(models.Model):
 
     def create(self, vals):
         vals["solar_sequence"] = self.env['ir.sequence'].next_by_code('solar.panel')
+        product = {'name':vals['solar_sequence'],
+                    'type': 'consu',
+                   'solarhub_type': 'solar panel'}
+        self.env['product.product'].create(product)
+
         return super(TaskCustomer, self).create(vals)
+
+
 
