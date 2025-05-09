@@ -12,7 +12,7 @@
                         <group>
                             <field name="company_name"/>
                             <field name="battery_type"/>
-                            <field name="tax" widget="many2many_tags"/>
+                            <field name="tax_ids" widget="many2many_tags"/>
                             <field name="warrantycover"/>
                         </group>
                         <group>
@@ -46,7 +46,7 @@
                 <field name="battery_type" optional="show"/>
                 <field name="availablestock" optional="show" widget="integer"/>
                 <field name="price" optional="show"/>
-                <field name="tax" optional="show"/>
+                <field name="tax_ids" optional="show"/>
                 <field name="total_cost" optional="show"/>
             </list>
         </field>
