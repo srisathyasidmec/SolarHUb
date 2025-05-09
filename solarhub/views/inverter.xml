@@ -52,7 +52,7 @@
                 <field name="inverter_type" string="INVERTER TYPE" optional="show"/>
                 <field name="available_stocks" string="AVAILABLE STOCK" optional="show"/>
                 <field name="price" string="PRICE" optional="show"/>
-               <field name="tax_ids" string="TAX" optional="show"/>
+               <field name="tax_ids" string="TAX" widget="many2many_tax_tags" optional="show"/>
             </list>
         </field>
     </record>

@@ -46,7 +46,7 @@
                 <field name="battery_type" optional="show"/>
                 <field name="availablestock" optional="show" widget="integer"/>
                 <field name="price" optional="show"/>
-                <field name="tax_ids" optional="show"/>
+                <field name="tax_ids" widget="many2many_tax_tags" optional="show"/>
                 <field name="total_cost" optional="show"/>
             </list>
         </field>
