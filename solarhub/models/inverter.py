@@ -15,7 +15,7 @@ class Inverter(models.Model):
 
     model = fields.Char("Model Name")
     capacity = fields.Float("Capacity (Kwh)")
-    # tax = fields.Many2many("Tax")
+    tax = fields.Many2many("account.tax","Tax")
     warrantycover=fields.Boolean("Warranty Covered")
 
     serial = fields.Char("Serial Number")

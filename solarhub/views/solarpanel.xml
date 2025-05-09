@@ -15,7 +15,7 @@
                                 <field name="company_name"/>
                                 <field name="panel"/>
                                 <field name="current"/>
-                                <!-- <field name="tax"/> -->
+                                 <field name="tax" widget="many2many_tags"/>
                             </group>
                             <group>
                                 <field name="model"/>

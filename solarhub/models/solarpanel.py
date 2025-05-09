@@ -17,7 +17,7 @@ class TaskCustomer(models.Model):
     current=fields.Integer("Current")
     degrade=fields.Integer("Degradation rate")
     price=fields.Integer("Price")
-    # tax=fields.Many2one("Tax")
+    tax=fields.Many2many("account.tax", string:"Tax")
     total_cost=fields.Integer("Total Cost")
     availablestock=fields.Integer("Available Stock")
     energyproduce=fields.Integer("Energy Produced")
