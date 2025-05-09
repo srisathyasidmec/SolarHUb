@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_contact_form" model="ir.ui.view">
+        <field name="model">contact.diary</field>
+        <field name="arch" type="xml">
+            <form string="contact">
+                <sheet>
+                    <group>
+                        <field name="contact_name"/>
+                        <field name="contact_email"/>
+                        <field name="contact_number"/>
+                        <field name="subject"/>
+                        <field name="message"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_contact_kanban" model="ir.ui.view">
+        <field name="name">contact</field>
+        <field name="model">contact.diary</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="contact_name"/>
+                <field name="contact_email"/>
+                <field name="contact_number"/>
+                <field name="subject"/>
+                <field name="message"/>
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong>
+                                <field name="contact_name"/>
+                            </strong>
+                            <br/>
+                            Joining:
+                            <field name="contact_email"/>
+                            <br/>
+                            Gender:
+                            <field name="contact_number"/>
+                            <br/>
+                            Subject:
+                            <field name="subject"/>
+                            <br/>
+                            Message:
+                            <field name="message"/>
+                            <br/>
+
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="action_solar_contact" model="ir.actions.act_window">
+        <field name="name">contact</field>
+        <field name="res_model">contact.diary</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="view_id" ref="view_contact_kanban"/>
+    </record>
+</odoo>

@@ -1,7 +1,7 @@
 {
     'name':'solar hub management',
     'version':'18.0',
-    'author':"krisnaveni and sri sathya",
+    'author':"krishnaveni and sri sathya",
     'depends':['hr','contacts','mail',],
     'data': [
         'security/ir.model.access.csv',
@@ -17,6 +17,8 @@
         'views/assurance_type.xml',
         'views/assurance_subtype.xml',
         'views/tax.xml',
+        "views/contact_diary.xml",
+        "views/notice_board.xml",
         'views/menu.xml',
 
     ],

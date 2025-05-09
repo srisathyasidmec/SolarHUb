@@ -8,6 +8,8 @@
     <menuitem id="menu_solar_panel" name="Solar Panel" action="action_solar_panel" parent="menu_solar_business" sequence="3"/>
     <menuitem id="menu_solar_battery" name="Battery" action="action_solar_battery" parent="menu_solar_business" sequence="4"/>
     <menuitem id="menu_inverter" name="Inverter" action="action_inverter" parent="menu_solar_business" sequence="5"/>
+    <menuitem id="menu_contact_diary" name="Contact Diary" action="action_solar_contact" parent="menu_solar_business" sequence="6"/>
+    <menuitem id="menu_solar_notice" name="Notice Board" action="action_solar_notice" parent="menu_solar_business" sequence="7"/>
 
     <menuitem id="menu_system_service" name="Service Type" action="action_system_service" parent="menu_system" />
     <menuitem id="menu_system_property" name="Property Type" action="action_system_property" parent="menu_system" />

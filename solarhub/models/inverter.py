@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class Inverter(models.Model):
     _name = 'inverter'
     _description = 'Inverter'
+    _rec_name="inverter_type"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     inverter_sequence= fields.Char("Inverter Sequence", default="NEW")
@@ -15,13 +16,12 @@ class Inverter(models.Model):
 
     model = fields.Char("Model Name")
     capacity = fields.Float("Capacity (Kwh)")
-    # taxes = fields.Many2many("account.tax","Tax")
-    # tax = fields.Many2many("account.tax","Tax")
     tax_ids = fields.Many2many("account.tax", string="Tax")
     warrantycover=fields.Boolean("Warranty Covered")
 
     serial = fields.Char("Serial Number")
     efficiency = fields.Float("Efficiency (Kwh)")
+    total_cost=fields.Float("Total Cost",compute="compute_total_cost")
     warrantynotcover=fields.Boolean("Warranty not covered")
 
     @api.model
@@ -41,9 +41,14 @@ class Inverter(models.Model):
         price = vals.get('price')
 
         if inverter_sequence and price is not None:
-            # Search the product.template with matching name or reference (adapt field as needed)
             template = self.env['product.template'].search([('name', '=', inverter_sequence)], limit=1)
             if template:
                 template.list_price = price
 
         return super(Inverter, self).write(vals)
+
+    @api.depends('price', 'tax_ids')
+    def compute_total_cost(self):
+        for rec in self:
+            total_tax_percent = sum(rec.tax_ids.mapped('amount'))
+            rec.total_cost = rec.price + (rec.price * total_tax_percent / 100)

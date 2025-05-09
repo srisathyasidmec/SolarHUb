@@ -8,21 +8,21 @@
                     <sheet>
                         <group col="3">
                             <h1 style="color: #00aaff;">
-                                <field name="solar_sequence" readonly="1" />
+                                <field name="solar_sequence" readonly="1"/>
                             </h1>
                             <separator string="SOLAR PANEL" colspan="4"/>
                             <group>
                                 <field name="company_name"/>
                                 <field name="panel"/>
                                 <field name="current"/>
-<!--                                 <field name="taxes" widget="many2many"/>-->
-                                 <field name="tax_ids" widget="many2many_tags"/>
+                                <field name="tax_ids" widget="many2many_tags"/>
                             </group>
                             <group>
                                 <field name="model"/>
                                 <field name="wattage"/>
                                 <field name="degrade"/>
                                 <field name="total_cost"/>
+
                             </group>
                             <group>
                                 <field name="serial"/>
@@ -70,7 +70,6 @@
                 <field name="panel" optional="show"/>
                 <field name="availablestock" optional="show" widget="integer"/>
                 <field name="price" optional="show"/>
-<!--                <field name="taxes"/>-->
                 <field name="tax_ids" widget="many2many_tax_tags" optional="show"/>
                 <field name="total_cost" optional="show"/>
             </list>
@@ -83,4 +82,8 @@
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_solar_list"/>
     </record>
+
+
+
+
 </odoo>
