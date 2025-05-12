@@ -9,3 +9,4 @@ from . import productproducts
 from . import contact_diary
 from . import notice_board
 from . import solarhuborder
+from . import inspection

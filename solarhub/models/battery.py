@@ -9,9 +9,9 @@ class SolarBattery(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     battery_sequence=fields.Char("BATTERY", default="NEW")
-    company_name = fields.Char("Company Name")
-    model = fields.Char("Model Name")
-    serial = fields.Char("Serial Number")
+    company_name = fields.Char("Company Name",required="true")
+    model = fields.Char("Model Name",required="true")
+    serial = fields.Char("Serial Number",required="true")
     price = fields.Float("Price")
     battery_type=fields.Char("Battery Type")
     capacity=fields.Char("Capacity")

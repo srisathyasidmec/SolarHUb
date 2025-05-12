@@ -21,6 +21,9 @@
         'views/tax.xml',
         "views/contact_diary.xml",
         "views/notice_board.xml",
+        "views/inspection.xml",
+        "reports/solar_report_template.xml",
+        "reports/report.xml",
         'views/menu.xml',
     ],
 }

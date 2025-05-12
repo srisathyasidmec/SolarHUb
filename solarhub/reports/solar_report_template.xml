@@ -1,0 +1,334 @@
+<odoo>
+    <template id="report_solar_battery_template">
+        <t t-call="web.html_container">
+            <div class="page">
+                <h2 style="text-align:center;">Solar Battery Report</h2>
+                <table class="table table-sm table-bordered"
+                       style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid black;">Battery</th>
+                            <th style="border: 1px solid black;">Model Name</th>
+                            <th style="border: 1px solid black;">Company Name</th>
+                            <th style="border: 1px solid black;">Serial Number</th>
+                            <th style="border: 1px solid black;">Battery Type</th>
+                            <th style="border: 1px solid black;">Available Stocks</th>
+                            <th style="border: 1px solid black;">Price</th>
+                            <th style="border: 1px solid black;">Tax</th>
+                            <th style="border: 1px solid black;">Total Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.battery_sequence"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.model"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.company_name"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.serial"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.battery_type"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.availablestock"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.price"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-foreach="doc.tax_ids" t-as="tax">
+                                        <t t-esc="tax.name"/>
+                                    </t>
+                                </td>
+
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.total_cost"/>
+                                </td>
+
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_solar_inverter_template">
+        <t t-call="web.html_container">
+            <div class="page">
+                <h2 style="text-align:center;">PDF REPORT</h2>
+                <table class="table table-sm table-bordered"
+                       style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid black;">Inverter</th>
+                            <th style="border: 1px solid black;">Model Name</th>
+                            <th style="border: 1px solid black;">Company Name</th>
+                            <th style="border: 1px solid black;">Serial Number</th>
+                            <th style="border: 1px solid black;">Inverter Type</th>
+                            <th style="border: 1px solid black;">Available Stocks</th>
+                            <th style="border: 1px solid black;">Price</th>
+                            <th style="border: 1px solid black;">Tax</th>
+                            <th style="border: 1px solid black;">Total Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.inverter_sequence"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.model"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.company_name"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.serial"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.inverter_type"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.available_stocks"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.price"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-foreach="doc.tax_ids" t-as="tax">
+                                        <t t-esc="tax.name"/>
+                                    </t>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.total_cost"/>
+                                </td>
+
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_solar_panel_template">
+        <t t-call="web.html_container">
+            <div class="page">
+                <h2 style="text-align:center;">PDF REPORT</h2>
+                <table class="table table-sm table-bordered"
+                       style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid black;">Solar Panel</th>
+                            <th style="border: 1px solid black;">Model Name</th>
+                            <th style="border: 1px solid black;">Company Name</th>
+                            <th style="border: 1px solid black;">Serial Number</th>
+                            <th style="border: 1px solid black;">Panel Type</th>
+                            <th style="border: 1px solid black;">Available Stocks</th>
+                            <th style="border: 1px solid black;">Price</th>
+                            <th style="border: 1px solid black;">Tax</th>
+                            <th style="border: 1px solid black;">Total Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.solar_sequence"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.model"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.company_name"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.serial"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.panel"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.availablestock"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.price"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-foreach="doc.tax_ids" t-as="tax">
+                                        <t t-esc="tax.name"/>
+                                    </t>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.total_cost"/>
+                                </td>
+
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_solar_panel_template">
+        <t t-call="web.html_container">
+            <div class="page">
+                <h2 style="text-align:center;">PDF REPORT</h2>
+                <table class="table table-sm table-bordered"
+                       style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid black;">Solar Panel</th>
+                            <th style="border: 1px solid black;">Model Name</th>
+                            <th style="border: 1px solid black;">Company Name</th>
+                            <th style="border: 1px solid black;">Serial Number</th>
+                            <th style="border: 1px solid black;">Panel Type</th>
+                            <th style="border: 1px solid black;">Available Stocks</th>
+                            <th style="border: 1px solid black;">Price</th>
+                            <th style="border: 1px solid black;">Tax</th>
+                            <th style="border: 1px solid black;">Total Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.solar_sequence"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.model"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.company_name"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.serial"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.panel"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.availablestock"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.price"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-foreach="doc.tax_ids" t-as="tax">
+                                        <t t-esc="tax.name"/>
+                                    </t>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.total_cost"/>
+                                </td>
+
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_solar_order_template">
+        <t t-call="web.html_container">
+            <div class="page">
+                <h2 style="text-align:center;">PDF REPORT</h2>
+                <table class="table table-sm table-bordered"
+                       style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid black;">Order</th>
+                            <th style="border: 1px solid black;">Customer</th>
+                            <th style="border: 1px solid black;">Service</th>
+                            <th style="border: 1px solid black;">Property</th>
+                            <th style="border: 1px solid black;">Load Demand</th>
+                            <th style="border: 1px solid black;">Order Date</th>
+                            <th style="border: 1px solid black;">Delivery Date</th>
+                            <th style="border: 1px solid black;">Installation Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.solar_order_sequence"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.customer_name.name"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.service_type.title"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.property_type.title"/>
+                                </td>
+
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.load_demand"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.order_date"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.delivery_date"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.installation_date"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_solar_inspection_template">
+        <t t-call="web.html_container">
+            <div class="page" style="margin-top: 0px;">
+                <h2 style="text-align:center;">PDF REPORT</h2>
+                <table class="table table-sm table-bordered"
+                       style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid black;">Customer</th>
+                            <th style="border: 1px solid black;">Order</th>
+                            <th style="border: 1px solid black;">User</th>
+                            <th style="border: 1px solid black;">Inspection Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.customer.name"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.order.solar_order_sequence"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.user.name"/>
+                                </td>
+
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.inspection_date"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

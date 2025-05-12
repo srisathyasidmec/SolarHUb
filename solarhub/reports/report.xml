@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="report_solar_battery_pdf" model="ir.actions.report">
+        <field name="name">Solar battery Report</field>
+        <field name="model">solar.battery</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">solarhub.report_solar_battery_template</field>
+        <field name="report_file">solarhub.report_solar_battery_template</field>
+        <field name="binding_model_id" ref="solarhub.model_solar_battery"/>
+        <field name="binding_type">action</field>
+    </record>
+
+    <record id="report_solar_inverter_pdf" model="ir.actions.report">
+        <field name="name">PDF REPORT</field>
+        <field name="model">inverter</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">solarhub.report_solar_inverter_template</field>
+        <field name="report_file">solarhub.report_solar_inverter_template</field>
+        <field name="binding_model_id" ref="solarhub.model_inverter"/>
+        <field name="binding_type">action</field>
+    </record>
+
+
+    <record id="report_solar_panel_pdf" model="ir.actions.report">
+        <field name="name">PDF REPORT</field>
+        <field name="model">solar.panel</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">solarhub.report_solar_panel_template</field>
+        <field name="report_file">solarhub.report_solar_panel_template</field>
+        <field name="binding_model_id" ref="solarhub.model_solar_panel"/>
+        <field name="binding_type">action</field>
+    </record>
+
+    <record id="report_solar_template" model="ir.actions.report">
+        <field name="name">PDF REPORT</field>
+        <field name="model">solarhub.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">solarhub.report_solar_order_template</field>
+        <field name="report_file">solarhub.report_solar_order_template</field>
+        <field name="binding_model_id" ref="solarhub.model_solarhub_order"/>
+        <field name="binding_type">action</field>
+    </record>
+
+
+    <record id="paperformat_label_sheet" model="report.paperformat">
+        <field name="name">A4 Label Sheet</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">6</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="disable_shrinking" eval="True"/>
+        <field name="dpi">96</field>
+    </record>
+
+
+    <record id="report_inspection_template" model="ir.actions.report">
+        <field name="name">PDF REPORT</field>
+        <field name="model">solar.inspection</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">solarhub.report_solar_inspection_template</field>
+        <field name="report_file">solarhub.report_solar_inspection_template</field>
+        <field name="binding_model_id" ref="solarhub.model_solar_inspection"/>
+        <field name="binding_type">action</field>
+        <field name="paperformat_id" ref="solarhub.paperformat_label_sheet"/>
+    </record>
+
+
+</odoo>

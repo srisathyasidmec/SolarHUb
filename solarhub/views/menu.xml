@@ -15,6 +15,7 @@
     <menuitem id="menu_solar_notice" name="Notice Board" action="action_solar_notice" parent="menu_solar_business" sequence="7"/>
     <menuitem id="menu_solarhub_order" name="Order" action="action_solarhub_order" parent="menu_solar_business"
               sequence="6"/>
+    <menuitem id="menu_solar_inspection" name="Inspection" action="action_inspection" parent="menu_solar_business" sequence="8"/>
     <!--    #groups="solarhub.group_solarhub"-->
 
     <menuitem id="menu_system_service" name="Service Type" action="action_system_service" parent="menu_system"/>
