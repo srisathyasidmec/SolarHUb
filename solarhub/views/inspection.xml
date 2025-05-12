@@ -11,7 +11,7 @@
                             <field name="user"/>
                         </group>
                         <group>
-                            <field name="order"/>
+                            <field name="order" domain="[('customer_name','=',customer)]"/>
                             <field name="inspection_date"/>
                         </group>
                     </group>
@@ -30,7 +30,7 @@
         <field name="arch" type="xml">
             <list string="Inspection">
                 <field name="customer" string="Customer" optional="show"/>
-                <field name="order" string="Order" optional="show" domain="[('customer_name','=',customer)]"/>
+                <field name="order" string="Order" optional="show" />
                 <field name="user" string="User" optional="show"/>
                 <field name="inspection_date" string="Inspection Date" optional="show"/>
             </list>
