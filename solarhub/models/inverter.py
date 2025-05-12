@@ -24,7 +24,7 @@ class Inverter(models.Model):
 
     serial = fields.Char("Serial Number")
     efficiency = fields.Float("Efficiency (Kwh)")
-    total_cost = fields.Float("Total Cost")
+    total_cost = fields.Float("Total Cost",compute="compute_total_cost")
     warrantynotcover=fields.Boolean("Warranty not covered")
 
     @api.model
