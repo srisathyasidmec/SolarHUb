@@ -9,9 +9,9 @@ class SolarPanel(models.Model):
 
     solar_sequence= fields.Char("SOLAR PANEL", default="NEW")
 
-    company_name = fields.Char("Company Name")
-    model = fields.Char("Model Name")
-    serial = fields.Char("Serial Number")
+    company_name = fields.Char("Company Name",required="true")
+    model = fields.Char("Model Name",required="true")
+    serial = fields.Char("Serial Number",required="true"git)
     panel = fields.Char("Panel Type")
     wattage= fields.Integer( "Wattage")
     voltage = fields.Integer("Voltage")
