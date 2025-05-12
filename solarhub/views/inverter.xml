@@ -60,7 +60,7 @@
     </record>
 
     <record id="action_inverter" model="ir.actions.act_window">
-        <field name="name">inverter</field>
+        <field name="name">Inverter</field>
         <field name="res_model">inverter</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_inverter_list"/>

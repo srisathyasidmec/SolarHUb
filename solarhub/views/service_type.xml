@@ -15,7 +15,7 @@
 
 
     <record id="view_service_list" model="ir.ui.view">
-        <field name="name">service</field>
+        <field name="name">Service</field>
         <field name="model">system.service</field>
         <field name="arch" type="xml">
             <list string="service">
@@ -25,7 +25,7 @@
     </record>
 
     <record id="action_system_service" model="ir.actions.act_window">
-        <field name="name">service</field>
+        <field name="name">Service</field>
         <field name="res_model">system.service</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_service_list"/>
