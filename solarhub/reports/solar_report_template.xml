@@ -331,4 +331,50 @@
             </div>
         </t>
     </template>
+
+    <template id="report_solar_maintenance_template">
+        <t t-call="web.html_container">
+            <div class="page" style="margin-top: 0px;">
+                <h2 style="text-align:center;">PDF REPORT</h2>
+                <table class="table table-sm table-bordered"
+                       style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid black;">Customer</th>
+                            <th style="border: 1px solid black;">Order</th>
+                            <th style="border: 1px solid black;">Subject</th>
+                            <th style="border: 1px solid black;">Request Date</th>
+                            <th style="border: 1px solid black;">Delivery Date</th>
+                            <th style="border: 1px solid black;">Maintenance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.customer.name"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.order.solar_order_sequence"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.subject"/>
+                                </td>
+
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.requests_date"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.delivery_date"/>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <t t-esc="doc.maintenance_fee"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
 </odoo>

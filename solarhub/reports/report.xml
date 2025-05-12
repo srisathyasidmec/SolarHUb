@@ -69,5 +69,16 @@
         <field name="paperformat_id" ref="solarhub.paperformat_label_sheet"/>
     </record>
 
+    <record id="report_maintenance_template" model="ir.actions.report">
+        <field name="name">PDF REPORT</field>
+        <field name="model">solar.maintenance</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">solarhub.report_solar_maintenance_template</field>
+        <field name="report_file">solarhub.report_solar_maintenance_template</field>
+        <field name="binding_model_id" ref="solarhub.model_solar_maintenance"/>
+        <field name="binding_type">action</field>
+    </record>
+
+
 
 </odoo>
