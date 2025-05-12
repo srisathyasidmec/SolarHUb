@@ -10,3 +10,4 @@ access_solarhub_order,access_solarhub_order,model_solarhub_order,,1,1,1,1
 access_solarhub_order_lines,access_solarhub_order_lines,model_solarhub_order_lines,,1,1,1,1
 access_contact_diary,access_contact_diary,model_contact_diary,,1,1,1,1
 access_notice_board,access_notice_board,model_notice_board,,1,1,1,1
+access_solar_maintenance,access_solar_maintenance,model_solar_maintenance,,1,1,1,1
