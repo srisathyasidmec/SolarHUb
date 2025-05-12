@@ -17,7 +17,7 @@
     </record>
 
     <record id="view_notice_kanban" model="ir.ui.view">
-        <field name="name">notice</field>
+        <field name="name">Notice</field>
         <field name="model">notice.board</field>
         <field name="arch" type="xml">
             <kanban>

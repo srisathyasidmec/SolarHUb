@@ -13,6 +13,7 @@
         'views/inverter.xml',
         'views/solarhub_product_template.xml',
         'views/solarhub_order.xml',
+        'views/maintenance.xml',
         'data/ir_sequence.xml',
         'views/service_type.xml',
         'views/property_type.xml',
@@ -21,6 +22,9 @@
         'views/tax.xml',
         "views/contact_diary.xml",
         "views/notice_board.xml",
+        "views/inspection.xml",
+        "reports/solar_report_template.xml",
+        "reports/report.xml",
         'views/menu.xml',
     ],
 }

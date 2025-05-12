@@ -19,7 +19,7 @@
 
 
     <record id="view_assurance_subtype_list" model="ir.ui.view">
-        <field name="name">assurance_subtype</field>
+        <field name="name">Assurance Subtype</field>
         <field name="model">assurance.subtype</field>
         <field name="arch" type="xml">
             <list string="assurance_subtype">
@@ -32,7 +32,7 @@
     </record>
 
     <record id="action_system_assurance_subtype" model="ir.actions.act_window">
-        <field name="name">Assurance_Subtype</field>
+        <field name="name">Assurance Subtype</field>
         <field name="res_model">assurance.subtype</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_assurance_subtype_list"/>

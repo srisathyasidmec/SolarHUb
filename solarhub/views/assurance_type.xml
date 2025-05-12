@@ -15,7 +15,7 @@
 
 
     <record id="view_assurance_list" model="ir.ui.view">
-        <field name="name">assurance</field>
+        <field name="name">Assurance</field>
         <field name="model">system.assurance</field>
         <field name="arch" type="xml">
             <list string="service">

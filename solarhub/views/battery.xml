@@ -35,7 +35,7 @@
 
 
     <record id="view_battery_list" model="ir.ui.view">
-        <field name="name">battery</field>
+        <field name="name">Battery</field>
         <field name="model">solar.battery</field>
         <field name="arch" type="xml">
             <list string="Battery">

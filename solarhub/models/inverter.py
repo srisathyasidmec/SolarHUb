@@ -10,8 +10,8 @@ class Inverter(models.Model):
 
     inverter_sequence= fields.Char("Inverter Sequence", default="NEW")
 
-    company_name = fields.Char("Company Name")
-    inverter_type=fields.Char("Inverter Type")
+    company_name = fields.Char("Company Name",required="true")
+    inverter_type=fields.Char("Inverter Type",required="true")
     price = fields.Float("Price")
     available_stocks = fields.Integer("Available Stocks")
 

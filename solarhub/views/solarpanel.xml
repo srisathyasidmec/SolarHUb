@@ -3,7 +3,7 @@
     <record id="view_solar_form" model="ir.ui.view">
         <field name="model">solar.panel</field>
         <field name="arch" type="xml">
-            <form string="Solarhub">
+            <form string="SolarHub">
                 <sheet>
                     <sheet>
                         <group col="3">
@@ -59,7 +59,7 @@
 
 
     <record id="view_solar_list" model="ir.ui.view">
-        <field name="name">solar</field>
+        <field name="name">Solar</field>
         <field name="model">solar.panel</field>
         <field name="arch" type="xml">
             <list string="solarhub">

@@ -100,6 +100,11 @@
                         </page>
                     </notebook>
                 </sheet>
+<!--                <div style="width: 30%; border: 1px solid black; padding: 10px; margin-top: 20px;">-->
+<!--                    <field name="subtotal" readonly="1"/>-->
+<!--                    <field name="amount_tax" readonly="1"/>-->
+<!--                    <field name="amount_total" readonly="1"/>-->
+<!--                </div>-->
                 <chatter/>
             </form>
         </field>
@@ -123,10 +128,22 @@
         </field>
     </record>
 
+
+    <record id="view_solar_calendar" model="ir.ui.view">
+        <field name="name">Calendar View</field>
+        <field name="model">solarhub.order</field>
+        <field name="arch" type="xml">
+            <calendar string="Order Delivery Calendar" date_start="order_date" color="solar_order_sequence">
+                <field name="solar_order_sequence"/>
+            </calendar>
+        </field>
+    </record>
+
+
     <record id="action_solarhub_order" model="ir.actions.act_window">
         <field name="name">Order</field>
         <field name="res_model">solarhub.order</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,form,calendar</field>
         <field name="view_id" ref="view_solarorder_list"/>
     </record>
 </odoo>
