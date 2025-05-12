@@ -58,7 +58,7 @@
 
 
     <record id="action_solar_contact" model="ir.actions.act_window">
-        <field name="name">contact</field>
+        <field name="name">Contact</field>
         <field name="res_model">contact.diary</field>
         <field name="view_mode">kanban,form</field>
         <field name="view_id" ref="view_contact_kanban"/>

@@ -25,7 +25,7 @@
     </record>
 
     <record id="action_system_property" model="ir.actions.act_window">
-        <field name="name">solar</field>
+        <field name="name">Property_Type</field>
         <field name="res_model">system.property</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_property_list"/>

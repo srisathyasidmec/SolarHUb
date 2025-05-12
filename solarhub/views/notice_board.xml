@@ -48,7 +48,7 @@
 
 
     <record id="action_solar_notice" model="ir.actions.act_window">
-        <field name="name">notice</field>
+        <field name="name">Notice</field>
         <field name="res_model">notice.board</field>
         <field name="view_mode">kanban,form</field>
         <field name="view_id" ref="view_notice_kanban"/>
