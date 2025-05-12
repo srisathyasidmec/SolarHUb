@@ -59,7 +59,7 @@
 
 
     <record id="view_solar_list" model="ir.ui.view">
-        <field name="name">Solar</field>
+        <field name="name">Solar Panel</field>
         <field name="model">solar.panel</field>
         <field name="arch" type="xml">
             <list string="solarhub">

@@ -4,8 +4,7 @@ from odoo import models, fields, api
 class SolarBattery(models.Model):
     _name = 'solar.battery'
     _description = 'solar battery'
-    # _rec_name="battery_type"
-    _rec_name = 'battery_sequence'
+    _rec_name = 'company_name'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     battery_sequence=fields.Char("BATTERY", default="NEW")

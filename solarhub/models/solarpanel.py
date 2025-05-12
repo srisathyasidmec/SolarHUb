@@ -3,8 +3,8 @@ from odoo import models, fields, api
 
 class SolarPanel(models.Model):
     _name = 'solar.panel'
-    _description = 'solar panel'
-    _rec_name="solar_sequence"
+    _description = 'Solar Panel'
+    _rec_name="company_name"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     solar_sequence= fields.Char("SOLAR PANEL", default="NEW")
@@ -14,9 +14,9 @@ class SolarPanel(models.Model):
     serial = fields.Char("Serial Number")
     panel = fields.Char("Panel Type")
     wattage= fields.Integer( "Wattage")
-    voltage = fields.Integer("Voltage")
-    current=fields.Integer("Current")
-    degrade=fields.Integer("Degradation rate")
+    voltage = fields.Float("Voltage")
+    current=fields.Float("Current")
+    degrade=fields.Float("Degradation rate")
     price=fields.Float("Price")
     tax_ids=fields.Many2many("account.tax",string="Tax")
     total_cost=fields.Float("Total Cost",compute="compute_total_cost")
