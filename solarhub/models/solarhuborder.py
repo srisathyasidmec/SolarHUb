@@ -32,7 +32,7 @@ class SolarHubOrders(models.Model):
     solar_quantity = fields.Integer("Quantity", default="1")
 
     battery_id = fields.Many2one("solar.battery")
-    # battery_tax_ids = fields.Many2many("account.tax", string="Tax")
+    battery_tax_ids = fields.Many2many("account.tax", string="Tax", relation="solarhub_order_battery_tax_rel")
 
     battery_price = fields.Float("Price")
     battery_total_cost = fields.Float("Total Cost",compute="compute_battery_total_cost")
@@ -40,20 +40,18 @@ class SolarHubOrders(models.Model):
     battery_quantity = fields.Integer("Quantity", default="1")
 
     inverter_id = fields.Many2one(comodel_name="inverter",string="Inverter")
-    # inverter_tax_ids = fields.Many2many("account.tax",string="Tax")
+    inverter_tax_ids = fields.Many2many("account.tax",string="Tax", relation="solarhub_order_inverter_tax_rel")
 
     inverter_price = fields.Float("Price")
     inverter_total_cost = fields.Float("Total Cost",compute="compute_inverter_total_cost")
 
     inverter_quantity = fields.Integer("Quantity")
 
-
     solarorder_lines = fields.One2many("solarhub.order.lines", "solar_order", "Extra Order lines")
     status = fields.Selection([("pending", "Pending"), ("completed", "Completed")], "status",compute='status_date')
 
 
     # subtotal=fields.Integer("SubTotal",compute="compute_subtotal")
-
 
     # @ api.depends('inverter_price', 'battery_price', 'solar_price')
     # def compute_subtotal(self):
@@ -90,6 +88,14 @@ class SolarHubOrders(models.Model):
                 i.status = 'completed'
             else:
                 i.status = 'pending'
+
+    @api.onchange("solar_panel","solar_quantity")
+    def solar_details(self):
+        for rec in self:
+            rec.solar_price = rec.solar_panel.price
+            rec.tax_ids = rec.solar_panel.tax_ids
+            total_tax_percent = sum(rec.tax_ids.mapped('amount'))
+            rec.solar_total_cost = rec.solar_quantity * (rec.solar_price + (rec.solar_price * total_tax_percent / 100))
 
 class SolarHubOrderLines(models.Model):
     _name = "solarhub.order.lines"
