@@ -9,8 +9,5 @@ class SystemProperty(models.Model):
 
     assurance = fields.Many2one("system.assurance", "Assurance Type",required="true")
     assurance_subtype = fields.Char("Assurance SubType",required="true")
-    unit = fields.Char("Unit")
-    rate = fields.Integer("Rate")
-
-
-
+    unit_id = fields.Many2one("uom.uom","Unit")
+    rate = fields.Float("Rate")
