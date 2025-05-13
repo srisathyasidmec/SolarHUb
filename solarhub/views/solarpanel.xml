@@ -28,7 +28,7 @@
 
                             </group>
                             <group>
-                                <field name="serial"/>
+                                <field name="serial" widget="many2many_tags" domain="[('product_id','=',solar_sequence)]"/>
                                 <field name="voltage"/>
                                 <field name="price"/>
                                 <field name="availablestock"/>
@@ -69,7 +69,7 @@
                 <field name="solar_sequence" optional="show"/>
                 <field name="model" optional="show"/>
                 <field name="company_name" optional="show"/>
-                <field name="serial" optional="show"/>
+                <field name="serial" widget="many2many_tags" optional="show"/>
                 <field name="panel" optional="show"/>
                 <field name="availablestock" optional="show" widget="integer"/>
                 <field name="price" optional="show"/>

@@ -11,7 +11,7 @@ class SolarPanel(models.Model):
 
     company_name = fields.Char("Company Name",required="true")
     model = fields.Char("Model Name",required="true")
-    serial = fields.Char("Serial Number",required="true")
+    serial = fields.Many2many("stock.lot",required="true", string="Serial Number")
     panel = fields.Char("Panel Type")
     wattage= fields.Integer( "Wattage")
     voltage = fields.Float("Voltage")
