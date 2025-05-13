@@ -56,29 +56,41 @@ class SolarHubOrders(models.Model):
     grandtotal = fields.Float(string="grand Total", compute="compute_total")
 
 
+    @api.onchange('inverter_price', 'battery_price', 'solar_price')
+    def compute_total(self):
+         for rec in self:
+            rec.subtotal = (rec.inverter_price * rec.inverter_quantity) + (rec.battery_price * rec.battery_quantity) + (rec.solar_price * rec.solar_quantity)
+            rec.taxtotal = (rec.inverter_total_cost + rec.battery_total_cost + rec.solar_total_cost) - rec.subtotal
+            rec.grandtotal = rec.subtotal + rec.taxtotal
 
     @api.model
     def create(self, vals):
         vals["solar_order_sequence"] = self.env['ir.sequence'].next_by_code('solarhub.order')
         return super(SolarHubOrders, self).create(vals)
 
-    @api.depends('battery_price', 'tax_ids')
+    @api.depends('battery_price', 'battery_tax_ids')
     def compute_battery_total_cost(self):
         for rec in self:
-            total_tax_percent = sum(rec.tax_ids.mapped('amount'))
-            rec.battery_total_cost = rec.battery_price + (rec.battery_price * total_tax_percent / 100)
-
+            sub=rec.battery_price*rec.battery_quantity
+            total_tax_percent = sum(rec.battery_tax_ids.mapped('amount'))
+            tax_amount=sub*total_tax_percent/100
+            rec.battery_total_cost = sub + tax_amount
     @api.depends('solar_price', 'tax_ids')
     def compute_solar_total_cost(self):
         for rec in self:
+            sub = rec.solar_price * rec.solar_quantity
             total_tax_percent = sum(rec.tax_ids.mapped('amount'))
-            rec.solar_total_cost = rec.solar_price + (rec.solar_price * total_tax_percent / 100)
+            tax_amount = sub * total_tax_percent / 100
+            rec.solar_total_cost = sub + tax_amount
 
-    @api.depends('inverter_price', 'tax_ids')
+    @api.depends('inverter_price', 'inverter_tax_ids')
     def compute_inverter_total_cost(self):
         for rec in self:
-            total_tax_percent = sum(rec.tax_ids.mapped('amount'))
-            rec.inverter_total_cost = rec.inverter_price + (rec.inverter_price * total_tax_percent / 100)
+            sub = rec.inverter_price * rec.inverter_quantity
+            total_tax_percent = sum(rec.inverter_tax_ids.mapped('amount'))
+            tax_amount = sub * total_tax_percent / 100
+            rec.inverter_total_cost = sub + tax_amount
+
 
     def status_date(self):
         today = date.today()
@@ -117,9 +129,8 @@ class SolarHubOrders(models.Model):
         for rec in self:
             rec.subtotal = (rec.inverter_price * rec.inverter_quantity) + (rec.battery_price * rec.battery_quantity) + (
                         rec.solar_price * rec.solar_quantity)
-            rec.taxtotal = (rec.inverter_total_cost + rec.battery_total_cost + rec.solar_total_cost) - rec.subtotal
+            rec.taxtotal = (rec.inverter_total_cost + rec.battery_total_cost + rec.solar_total_cost) - (rec.subtotal)
             rec.grandtotal = rec.subtotal + rec.taxtotal
-
 
 class SolarHubOrderLines(models.Model):
     _name = "solarhub.order.lines"
