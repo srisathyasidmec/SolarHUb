@@ -104,23 +104,36 @@
                     </notebook>
                 </sheet>
                 <group>
-                    <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:12px;">
+                    <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:12px; position: relative;">
                         <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
                             <!-- Sub Total -->
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <span>
-                                    <strong>Sub Total:</strong>
-                                    <br/>
-                                    <strong>Tax Total:</strong>
-                                    <br/>
-                                    <strong>Grand Total:</strong>
+                                    <strong>Untaxed Amount:</strong>
                                 </span>
                                 <span>
                                     <field name="subtotal" readonly="1" nolabel="1"/>
+                                </span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span>
+                                    <strong>Tax Total:</strong>
+                                </span>
+                                <span>
                                     <field name="taxtotal" readonly="1" nolabel="1"/>
+                                </span>
+                            </div>
+                            <hr/>
+                            <!-- Grand Total -->
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>
+                                    <strong style="color: teal;">Grand Total:</strong>
+                                </span>
+                                <span>
                                     <field name="grandtotal" readonly="1" nolabel="1"/>
                                 </span>
                             </div>
+
                         </div>
                     </div>
                 </group>

@@ -39,7 +39,6 @@ class SolarBattery(models.Model):
         price = vals.get('price')
 
         if battery_sequence and price is not None:
-            # Search the product.template with matching name or reference (adapt field as needed)
             template = self.env['product.template'].search([('name', '=', battery_sequence)], limit=1)
             if template:
                 template.list_price = price
