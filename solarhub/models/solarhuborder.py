@@ -51,17 +51,17 @@ class SolarHubOrders(models.Model):
     status = fields.Selection([("pending", "Pending"), ("completed", "Completed")], "status",compute='status_date')
 
 
-    subtotal=fields.Integer("SubTotal",compute="compute_subtotal")
+    subtotal=fields.Float("SubTotal",compute="compute_total")
+    taxtotal=fields.Float("Tax Total",compute="compute_total")
+    grandtotal = fields.Float(string="grand Total", compute="compute_total")
 
 
-    @api.depends('inverter_price', 'battery_price', 'solar_price')
-    def compute_subtotal(self):
-         for record in self:
-             record.subtotal = (record.inverter_price or 0) + (record.battery_price or 0) + (record.solar_price or 0)
-    # @ api.depends('inverter_price', 'battery_price', 'solar_price')
-    # def compute_subtotal(self):
-    #     for record in self:
-    #         record.subtotal = (record.inverter_price or 0) + (record.battery_price or 0) + (record.solar_price or 0)
+    @api.onchange('inverter_price', 'battery_price', 'solar_price')
+    def compute_total(self):
+         for rec in self:
+            rec.subtotal = (rec.inverter_price * rec.inverter_quantity) + (rec.battery_price * rec.battery_quantity) + (rec.solar_price * rec.solar_quantity)
+            rec.taxtotal = (rec.inverter_total_cost + rec.battery_total_cost + rec.solar_total_cost) - rec.subtotal
+            rec.grandtotal = rec.subtotal + rec.taxtotal
 
     @api.model
     def create(self, vals):

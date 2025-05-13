@@ -110,30 +110,17 @@
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <span>
                                     <strong>Sub Total:</strong>
+                                    <br/>
+                                    <strong>Tax Total:</strong>
+                                    <br/>
+                                    <strong>Grand Total:</strong>
                                 </span>
                                 <span>
                                     <field name="subtotal" readonly="1" nolabel="1"/>
+                                    <field name="taxtotal" readonly="1" nolabel="1"/>
+                                    <field name="grandtotal" readonly="1" nolabel="1"/>
                                 </span>
                             </div>
-                            <!-- Tax Total -->
-<!--                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">-->
-<!--                                <span>-->
-<!--                                    <strong>Tax Total:</strong>-->
-<!--                                </span>-->
-<!--                                <span>-->
-<!--                                    <field name="amount_tax" readonly="1" nolabel="1"/>-->
-<!--                                </span>-->
-<!--                            </div>-->
-<!--                            <hr/>-->
-<!--                            &lt;!&ndash; Grand Total &ndash;&gt;-->
-<!--                            <div style="display: flex; justify-content: space-between; align-items: center;">-->
-<!--                                <span>-->
-<!--                                    <strong style="color: teal;">Grand Total:</strong>-->
-<!--                                </span>-->
-<!--                                <span>-->
-<!--                                    <field name="amount_total" readonly="1" nolabel="1"/>-->
-<!--                                </span>-->
-<!--                            </div>-->
                         </div>
                     </div>
                 </group>
