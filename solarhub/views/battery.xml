@@ -22,7 +22,7 @@
                             <field name="warrantynotcover"/>
                         </group>
                         <group>
-                            <field name="serial"/>
+                            <field name="serial" widget="many2many_tags" domain="[('product_id','=',battery_sequence)]"/>
                             <field name="price"/>
                             <field name="availablestock"/>
                         </group>
@@ -42,7 +42,7 @@
                 <field name="battery_sequence" optional="show"/>
                 <field name="model" optional="show"/>
                 <field name="company_name" optional="show"/>
-                <field name="serial" optional="show"/>
+                <field name="serial" widget="many2many_tags" optional="show"/>
                 <field name="battery_type" optional="show"/>
                 <field name="availablestock" optional="show" widget="integer"/>
                 <field name="price" optional="show"/>

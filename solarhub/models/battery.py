@@ -10,7 +10,7 @@ class SolarBattery(models.Model):
     battery_sequence=fields.Char("BATTERY", default="NEW")
     company_name = fields.Char("Company Name",required="true")
     model = fields.Char("Model Name",required="true")
-    serial = fields.Char("Serial Number",required="true")
+    serial = fields.Many2many("stock.lot",required="true",string="Serial Number")
     price = fields.Float("Price")
     battery_type=fields.Char("Battery Type")
     capacity=fields.Char("Capacity")
