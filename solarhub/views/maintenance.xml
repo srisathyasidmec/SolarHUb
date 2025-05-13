@@ -4,6 +4,10 @@
         <field name="model">solar.maintenance</field>
         <field name="arch" type="xml">
             <form string="Maintenance">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="pending,completed"/>
+                </header>
+
                 <sheet>
                     <sheet>
                         <group>
@@ -38,6 +42,7 @@
                 <field name="requests_date" optional="show"/>
                 <field name="delivery_date" optional="show"/>
                 <field name="maintenance_fee" optional="show"/>
+                <field name="status" widget="badge" />
             </list>
         </field>
     </record>

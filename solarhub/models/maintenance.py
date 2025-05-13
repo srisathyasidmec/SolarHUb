@@ -1,5 +1,8 @@
 from odoo import models, fields, api
+from datetime import date
 from odoo.osv import expression
+
+
 
 class Maintenance(models.Model):
     _name = "solar.maintenance"
@@ -15,3 +18,12 @@ class Maintenance(models.Model):
     order = fields.Many2one("solarhub.order",string="Order")
     requests_date = fields.Date("Requests Date")
     maintenance_fee = fields.Selection(selection=[('paid','Paid'),('free','Free')], string="Maintenance")
+    status = fields.Selection([("pending", "Pending"), ("completed", "Completed")], "status",compute='status_date')
+
+    def status_date(self):
+        today = date.today()
+        for i in self:
+            if i.delivery_date and today > i.delivery_date:
+                i.status = 'completed'
+            else:
+                i.status = 'pending'
