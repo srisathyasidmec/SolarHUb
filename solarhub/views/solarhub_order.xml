@@ -89,7 +89,7 @@
                             <field name="solarorder_lines">
                                 <list editable="bottom">
                                     <field name="assurance_type"/>
-                                    <field name="sub_type"/>
+                                    <field name="sub_type" domain="[('assurance','=',assurance_type)]"/>
                                     <field name="inverter_detail_quantity"/>
                                     <field name="inverter_detail_price"/>
                                 </list>

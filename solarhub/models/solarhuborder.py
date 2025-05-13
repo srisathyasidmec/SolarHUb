@@ -127,3 +127,8 @@ class SolarHubOrderLines(models.Model):
     inverter_detail_quantity = fields.Integer("QUANTITY")
     inverter_detail_price = fields.Float("PRICE")
     solar_order = fields.Many2one("solarhub.order", "Extra Orders")
+
+    @api.onchange("sub_type","inverter_detail_quantity")
+    def change_sub_price(self):
+        for rec in self:
+            rec.inverter_detail_price = rec.inverter_detail_quantity * rec.sub_type.rate
