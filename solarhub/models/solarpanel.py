@@ -3,8 +3,8 @@ from odoo import models, fields, api
 
 class SolarPanel(models.Model):
     _name = 'solar.panel'
-    _description = 'solar panel'
-    _rec_name="solar_sequence"
+    _description = 'Solar Panel'
+    _rec_name="company_name"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     solar_sequence= fields.Char("SOLAR PANEL", default="NEW")
@@ -14,9 +14,9 @@ class SolarPanel(models.Model):
     serial = fields.Char("Serial Number",required="true")
     panel = fields.Char("Panel Type")
     wattage= fields.Integer( "Wattage")
-    voltage = fields.Integer("Voltage")
-    current=fields.Integer("Current")
-    degrade=fields.Integer("Degradation rate")
+    voltage = fields.Float("Voltage")
+    current=fields.Float("Current")
+    degrade=fields.Float("Degradation rate")
     price=fields.Float("Price")
     tax_ids=fields.Many2many("account.tax",string="Tax")
     total_cost=fields.Float("Total Cost",compute="compute_total_cost")
@@ -27,6 +27,7 @@ class SolarPanel(models.Model):
     gridexport=fields.Integer("Grid Export")
     warrantycover=fields.Boolean("Warranty Covered")
     warrantynotcover=fields.Boolean("Warranty not covered")
+    status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "status",compute="compute_status")
 
     @api.model
     def create(self, vals):
@@ -58,6 +59,17 @@ class SolarPanel(models.Model):
         for rec in self:
             total_tax_percent = sum(rec.tax_ids.mapped('amount'))
             rec.total_cost = rec.price + (rec.price * total_tax_percent / 100)
+
+    @api.depends('availablestock')
+    def compute_status(self):
+        for i in self:
+            if i.availablestock > 0:
+                i.status="available"
+            else:
+                i.status="unavailable"
+
+
+
 
 
 

@@ -4,6 +4,9 @@
         <field name="model">solar.panel</field>
         <field name="arch" type="xml">
             <form string="SolarHub">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="available,unavailable"/>
+                </header>
                 <sheet>
                     <sheet>
                         <group col="3">
@@ -59,7 +62,7 @@
 
 
     <record id="view_solar_list" model="ir.ui.view">
-        <field name="name">Solar</field>
+        <field name="name">Solar Panel</field>
         <field name="model">solar.panel</field>
         <field name="arch" type="xml">
             <list string="solarhub">
@@ -72,6 +75,7 @@
                 <field name="price" optional="show"/>
                 <field name="tax_ids" widget="many2many_tax_tags" optional="show"/>
                 <field name="total_cost" optional="show"/>
+                <field name="status" widget="badge" />
             </list>
         </field>
     </record>
@@ -82,8 +86,6 @@
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_solar_list"/>
     </record>
-
-
 
 
 </odoo>
