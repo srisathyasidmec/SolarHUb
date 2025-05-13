@@ -56,12 +56,6 @@ class SolarHubOrders(models.Model):
     grandtotal = fields.Float(string="grand Total", compute="compute_total")
 
 
-    @api.onchange('inverter_price', 'battery_price', 'solar_price')
-    def compute_total(self):
-         for rec in self:
-            rec.subtotal = (rec.inverter_price * rec.inverter_quantity) + (rec.battery_price * rec.battery_quantity) + (rec.solar_price * rec.solar_quantity)
-            rec.taxtotal = (rec.inverter_total_cost + rec.battery_total_cost + rec.solar_total_cost) - rec.subtotal
-            rec.grandtotal = rec.subtotal + rec.taxtotal
 
     @api.model
     def create(self, vals):
@@ -118,6 +112,15 @@ class SolarHubOrders(models.Model):
             total_tax_percent = sum(rec.inverter_tax_ids.mapped('amount'))
             rec.inverter_total_cost = rec.inverter_quantity * (rec.inverter_price + (rec.inverter_price * total_tax_percent / 100))
 
+    @api.onchange('inverter_price', 'battery_price', 'solar_price')
+    def compute_total(self):
+        for rec in self:
+            rec.subtotal = (rec.inverter_price * rec.inverter_quantity) + (rec.battery_price * rec.battery_quantity) + (
+                        rec.solar_price * rec.solar_quantity)
+            rec.taxtotal = (rec.inverter_total_cost + rec.battery_total_cost + rec.solar_total_cost) - rec.subtotal
+            rec.grandtotal = rec.subtotal + rec.taxtotal
+
+
 class SolarHubOrderLines(models.Model):
     _name = "solarhub.order.lines"
 
@@ -127,3 +130,8 @@ class SolarHubOrderLines(models.Model):
     inverter_detail_quantity = fields.Integer("QUANTITY")
     inverter_detail_price = fields.Float("PRICE")
     solar_order = fields.Many2one("solarhub.order", "Extra Orders")
+
+    @api.onchange("sub_type","inverter_detail_quantity")
+    def change_sub_price(self):
+        for rec in self:
+            rec.inverter_detail_price = rec.inverter_detail_quantity * rec.sub_type.rate
