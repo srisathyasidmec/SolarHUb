@@ -51,8 +51,13 @@ class SolarHubOrders(models.Model):
     status = fields.Selection([("pending", "Pending"), ("completed", "Completed")], "status",compute='status_date')
 
 
-    # subtotal=fields.Integer("SubTotal",compute="compute_subtotal")
+    subtotal=fields.Integer("SubTotal",compute="compute_subtotal")
 
+
+    @api.depends('inverter_price', 'battery_price', 'solar_price')
+    def compute_subtotal(self):
+         for record in self:
+             record.subtotal = (record.inverter_price or 0) + (record.battery_price or 0) + (record.solar_price or 0)
     # @ api.depends('inverter_price', 'battery_price', 'solar_price')
     # def compute_subtotal(self):
     #     for record in self:

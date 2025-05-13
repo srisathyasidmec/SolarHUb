@@ -103,11 +103,41 @@
                         </page>
                     </notebook>
                 </sheet>
-<!--                <div style="width: 30%; border: 1px solid black; padding: 10px; margin-top: 20px;">-->
-<!--                    <field name="subtotal" readonly="1"/>-->
-<!--                    <field name="amount_tax" readonly="1"/>-->
-<!--                    <field name="amount_total" readonly="1"/>-->
-<!--                </div>-->
+                <group>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:12px;">
+                        <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                            <!-- Sub Total -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span>
+                                    <strong>Sub Total:</strong>
+                                </span>
+                                <span>
+                                    <field name="subtotal" readonly="1" nolabel="1"/>
+                                </span>
+                            </div>
+                            <!-- Tax Total -->
+<!--                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">-->
+<!--                                <span>-->
+<!--                                    <strong>Tax Total:</strong>-->
+<!--                                </span>-->
+<!--                                <span>-->
+<!--                                    <field name="amount_tax" readonly="1" nolabel="1"/>-->
+<!--                                </span>-->
+<!--                            </div>-->
+<!--                            <hr/>-->
+<!--                            &lt;!&ndash; Grand Total &ndash;&gt;-->
+<!--                            <div style="display: flex; justify-content: space-between; align-items: center;">-->
+<!--                                <span>-->
+<!--                                    <strong style="color: teal;">Grand Total:</strong>-->
+<!--                                </span>-->
+<!--                                <span>-->
+<!--                                    <field name="amount_total" readonly="1" nolabel="1"/>-->
+<!--                                </span>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </group>
+
                 <chatter/>
             </form>
         </field>
@@ -127,7 +157,7 @@
                 <field name="order_date" optional="show"/>
                 <field name="delivery_date" optional="show"/>
                 <field name="installation_date" optional="show"/>
-                <field name="status" widget="badge" />
+                <field name="status" widget="badge"/>
             </list>
         </field>
     </record>
