@@ -75,6 +75,7 @@ class SolarHubOrders(models.Model):
             total_tax_percent = sum(rec.battery_tax_ids.mapped('amount'))
             tax_amount=sub*total_tax_percent/100
             rec.battery_total_cost = sub + tax_amount
+
     @api.depends('solar_price', 'tax_ids')
     def compute_solar_total_cost(self):
         for rec in self:
@@ -90,7 +91,6 @@ class SolarHubOrders(models.Model):
             total_tax_percent = sum(rec.inverter_tax_ids.mapped('amount'))
             tax_amount = sub * total_tax_percent / 100
             rec.inverter_total_cost = sub + tax_amount
-
 
     def status_date(self):
         today = date.today()
