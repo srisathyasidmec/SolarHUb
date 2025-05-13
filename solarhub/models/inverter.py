@@ -26,6 +26,8 @@ class Inverter(models.Model):
     efficiency = fields.Float("Efficiency (Kwh)")
     total_cost = fields.Float("Total Cost",compute="compute_total_cost")
     warrantynotcover=fields.Boolean("Warranty not covered")
+    status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "Status",compute="compute_status")
+
 
     @api.model
     def create(self, vals):
@@ -57,3 +59,11 @@ class Inverter(models.Model):
         for rec in self:
             total_tax_percent = sum(rec.tax_ids.mapped('amount'))
             rec.total_cost = rec.price + (rec.price * total_tax_percent / 100)
+
+    @api.depends('available_stocks')
+    def compute_status(self):
+        for i in self:
+            if i.available_stocks > 0:
+                i.status = "available"
+            else:
+                i.status = "unavailable"

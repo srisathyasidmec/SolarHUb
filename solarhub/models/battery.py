@@ -19,6 +19,7 @@ class SolarBattery(models.Model):
     availablestock = fields.Integer("Available Stock")
     warrantycover = fields.Boolean("Warranty Covered")
     warrantynotcover = fields.Boolean("Warranty not covered")
+    status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "status",compute="compute_status")
 
     @api.model
     def create(self, vals):
@@ -50,3 +51,11 @@ class SolarBattery(models.Model):
         for rec in self:
             total_tax_percent = sum(rec.tax_ids.mapped('amount'))
             rec.total_cost = rec.price + (rec.price * total_tax_percent / 100)
+
+    @api.depends('availablestock')
+    def compute_status(self):
+        for i in self:
+            if i.availablestock > 0:
+                i.status = "available"
+            else:
+                i.status = "unavailable"

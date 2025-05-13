@@ -4,6 +4,9 @@
         <field name="model">solarhub.order</field>
         <field name="arch" type="xml">
             <form string="SolarHub Order">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="pending,completed"/>
+                </header>
                 <sheet>
                     <sheet>
                         <group col="3">
@@ -124,6 +127,7 @@
                 <field name="order_date" optional="show"/>
                 <field name="delivery_date" optional="show"/>
                 <field name="installation_date" optional="show"/>
+                <field name="status" widget="badge" />
             </list>
         </field>
     </record>

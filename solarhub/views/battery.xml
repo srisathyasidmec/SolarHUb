@@ -4,6 +4,9 @@
         <field name="model">solar.battery</field>
         <field name="arch" type="xml">
             <form string="Battery">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="available,unavailable"/>
+                </header>
                 <sheet>
                     <h1 style="color: #00aaff;">
                         <field name="battery_sequence" readonly="1"/>
@@ -48,6 +51,7 @@
                 <field name="price" optional="show"/>
                 <field name="tax_ids" widget="many2many_tax_tags" optional="show"/>
                 <field name="total_cost" optional="show"/>
+                <field name="status" widget="badge" />
             </list>
         </field>
     </record>
