@@ -102,6 +102,22 @@ class SolarHubOrders(models.Model):
             total_tax_percent = sum(rec.tax_ids.mapped('amount'))
             rec.solar_total_cost = rec.solar_quantity * (rec.solar_price + (rec.solar_price * total_tax_percent / 100))
 
+    @api.onchange("battery_id", "battery_quantity")
+    def battery_details(self):
+        for rec in self:
+            rec.battery_price = rec.battery_id.price
+            rec.battery_tax_ids = rec.battery_id.tax_ids
+            total_tax_percent = sum(rec.battery_tax_ids.mapped('amount'))
+            rec.battery_total_cost = rec.battery_quantity * (rec.battery_price + (rec.battery_price * total_tax_percent / 100))
+
+    @api.onchange("inverter_id", "inverter_quantity")
+    def inverter_details(self):
+        for rec in self:
+            rec.inverter_price = rec.inverter_id.price
+            rec.inverter_tax_ids = rec.inverter_id.tax_ids
+            total_tax_percent = sum(rec.inverter_tax_ids.mapped('amount'))
+            rec.inverter_total_cost = rec.inverter_quantity * (rec.inverter_price + (rec.inverter_price * total_tax_percent / 100))
+
 class SolarHubOrderLines(models.Model):
     _name = "solarhub.order.lines"
 
