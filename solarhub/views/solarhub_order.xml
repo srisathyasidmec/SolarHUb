@@ -104,7 +104,7 @@
                     </notebook>
                 </sheet>
                 <group>
-                    <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:12px;">
+                    <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:12px; position: relative;">
                         <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
                             <!-- Sub Total -->
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
