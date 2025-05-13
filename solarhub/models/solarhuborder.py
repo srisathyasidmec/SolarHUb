@@ -1,4 +1,5 @@
 from odoo import fields, models, api
+from datetime import date
 
 class SolarHubOrders(models.Model):
     _name = 'solarhub.order'
@@ -48,6 +49,9 @@ class SolarHubOrders(models.Model):
 
 
     solarorder_lines = fields.One2many("solarhub.order.lines", "solar_order", "Extra Order lines")
+    status = fields.Selection([("pending", "Pending"), ("completed", "Completed")], "status",compute='status_date')
+
+
     # subtotal=fields.Integer("SubTotal",compute="compute_subtotal")
 
 
@@ -78,6 +82,14 @@ class SolarHubOrders(models.Model):
         for rec in self:
             total_tax_percent = sum(rec.tax_ids.mapped('amount'))
             rec.inverter_total_cost = rec.inverter_price + (rec.inverter_price * total_tax_percent / 100)
+
+    def status_date(self):
+        today = date.today()
+        for i in self:
+            if i.installation_date and today > i.installation_date:
+                i.status = 'completed'
+            else:
+                i.status = 'pending'
 
 class SolarHubOrderLines(models.Model):
     _name = "solarhub.order.lines"

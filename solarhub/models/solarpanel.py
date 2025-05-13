@@ -27,7 +27,7 @@ class SolarPanel(models.Model):
     gridexport=fields.Integer("Grid Export")
     warrantycover=fields.Boolean("Warranty Covered")
     warrantynotcover=fields.Boolean("Warranty not covered")
-    status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "status",compute="compute_status")
+    status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "Status",compute="compute_status")
 
     @api.model
     def create(self, vals):
