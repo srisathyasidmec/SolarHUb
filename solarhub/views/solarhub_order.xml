@@ -57,7 +57,7 @@
                             <separator string="BATTERY DETAIL" colspan="4"/>
                             <group>
                                 <field name="battery_id"/>
-                                <field name="tax_ids" widget="many2many_tags"/>
+                                <field name="battery_tax_ids" widget="many2many_tags"/>
                             </group>
                             <group>
                                 <field name="battery_price"/>
@@ -73,7 +73,7 @@
                             <separator string="INVERTER DETAIL" colspan="4"/>
                             <group>
                                 <field name="inverter_id"/>
-                                <field name="tax_ids" widget="many2many_tags"/>
+                                <field name="inverter_tax_ids" widget="many2many_tags"/>
                             </group>
                             <group>
                                 <field name="inverter_price"/>

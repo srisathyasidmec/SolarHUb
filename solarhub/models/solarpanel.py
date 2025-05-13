@@ -11,7 +11,7 @@ class SolarPanel(models.Model):
 
     company_name = fields.Char("Company Name",required="true")
     model = fields.Char("Model Name",required="true")
-    serial = fields.Many2many("stock.lot",required="true", string="Serial Number")
+    serial = fields.Many2many("stock.lot", string="Serial Number")
     panel = fields.Char("Panel Type")
     wattage= fields.Integer( "Wattage")
     voltage = fields.Float("Voltage")
@@ -36,7 +36,9 @@ class SolarPanel(models.Model):
                     'type': 'consu',
                    'solarhub_type': 'solar panel',
                    'list_price':vals['price'],
-                   'taxes_id':vals['tax_ids']}
+                   'taxes_id':vals['tax_ids'],
+                   # 'is_storable':'lot',
+                   }
         self.env['product.product'].create(product)
 
         return super(SolarPanel, self).create(vals)
@@ -67,9 +69,3 @@ class SolarPanel(models.Model):
                 i.status="available"
             else:
                 i.status="unavailable"
-
-
-
-
-
-

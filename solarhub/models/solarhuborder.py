@@ -32,7 +32,7 @@ class SolarHubOrders(models.Model):
     solar_quantity = fields.Integer("Quantity", default="1")
 
     battery_id = fields.Many2one("solar.battery")
-    # battery_tax_ids = fields.Many2many("account.tax", string="Tax")
+    battery_tax_ids = fields.Many2many("account.tax", string="Tax", relation="solarhub_order_battery_tax_rel")
 
     battery_price = fields.Float("Price")
     battery_total_cost = fields.Float("Total Cost",compute="compute_battery_total_cost")
@@ -40,13 +40,12 @@ class SolarHubOrders(models.Model):
     battery_quantity = fields.Integer("Quantity", default="1")
 
     inverter_id = fields.Many2one(comodel_name="inverter",string="Inverter")
-    # inverter_tax_ids = fields.Many2many("account.tax",string="Tax")
+    inverter_tax_ids = fields.Many2many("account.tax",string="Tax", relation="solarhub_order_inverter_tax_rel")
 
     inverter_price = fields.Float("Price")
     inverter_total_cost = fields.Float("Total Cost",compute="compute_inverter_total_cost")
 
     inverter_quantity = fields.Integer("Quantity")
-
 
     solarorder_lines = fields.One2many("solarhub.order.lines", "solar_order", "Extra Order lines")
     status = fields.Selection([("pending", "Pending"), ("completed", "Completed")], "status",compute='status_date')
@@ -59,6 +58,10 @@ class SolarHubOrders(models.Model):
     def compute_subtotal(self):
          for record in self:
              record.subtotal = (record.inverter_price or 0) + (record.battery_price or 0) + (record.solar_price or 0)
+    # @ api.depends('inverter_price', 'battery_price', 'solar_price')
+    # def compute_subtotal(self):
+    #     for record in self:
+    #         record.subtotal = (record.inverter_price or 0) + (record.battery_price or 0) + (record.solar_price or 0)
 
     @api.model
     def create(self, vals):
@@ -90,6 +93,30 @@ class SolarHubOrders(models.Model):
                 i.status = 'completed'
             else:
                 i.status = 'pending'
+
+    @api.onchange("solar_panel","solar_quantity")
+    def solar_details(self):
+        for rec in self:
+            rec.solar_price = rec.solar_panel.price
+            rec.tax_ids = rec.solar_panel.tax_ids
+            total_tax_percent = sum(rec.tax_ids.mapped('amount'))
+            rec.solar_total_cost = rec.solar_quantity * (rec.solar_price + (rec.solar_price * total_tax_percent / 100))
+
+    @api.onchange("battery_id", "battery_quantity")
+    def battery_details(self):
+        for rec in self:
+            rec.battery_price = rec.battery_id.price
+            rec.battery_tax_ids = rec.battery_id.tax_ids
+            total_tax_percent = sum(rec.battery_tax_ids.mapped('amount'))
+            rec.battery_total_cost = rec.battery_quantity * (rec.battery_price + (rec.battery_price * total_tax_percent / 100))
+
+    @api.onchange("inverter_id", "inverter_quantity")
+    def inverter_details(self):
+        for rec in self:
+            rec.inverter_price = rec.inverter_id.price
+            rec.inverter_tax_ids = rec.inverter_id.tax_ids
+            total_tax_percent = sum(rec.inverter_tax_ids.mapped('amount'))
+            rec.inverter_total_cost = rec.inverter_quantity * (rec.inverter_price + (rec.inverter_price * total_tax_percent / 100))
 
 class SolarHubOrderLines(models.Model):
     _name = "solarhub.order.lines"

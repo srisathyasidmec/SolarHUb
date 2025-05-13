@@ -5,7 +5,7 @@ class Inverter(models.Model):
     _name = 'inverter'
     _description = 'Inverter'
     # _rec_name="inverter_type"
-    _rec_name = 'inverter_sequence'
+    _rec_name = 'company_name'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     inverter_sequence= fields.Char("Inverter Sequence", default="NEW")
