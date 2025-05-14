@@ -27,6 +27,14 @@ class OrdersSolar(models.Model):
 
     solar_lines = fields.One2many("solar.orders.lines", "solar_order", "Solar Order Lines")
 
+    sub_total = fields.Float(string='Total Assurance', compute='compute_solar_total')
+
+    @api.depends('solar_lines.solar_price')
+    def compute_solar_total(self):
+        for order in self:
+            order.sub_total = sum(line.sub_total for line in order.solar_lines)
+
+
     def status_date(self):
         today = date.today()
         for i in self:
@@ -53,18 +61,24 @@ class SolarOrdersLines(models.Model):
     solar_quantity = fields.Integer("Quantity", default="1")
     solar_order = fields.Many2one("orders.solar", "Solar Orders")
 
-    @api.depends('solar_price', 'tax_ids')
-    def compute_solar_total_cost(self):
-        for rec in self:
-            sub = rec.solar_price * rec.solar_quantity
-            total_tax_percent = sum(rec.tax_ids.mapped('amount'))
-            tax_amount = sub * total_tax_percent / 100
-            rec.solar_total_cost = sub + tax_amount
+    sub_total = fields.Float("Sub Total",compute="compute_solar_subtotal")
 
-    @api.onchange("solar_panel", "solar_quantity")
+    @api.onchange("solar_panel")
     def solar_details(self):
         for rec in self:
             rec.solar_price = rec.solar_panel.price
             rec.tax_ids = rec.solar_panel.tax_ids
+            rec.solar_total_cost = rec.solar_panel.total_cost
+
+    @api.depends('solar_price', 'tax_ids','solar_quantity')
+    def compute_solar_total_cost(self):
+        for rec in self:
+            sub = rec.solar_price * rec.solar_quantity
             total_tax_percent = sum(rec.tax_ids.mapped('amount'))
-            rec.solar_total_cost = rec.solar_quantity * (rec.solar_price + (rec.solar_price * total_tax_percent / 100))
+            tax_amount = sub * (total_tax_percent / 100)
+            rec.solar_total_cost = sub + tax_amount
+
+    @api.depends("solar_total_cost")
+    def compute_solar_subtotal(self):
+        for rec in self:
+            rec.sub_total += rec.solar_total_cost

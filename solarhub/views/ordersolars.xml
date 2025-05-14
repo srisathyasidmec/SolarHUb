@@ -51,96 +51,21 @@
                                     <field name="solar_quantity"/>
                                 </form>
                             </field>
+                            <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:4px; position: relative;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <span style="margin-left: 40px">
+                                            <strong>Sub Total:</strong>
+                                        </span>
+                                        <span style="margin-left: 30px; margin-top: 4px">
+                                            <field name="sub_total" readonly="1" nolabel="1"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </page>
                     </notebook>
                 </sheet>
-
-                <!--                    <sheet>-->
-                <!--                        <group col="3">-->
-                <!--                            <separator string="BATTERY DETAIL" colspan="4"/>-->
-                <!--                            <group>-->
-                <!--                                <field name="battery_id"/>-->
-                <!--                                <field name="battery_tax_ids" widget="many2many_tags"/>-->
-                <!--                            </group>-->
-                <!--                            <group>-->
-                <!--                                <field name="battery_price"/>-->
-                <!--                                <field name="battery_total_cost" readonly="1"/>-->
-                <!--                            </group>-->
-                <!--                            <group>-->
-                <!--                                <field name="battery_quantity"/>-->
-                <!--                            </group>-->
-                <!--                        </group>-->
-                <!--                    </sheet>-->
-                <!--                    <sheet>-->
-                <!--                        <group col="3">-->
-                <!--                            <separator string="INVERTER DETAIL" colspan="4"/>-->
-                <!--                            <group>-->
-                <!--                                <field name="inverter_id"/>-->
-                <!--                                <field name="inverter_tax_ids" widget="many2many_tags"/>-->
-                <!--                            </group>-->
-                <!--                            <group>-->
-                <!--                                <field name="inverter_price"/>-->
-                <!--                                <field name="inverter_total_cost" readonly="1"/>-->
-                <!--                            </group>-->
-                <!--                            <group>-->
-                <!--                                <field name="inverter_quantity"/>-->
-                <!--                            </group>-->
-                <!--                        </group>-->
-                <!--                    </sheet>-->
-                <!--                    <notebook>-->
-                <!--                        <page string="Extra Order Lines">-->
-                <!--                            <field name="solarorder_lines">-->
-                <!--                                <list editable="bottom">-->
-                <!--                                    <field name="assurance_type"/>-->
-                <!--                                    <field name="sub_type" domain="[('assurance','=',assurance_type)]"/>-->
-                <!--                                    <field name="inverter_detail_quantity"/>-->
-                <!--                                    <field name="inverter_detail_price"/>-->
-                <!--                                </list>-->
-                <!--                                <form>-->
-                <!--                                    <field name="assurance_type"/>-->
-                <!--                                    <field name="sub_type"/>-->
-                <!--                                    <field name="inverter_detail_quantity"/>-->
-                <!--                                    <field name="inverter_detail_price"/>-->
-                <!--                                </form>-->
-                <!--                            </field>-->
-                <!--                        </page>-->
-                <!--                    </notebook>-->
-
-                <!--                <group>-->
-                <!--                    <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:12px; position: relative;">-->
-                <!--                        <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">-->
-                <!--                            &lt;!&ndash; Sub Total &ndash;&gt;-->
-                <!--                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">-->
-                <!--                                <span>-->
-                <!--                                    <strong>Untaxed Amount:</strong>-->
-                <!--                                </span>-->
-                <!--                                <span>-->
-                <!--                                    <field name="subtotal" readonly="1" nolabel="1"/>-->
-                <!--                                </span>-->
-                <!--                            </div>-->
-                <!--                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">-->
-                <!--                                <span>-->
-                <!--                                    <strong>Tax Total:</strong>-->
-                <!--                                </span>-->
-                <!--                                <span>-->
-                <!--                                    <field name="taxtotal" readonly="1" nolabel="1"/>-->
-                <!--                                </span>-->
-                <!--                            </div>-->
-                <!--                            <hr/>-->
-                <!--                            &lt;!&ndash; Grand Total &ndash;&gt;-->
-                <!--                            <div style="display: flex; justify-content: space-between; align-items: center;">-->
-                <!--                                <span>-->
-                <!--                                    <strong style="color: teal;">Grand Total:</strong>-->
-                <!--                                </span>-->
-                <!--                                <span>-->
-                <!--                                    <field name="grandtotal" readonly="1" nolabel="1"/>-->
-                <!--                                </span>-->
-                <!--                            </div>-->
-
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </group>-->
-
                 <chatter/>
             </form>
         </field>
