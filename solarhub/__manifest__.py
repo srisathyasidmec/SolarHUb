@@ -24,6 +24,7 @@
         "views/contact_diary.xml",
         "views/notice_board.xml",
         "views/inspection.xml",
+        # 'data/inspection_confirm_mail.xml',
         "reports/solar_report_template.xml",
         "reports/report.xml",
         'views/menu.xml',
