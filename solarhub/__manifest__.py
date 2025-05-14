@@ -7,6 +7,7 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/solaremployee.xml',
+        'data/customer_mail_template.xml',
         'views/view_customer.xml',
         'views/solarpanel.xml',
         'views/battery.xml',

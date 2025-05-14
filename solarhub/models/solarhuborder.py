@@ -55,13 +55,21 @@ class SolarHubOrders(models.Model):
     taxtotal=fields.Float("Tax Total",compute="compute_total")
     grandtotal = fields.Float(string="grand Total", compute="compute_total")
 
+    assurance_total = fields.Float(string='Total Assurance', compute='compute_assurance_total')
 
-    @api.onchange('inverter_price', 'battery_price', 'solar_price')
+
+    @api.depends('solarorder_lines.inverter_detail_price')
+    def compute_assurance_total(self):
+        for order in self:
+            order.assurance_total = sum(line.assurance_total for line in order.solarorder_lines)
+            order.grandtotal+=order.assurance_total
+
+    @api.onchange('inverter_price', 'battery_price', 'solar_price','assurance_total')
     def compute_total(self):
          for rec in self:
             rec.subtotal = (rec.inverter_price * rec.inverter_quantity) + (rec.battery_price * rec.battery_quantity) + (rec.solar_price * rec.solar_quantity)
             rec.taxtotal = (rec.inverter_total_cost + rec.battery_total_cost + rec.solar_total_cost) - rec.subtotal
-            rec.grandtotal = rec.subtotal + rec.taxtotal
+            rec.grandtotal = rec.subtotal + rec.taxtotal + rec.assurance_total
 
     @api.model
     def create(self, vals):
@@ -139,10 +147,22 @@ class SolarHubOrderLines(models.Model):
     assurance_type = fields.Many2one("system.assurance", "ASSURANCE TYPE")
     sub_type = fields.Many2one("assurance.subtype", "SUB TYPE")
     inverter_detail_quantity = fields.Integer("QUANTITY")
-    inverter_detail_price = fields.Float("PRICE")
+    inverter_detail_price = fields.Float("PRICE",compute="compute_assurance")
     solar_order = fields.Many2one("solarhub.order", "Extra Orders")
+    assurance_total = fields.Float("assurance_total",compute="compute_assurance")
 
-    @api.onchange("sub_type","inverter_detail_quantity")
-    def change_sub_price(self):
+    @api.depends("sub_type", "inverter_detail_quantity")
+    def compute_assurance(self):
         for rec in self:
-            rec.inverter_detail_price = rec.inverter_detail_quantity * rec.sub_type.rate
+            # Default to 0.0 if any field is missing
+            quantity = rec.inverter_detail_quantity or 0.0
+            rate = rec.sub_type.rate if rec.sub_type else 0.0
+
+            # Ensure calculation happens without errors
+            rec.inverter_detail_price = quantity * rate
+
+            # Assigning to the parent model's field (assurance_total)
+            rec.assurance_total = rec.inverter_detail_price
+
+
+

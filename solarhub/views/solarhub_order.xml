@@ -92,16 +92,31 @@
                                     <field name="sub_type" domain="[('assurance','=',assurance_type)]"/>
                                     <field name="inverter_detail_quantity"/>
                                     <field name="inverter_detail_price"/>
+
                                 </list>
                                 <form>
                                     <field name="assurance_type"/>
                                     <field name="sub_type"/>
                                     <field name="inverter_detail_quantity"/>
                                     <field name="inverter_detail_price"/>
+
                                 </form>
                             </field>
                         </page>
+
                     </notebook>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:4px; position: relative;">
+                        <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span>
+                                    <strong>Assurance Amount:</strong>
+                                </span>
+                                <span>
+                                    <field name="assurance_total" readonly="1" nolabel="1"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </sheet>
                 <group>
                     <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:12px; position: relative;">
