@@ -32,6 +32,8 @@
                                 <field name="voltage"/>
                                 <field name="price"/>
                                 <field name="availablestock"/>
+
+
                             </group>
                         </group>
                     </sheet>
@@ -66,7 +68,7 @@
         <field name="model">solar.panel</field>
         <field name="arch" type="xml">
             <list string="solarhub">
-                <field name="solar_sequence" optional="show"/>
+                <field name="solar_sequence" optional="show" />
                 <field name="model" optional="show"/>
                 <field name="company_name" optional="show"/>
                 <field name="serial" widget="many2many_tags" optional="show"/>

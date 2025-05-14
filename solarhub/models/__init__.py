@@ -11,4 +11,5 @@ from . import notice_board
 from . import solarhuborder
 from . import maintenance
 from . import inspection
+from . import customer
 from . import orders_solar
