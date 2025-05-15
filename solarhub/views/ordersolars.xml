@@ -34,7 +34,7 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="SOLAR PANEL DETAIL">
+                        <page string="Solar Panels">
                             <field name="solar_lines">
                                 <list editable="bottom">
                                     <field name="solar_panel"/>
@@ -53,12 +53,72 @@
                             </field>
                             <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:4px; position: relative;">
                                 <div style="display: flex; justify-content: space-between; align-items: center;background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
-                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                         <span style="margin-left: 40px">
                                             <strong>Sub Total:</strong>
                                         </span>
                                         <span style="margin-left: 30px; margin-top: 4px">
-                                            <field name="sub_total" readonly="1" nolabel="1"/>
+                                            <field name="solar_sub_total" readonly="1" nolabel="1"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </page>
+                        <page string="Battery">
+                            <field name="battery_lines">
+                                <list editable="bottom">
+                                    <field name="battery_id"/>
+                                    <field name="battery_tax_ids" widget="many2many_tags"/>
+                                    <field name="battery_price"/>
+                                    <field name="battery_quantity"/>
+                                    <field name="battery_total_cost" readonly="1"/>
+                                </list>
+                                <form>
+                                    <field name="battery_id"/>
+                                    <field name="battery_tax_ids" widget="many2many_tags"/>
+                                    <field name="battery_price"/>
+                                    <field name="battery_total_cost" readonly="1"/>
+                                    <field name="battery_quantity"/>
+                                </form>
+                            </field>
+                            <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:4px; position: relative;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <span style="margin-left: 40px">
+                                            <strong>Sub Total:</strong>
+                                        </span>
+                                        <span style="margin-left: 30px; margin-top: 4px">
+                                            <field name="battery_sub_total" readonly="1" nolabel="1"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </page>
+                        <page string="Inverter">
+                            <field name="inverter_lines">
+                                <list editable="bottom">
+                                    <field name="inverter_id"/>
+                                    <field name="inverter_tax_ids" widget="many2many_tags"/>
+                                    <field name="inverter_price"/>
+                                    <field name="inverter_quantity"/>
+                                    <field name="inverter_total_cost" readonly="1"/>
+                                </list>
+                                <form>
+                                    <field name="inverter_id"/>
+                                    <field name="inverter_tax_ids" widget="many2many_tags"/>
+                                    <field name="inverter_price"/>
+                                    <field name="inverter_quantity"/>
+                                    <field name="inverter_total_cost" readonly="1"/>
+                                </form>
+                            </field>
+                            <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:4px; position: relative;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <span style="margin-left: 40px">
+                                            <strong>Sub Total:</strong>
+                                        </span>
+                                        <span style="margin-left: 30px; margin-top: 4px">
+                                            <field name="inverter_sub_total" readonly="1" nolabel="1"/>
                                         </span>
                                     </div>
                                 </div>
@@ -66,6 +126,21 @@
                         </page>
                     </notebook>
                 </sheet>
+                <group>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:12px; position: relative;">
+                        <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                            <!-- Grand Total -->
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>
+                                    <strong style="color: teal;">Grand Total:</strong>
+                                </span>
+                                <span>
+                                    <field name="grandtotal" readonly="1" nolabel="1"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </group>
                 <chatter/>
             </form>
         </field>

@@ -26,14 +26,32 @@ class OrdersSolar(models.Model):
     description = fields.Text(string="Description")
 
     solar_lines = fields.One2many("solar.orders.lines", "solar_order", "Solar Order Lines")
+    battery_lines = fields.One2many("battery.orders.lines",inverse_name="battery_order",string="Battery Order Lines")
+    inverter_lines = fields.One2many("inverter.orders.lines",inverse_name="inverter_order",string="Inverter Order Lines")
 
-    sub_total = fields.Float(string='Total Assurance', compute='compute_solar_total')
+    solar_sub_total = fields.Float(string='Total Assurance', compute='compute_solar_total')
+    battery_sub_total = fields.Float(string='Total Battery', compute='compute_battery_total')
+    inverter_sub_total = fields.Float(string='Total Inverter', compute='compute_inverter_total')
+
+    grandtotal = fields.Float(string="grand Total", compute="compute_grand_total")
 
     @api.depends('solar_lines.solar_price')
     def compute_solar_total(self):
         for order in self:
-            order.sub_total = sum(line.sub_total for line in order.solar_lines)
+            order.solar_sub_total = sum(line.solar_sub_total for line in order.solar_lines)
+    @api.depends('battery_lines.battery_price')
+    def compute_battery_total(self):
+        for order in self:
+            order.battery_sub_total = sum(line.battery_sub_total for line in order.battery_lines)
+    @api.depends('battery_lines.battery_price')
+    def compute_inverter_total(self):
+        for order in self:
+            order.inverter_sub_total = sum(line.inverter_sub_total for line in order.inverter_lines)
 
+    @api.depends('solar_sub_total','battery_sub_total','inverter_sub_total')
+    def compute_grand_total(self):
+        for order in self:
+            order.grandtotal = order.solar_sub_total + order.battery_sub_total + order.inverter_sub_total
 
     def status_date(self):
         today = date.today()
@@ -54,14 +72,11 @@ class SolarOrdersLines(models.Model):
 
     solar_panel = fields.Many2one("solar.panel", "Solar Panel")
     tax_ids = fields.Many2many("account.tax", string="Tax")
-
     solar_price = fields.Float("Price")
     solar_total_cost = fields.Float("Total Cost", compute="compute_solar_total_cost")
-
     solar_quantity = fields.Integer("Quantity", default="1")
     solar_order = fields.Many2one("orders.solar", "Solar Orders")
-
-    sub_total = fields.Float("Sub Total",compute="compute_solar_subtotal")
+    solar_sub_total = fields.Float("Sub Total",compute="compute_solar_subtotal")
 
     @api.onchange("solar_panel")
     def solar_details(self):
@@ -81,4 +96,68 @@ class SolarOrdersLines(models.Model):
     @api.depends("solar_total_cost")
     def compute_solar_subtotal(self):
         for rec in self:
-            rec.sub_total += rec.solar_total_cost
+            rec.solar_sub_total += rec.solar_total_cost
+
+
+class BatteryOrdersLines(models.Model):
+    _name = "battery.orders.lines"
+
+    battery_id = fields.Many2one("solar.battery","Battery")
+    battery_tax_ids = fields.Many2many("account.tax", string="Tax")
+    battery_price = fields.Float("Price")
+    battery_total_cost = fields.Float("Total Cost", compute="compute_battery_total_cost")
+    battery_quantity = fields.Integer("Quantity", default="1")
+    battery_order = fields.Many2one("orders.solar", "Battery Orders")
+    battery_sub_total = fields.Float("Sub Total", compute="compute_battery_subtotal")
+
+    @api.onchange("battery_id")
+    def solar_details(self):
+        for rec in self:
+            rec.battery_price = rec.battery_id.price
+            rec.battery_tax_ids = rec.battery_id.tax_ids
+            rec.battery_total_cost = rec.battery_id.total_cost
+
+    @api.depends('battery_price', 'battery_tax_ids', 'battery_quantity')
+    def compute_battery_total_cost(self):
+        for rec in self:
+            sub = rec.battery_price * rec.battery_quantity
+            total_tax_percent = sum(rec.battery_tax_ids.mapped('amount'))
+            tax_amount = sub * (total_tax_percent / 100)
+            rec.battery_total_cost = sub + tax_amount
+
+    @api.depends("battery_total_cost")
+    def compute_battery_subtotal(self):
+        for rec in self:
+            rec.battery_sub_total += rec.battery_total_cost
+
+
+class InverterOrdersLines(models.Model):
+    _name = "inverter.orders.lines"
+
+    inverter_id = fields.Many2one(comodel_name="inverter", string="Inverter")
+    inverter_tax_ids = fields.Many2many("account.tax", string="Tax")
+    inverter_price = fields.Float("Price")
+    inverter_total_cost = fields.Float("Total Cost", compute="compute_inverter_total_cost")
+    inverter_quantity = fields.Integer("Quantity", default="1")
+    inverter_order = fields.Many2one("orders.solar", "Battery Orders")
+    inverter_sub_total = fields.Float("Sub Total", compute="compute_inverter_subtotal")
+
+    @api.onchange("inverter_id")
+    def battery_details(self):
+        for rec in self:
+            rec.inverter_price = rec.inverter_id.price
+            rec.inverter_tax_ids = rec.inverter_id.tax_ids
+            rec.inverter_total_cost = rec.inverter_id.total_cost
+
+    @api.depends('inverter_price', 'inverter_tax_ids', 'inverter_quantity')
+    def compute_inverter_total_cost(self):
+        for rec in self:
+            sub = rec.inverter_price * rec.inverter_quantity
+            total_tax_percent = sum(rec.inverter_tax_ids.mapped('amount'))
+            tax_amount = sub * (total_tax_percent / 100)
+            rec.inverter_total_cost = sub + tax_amount
+
+    @api.depends("inverter_total_cost")
+    def compute_inverter_subtotal(self):
+        for rec in self:
+            rec.inverter_sub_total += rec.inverter_total_cost
