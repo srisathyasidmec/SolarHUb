@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
-        <!-- Single Module Category -->
+        <!-- Custom Module Category for SolarHub-->
         <record id="module_solarhub_category" model="ir.module.category">
             <field name="name">SolarHub</field>
             <field name="sequence">1</field>
