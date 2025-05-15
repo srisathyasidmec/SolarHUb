@@ -5,7 +5,8 @@
         <field name="arch" type="xml">
             <form string="SolarHub Order">
                 <header>
-                    <field name="status" widget="statusbar" statusbar_visible="pending,completed"/>
+                    <field name="status" widget="statusbar" statusbar_visible="pending,completed" />
+                    <button name="send_email" string="Send Email" type="object" class="btn-primary"/>
                 </header>
                 <sheet>
                     <sheet>
@@ -16,8 +17,10 @@
                             <separator string="Customer" colspan="4"/>
                             <group>
                                 <field name="customer_name"/>
+                                <field name="customer_email"/>
                                 <field name="load_demand"/>
                                 <field name="installation_date"/>
+                                <field name="company_id"/>
                             </group>
                             <group>
                                 <field name="service_type"/>

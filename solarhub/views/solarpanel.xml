@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <form string="SolarHub">
                 <header>
-                    <field name="status" widget="statusbar" statusbar_visible="available,unavailable"/>
+                    <field name="status" widget="statusbar" statusbar_visible="available,unavailable" />
                 </header>
                 <sheet>
                     <sheet>
@@ -47,11 +47,11 @@
                             </group>
                             <group>
                                 <field name="energyconsume"/>
-                                <field name="warrantycover" widget="boolean"/>
+                                <field name="warrantycover"/>
+                                <field name="years_of_Warranty" invisible="warrantycover == False"/>
                             </group>
                             <group>
                                 <field name="batterystorage"/>
-                                <field name="warrantynotcover" widget="boolean"/>
                             </group>
                         </group>
                     </sheet>
@@ -76,11 +76,14 @@
                 <field name="availablestock" optional="show" widget="integer"/>
                 <field name="price" optional="show"/>
                 <field name="tax_ids" widget="many2many_tax_tags" optional="show"/>
+                <field name="years_of_Warranty" optional="show"/>
                 <field name="total_cost" optional="show"/>
                 <field name="status" widget="badge" />
             </list>
         </field>
     </record>
+
+
 
     <record id="action_solar_panel" model="ir.actions.act_window">
         <field name="name">Solar</field>

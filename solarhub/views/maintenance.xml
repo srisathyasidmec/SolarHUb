@@ -5,6 +5,7 @@
         <field name="arch" type="xml">
             <form string="Maintenance">
                 <header>
+                    <button name="send_email" string="Send Email" type="object" class="btn-primary"/>
                     <field name="status" widget="statusbar" statusbar_visible="pending,completed"/>
                 </header>
 
@@ -16,8 +17,10 @@
                                 <field name="subject"/>
                                 <field name="delivery_date"/>
                                 <field name="description"/>
+                                <field name="user"/>
                             </group>
                             <group>
+                                <field name="customer_email"/>
                                 <field name="order" domain="[('customer_name','=',customer)]"/>
                                 <field name="requests_date"/>
                                 <field name="maintenance_fee" widget="radio"/>

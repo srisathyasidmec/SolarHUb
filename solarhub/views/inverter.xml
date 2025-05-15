@@ -28,12 +28,12 @@
 <!--                            <field name="taxes" widget="many2many"/>-->
                             <field name="tax_ids" widget="many2many_tags"/>
                             <field name="warrantycover"/>
+                            <field name="years_of_Warranty" invisible="warrantycover == False"/>
                         </group>
                         <group>
                             <field name="serial" widget="many2many_tags" domain="[('product_id','=',inverter_sequence)]"/>
                             <field name="efficiency"/>
                             <field name="total_cost"/>
-                            <field name="warrantynotcover"/>
                         </group>
                     </group>
                 </sheet>
@@ -58,6 +58,7 @@
                 <field name="price" string="PRICE" optional="show"/>
                 <field name="tax_ids" string="TAX" widget="many2many_tax_tags" optional="show"/>
                 <field name="total_cost" string="Total Cost" optional="show"/>
+                <field name="years_of_Warranty" optional="show"/>
                 <field name="status" widget="badge" />
             </list>
         </field>

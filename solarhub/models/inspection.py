@@ -6,7 +6,7 @@ class SolarInspection(models.Model):
     _rec_name='customer'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    customer_email =  fields.Char("Customer Email")
+    customer_email = fields.Char("Customer Email")
     customer=fields.Many2one("res.partner","Customer",required="true")
     user=fields.Many2one("res.users","User",required="true")
     inspection_date=fields.Date("Inspection Date")
@@ -22,7 +22,5 @@ class SolarInspection(models.Model):
 
     def send_email(self):
         for rec in self:
-            print("Hello")
-            print(rec.customer_email)
-        #     template = self.env.ref("solarhub.mail_template_inspection_confirm")
-        #     template.send_mail(rec.id, force_send=True)
+            template = self.env.ref("solarhub.mail_template_inspection_confirm")
+            template.send_mail(rec.id, force_send=True)

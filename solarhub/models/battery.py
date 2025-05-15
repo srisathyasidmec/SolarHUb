@@ -18,7 +18,7 @@ class SolarBattery(models.Model):
     total_cost = fields.Float("Total Cost",compute='compute_total_cost')
     availablestock = fields.Integer("Available Stock")
     warrantycover = fields.Boolean("Warranty Covered")
-    warrantynotcover = fields.Boolean("Warranty not covered")
+    years_of_Warranty=fields.Integer("Years Of Warranty")
     status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "status",compute="compute_status")
 
     @api.model

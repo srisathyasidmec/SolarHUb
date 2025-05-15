@@ -23,7 +23,8 @@
                                                     <span style="font-size: 10px;">Your Inspection</span>
                                                     <br/>
                                                     <span style="font-size: 20px; font-weight: bold;"
-                                                          t-out="object.customer or ''">Interest in your products for inspection
+                                                          t-out="object.customer.name or ''">Interest in your products
+                                                        for inspection
                                                     </span>
                                                 </td>
                                                 <td valign="middle" align="right">
@@ -50,29 +51,23 @@
                                                 <td valign="top" style="font-size: 13px;">
                                                     <div>
                                                         Hi <t
-                                                            t-out="object.customer or ''">
+                                                            t-out="object.customer.name or ''">
                                                         Deco Addict</t>,
                                                         <br/>
                                                         <br/>
-                                                        Welcome to <t t-out="object.company_id.name or ''">My
-                                                        Company (San Francisco)</t>.
-                                                        It's great to meet you! Now that you're on board, you'll
-                                                        discover what <t t-out="object.company_id.name or ''">My
-                                                        Company (San Francisco)
-                                                    </t> has to offer. My name is <t
-                                                            t-out="object.user or ''">Marc Demo
-                                                    </t> and I'll help you get the most out of Odoo. Could we plan a
-                                                        quick demo soon?
+                                                        Welcome to SolarHub Management
+                                                        It's great to meet you!Your Inspection is successfully scheduled
+                                                        by SolarHub Management.
+                                                        This is your scheduled date <t t-out="object.inspection_date or ''">.
+                                                        </t>
                                                         <br/>
                                                         Feel free to reach out at any time!
                                                         <br/>
                                                         <br/>
                                                         Best,
                                                         <br/>
-                                                        <t t-if="object.user">
-                                                            <b>
-                                                                <t t-out="object.user or ''">Marc Demo</t>
-                                                            </b>
+                                                        My Company,
+                                                        <t t-if="object.user.name">
                                                             <br/>Email:
                                                             <t t-out="object.user.email or ''">
                                                                 mark.brown23@example.com

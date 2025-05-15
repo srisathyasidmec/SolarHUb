@@ -8,6 +8,7 @@ class SolarHubOrders(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     solar_order_sequence= fields.Char("SOLAR PANEL", default="NEW")
+    customer_email = fields.Char("Customer Email")
 
     customer_name = fields.Many2one('res.partner', 'Customer')
     load_demand = fields.Float('Load Demand(kg)')
@@ -55,7 +56,15 @@ class SolarHubOrders(models.Model):
     taxtotal=fields.Float("Tax Total",compute="compute_total")
     grandtotal = fields.Float(string="grand Total", compute="compute_total")
 
+    company_id = fields.Many2one("res.company", "Company Name")
+
     assurance_total = fields.Float(string='Total Assurance', compute='compute_assurance_total')
+
+
+    def send_email(self):
+        for rec in self:
+            template = self.env.ref("solarhub.mail_template_order_confirm")
+            template.send_mail(rec.id, force_send=True)
 
 
     @api.depends('solarorder_lines.inverter_detail_price')
@@ -155,14 +164,9 @@ class SolarHubOrderLines(models.Model):
     @api.depends("sub_type", "inverter_detail_quantity")
     def compute_assurance(self):
         for rec in self:
-            # Default to 0.0 if any field is missing
             quantity = rec.inverter_detail_quantity or 0.0
             rate = rec.sub_type.rate if rec.sub_type else 0.0
-
-            # Ensure calculation happens without errors
             rec.inverter_detail_price = quantity * rate
-
-            # Assigning to the parent model's field (assurance_total)
             rec.assurance_total = rec.inverter_detail_price
 
 

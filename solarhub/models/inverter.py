@@ -21,11 +21,11 @@ class Inverter(models.Model):
     # tax = fields.Many2many("account.tax","Tax")
     tax_ids = fields.Many2many("account.tax", string="Tax")
     warrantycover=fields.Boolean("Warranty Covered")
+    years_of_Warranty = fields.Integer("Years Of Warranty")
 
     serial = fields.Many2many("stock.lot",string="Serial Number")
     efficiency = fields.Float("Efficiency (Kwh)")
     total_cost = fields.Float("Total Cost",compute="compute_total_cost")
-    warrantynotcover=fields.Boolean("Warranty not covered")
     status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "Status",compute="compute_status")
 
 

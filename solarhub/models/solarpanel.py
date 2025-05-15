@@ -26,7 +26,7 @@ class SolarPanel(models.Model):
     batterystorage=fields.Integer("Battery Storage")
     gridexport=fields.Integer("Grid Export")
     warrantycover=fields.Boolean("Warranty Covered")
-    warrantynotcover=fields.Boolean("Warranty not covered")
+    years_of_Warranty = fields.Integer("Years Of Warranty")
     status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "Status",compute="compute_status")
 
     @api.model
