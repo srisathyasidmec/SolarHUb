@@ -33,6 +33,11 @@ class Maintenance(models.Model):
             else:
                 i.status = 'pending'
 
+    @api.onchange("customer")
+    def _onchage_customer(self):
+        for rec in self:
+            rec.customer_email = rec.customer.email
+
     def send_email(self):
         for rec in self:
             template = self.env.ref("solarhub.mail_template_maintenance_confirm")

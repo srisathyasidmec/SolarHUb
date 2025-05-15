@@ -45,7 +45,7 @@
                 <field name="requests_date" optional="show"/>
                 <field name="delivery_date" optional="show"/>
                 <field name="maintenance_fee" optional="show"/>
-                <field name="status" widget="badge" />
+                <field name="status" widget="badge" decoration-success="status == 'completed'" decoration-warning="status == 'pending'"/>
             </list>
         </field>
     </record>
