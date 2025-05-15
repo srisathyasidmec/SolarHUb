@@ -8,6 +8,7 @@
                     <group>
                         <field name="title"/>
                         <field name="file"/>
+                        <field name="file_name"/>
                         <field name="description"/>
                     </group>
                 </sheet>
