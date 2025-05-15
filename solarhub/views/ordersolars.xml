@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">orders.solar</field>
+        <field name="arch" type="xml">
+            <form string="SolarHub Order">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="pending,completed"/>
+                </header>
+                <sheet>
+                    <group col="3">
+                        <h1 style="color: #00aaff;">
+                            <field name="solar_order_sequence" readonly="1"/>
+                        </h1>
+                        <separator string="Customer" colspan="4"/>
+                        <group>
+                            <field name="customer_name"/>
+                            <field name="load_demand"/>
+                            <field name="installation_date"/>
+                        </group>
+                        <group>
+                            <field name="service_type"/>
+                            <field name="order_date"/>
+                            <field name="employee_ids" widget="many2many_tags_avatar" class="oe_inline"/>
+                        </group>
+                        <group>
+                            <field name="property_type"/>
+                            <field name="delivery_date"/>
+                            <field name="assign_user"/>
+                        </group>
+
+                        <group col="1" colspan="3">
+                            <field name="description" widget="text" string="Description"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Solar Panels">
+                            <field name="solar_lines">
+                                <list editable="bottom">
+                                    <field name="solar_panel"/>
+                                    <field name="tax_ids" widget="many2many_tags"/>
+                                    <field name="solar_price"/>
+                                    <field name="solar_quantity"/>
+                                    <field name="solar_total_cost" readonly="1"/>
+                                </list>
+                                <form>
+                                    <field name="solar_panel"/>
+                                    <field name="tax_ids" widget="many2many_tags"/>
+                                    <field name="solar_price"/>
+                                    <field name="solar_total_cost" readonly="1"/>
+                                    <field name="solar_quantity"/>
+                                </form>
+                            </field>
+                            <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:4px; position: relative;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <span style="margin-left: 40px">
+                                            <strong>Sub Total:</strong>
+                                        </span>
+                                        <span style="margin-left: 30px; margin-top: 4px">
+                                            <field name="solar_sub_total" readonly="1" nolabel="1"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </page>
+                        <page string="Battery">
+                            <field name="battery_lines">
+                                <list editable="bottom">
+                                    <field name="battery_id"/>
+                                    <field name="battery_tax_ids" widget="many2many_tags"/>
+                                    <field name="battery_price"/>
+                                    <field name="battery_quantity"/>
+                                    <field name="battery_total_cost" readonly="1"/>
+                                </list>
+                                <form>
+                                    <field name="battery_id"/>
+                                    <field name="battery_tax_ids" widget="many2many_tags"/>
+                                    <field name="battery_price"/>
+                                    <field name="battery_total_cost" readonly="1"/>
+                                    <field name="battery_quantity"/>
+                                </form>
+                            </field>
+                            <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:4px; position: relative;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <span style="margin-left: 40px">
+                                            <strong>Sub Total:</strong>
+                                        </span>
+                                        <span style="margin-left: 30px; margin-top: 4px">
+                                            <field name="battery_sub_total" readonly="1" nolabel="1"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </page>
+                        <page string="Inverter">
+                            <field name="inverter_lines">
+                                <list editable="bottom">
+                                    <field name="inverter_id"/>
+                                    <field name="inverter_tax_ids" widget="many2many_tags"/>
+                                    <field name="inverter_price"/>
+                                    <field name="inverter_quantity"/>
+                                    <field name="inverter_total_cost" readonly="1"/>
+                                </list>
+                                <form>
+                                    <field name="inverter_id"/>
+                                    <field name="inverter_tax_ids" widget="many2many_tags"/>
+                                    <field name="inverter_price"/>
+                                    <field name="inverter_quantity"/>
+                                    <field name="inverter_total_cost" readonly="1"/>
+                                </form>
+                            </field>
+                            <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:4px; position: relative;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <span style="margin-left: 40px">
+                                            <strong>Sub Total:</strong>
+                                        </span>
+                                        <span style="margin-left: 30px; margin-top: 4px">
+                                            <field name="inverter_sub_total" readonly="1" nolabel="1"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                <group>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:12px; position: relative;">
+                        <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                            <!-- Grand Total -->
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>
+                                    <strong style="color: teal;">Grand Total:</strong>
+                                </span>
+                                <span>
+                                    <field name="grandtotal" readonly="1" nolabel="1"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </group>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_order_list" model="ir.ui.view">
+        <field name="name">Order</field>
+        <field name="model">orders.solar</field>
+        <field name="arch" type="xml">
+            <list string="Solar Hub Order">
+                <field name="solar_order_sequence" optional="show"/>
+                <field name="customer_name" optional="show"/>
+                <field name="service_type" optional="show"/>
+                <field name="property_type" optional="show"/>
+                <field name="load_demand" optional="show"/>
+                <field name="order_date" optional="show"/>
+                <field name="delivery_date" optional="show"/>
+                <field name="installation_date" optional="show"/>
+                <field name="status" widget="badge" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_solarorder_calendar" model="ir.ui.view">
+        <field name="name">Calendar View</field>
+        <field name="model">orders.solar</field>
+        <field name="arch" type="xml">
+            <calendar string="Order Delivery Calendar" date_start="order_date" color="solar_order_sequence">
+                <field name="solar_order_sequence"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_order_solars" model="ir.actions.act_window">
+        <field name="name">Order</field>
+        <field name="res_model">orders.solar</field>
+        <field name="view_mode">list,form,calendar</field>
+        <field name="view_id" ref="view_order_list"/>
+    </record>
+</odoo>

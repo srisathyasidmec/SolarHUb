@@ -14,6 +14,7 @@
         'views/inverter.xml',
         'views/solarhub_product_template.xml',
         'views/solarhub_order.xml',
+        'views/ordersolars.xml',
         'views/maintenance.xml',
         'data/ir_sequence.xml',
         'views/service_type.xml',
