@@ -28,10 +28,13 @@ class OrdersSolar(models.Model):
     solar_lines = fields.One2many("solar.orders.lines", "solar_order", "Solar Order Lines")
     battery_lines = fields.One2many("battery.orders.lines",inverse_name="battery_order",string="Battery Order Lines")
     inverter_lines = fields.One2many("inverter.orders.lines",inverse_name="inverter_order",string="Inverter Order Lines")
+    extraorder_lines = fields.One2many("extra.orders.lines", "extra_order", "Extra Order lines")
+
 
     solar_sub_total = fields.Float(string='Total Assurance', compute='compute_solar_total')
     battery_sub_total = fields.Float(string='Total Battery', compute='compute_battery_total')
     inverter_sub_total = fields.Float(string='Total Inverter', compute='compute_inverter_total')
+    extra_sub_total=fields.Float(string="Total Extra", compute="compute_extra_total")
 
     grandtotal = fields.Float(string="grand Total", compute="compute_grand_total")
 
@@ -43,15 +46,19 @@ class OrdersSolar(models.Model):
     def compute_battery_total(self):
         for order in self:
             order.battery_sub_total = sum(line.battery_sub_total for line in order.battery_lines)
-    @api.depends('battery_lines.battery_price')
+    @api.depends('inverter_lines.inverter_price')
     def compute_inverter_total(self):
         for order in self:
             order.inverter_sub_total = sum(line.inverter_sub_total for line in order.inverter_lines)
+    @api.depends('extraorder_lines.inverter_detail_price')
+    def compute_extra_total(self):
+        for order in self:
+            order.extra_sub_total = sum(line.extra_sub_total for line in order.extraorder_lines)
 
     @api.depends('solar_sub_total','battery_sub_total','inverter_sub_total')
     def compute_grand_total(self):
         for order in self:
-            order.grandtotal = order.solar_sub_total + order.battery_sub_total + order.inverter_sub_total
+            order.grandtotal = order.solar_sub_total + order.battery_sub_total + order.inverter_sub_total + order.extra_sub_total
 
     def status_date(self):
         today = date.today()
@@ -161,3 +168,22 @@ class InverterOrdersLines(models.Model):
     def compute_inverter_subtotal(self):
         for rec in self:
             rec.inverter_sub_total += rec.inverter_total_cost
+
+class ExtraOrderLines(models.Model):
+    _name = "extra.orders.lines"
+
+    #Extra Products Details
+    assurance_type = fields.Many2one("system.assurance", "ASSURANCE TYPE")
+    sub_type = fields.Many2one("assurance.subtype", "SUB TYPE")
+    inverter_detail_quantity = fields.Integer("QUANTITY")
+    inverter_detail_price = fields.Float("PRICE",compute="compute_assurance")
+    extra_order = fields.Many2one("orders.solar", "Extra Orders")
+    extra_sub_total = fields.Float("extra_sub_total",compute="compute_assurance")
+
+    @api.depends("sub_type", "inverter_detail_quantity")
+    def compute_assurance(self):
+        for rec in self:
+            quantity = rec.inverter_detail_quantity or 0.0
+            rate = rec.sub_type.rate if rec.sub_type else 0.0
+            rec.inverter_detail_price = quantity * rate
+            rec.extra_sub_total = rec.inverter_detail_price

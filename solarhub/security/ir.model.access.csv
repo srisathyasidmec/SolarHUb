@@ -16,3 +16,4 @@ access_orders_solar,access_orders_solar,model_orders_solar,,1,1,1,1
 access_solar_orders_lines,access_solar_orders_lines,model_solar_orders_lines,,1,1,1,1
 access_battery_orders_lines,access_battery_orders_lines,model_battery_orders_lines,,1,1,1,1
 access_inverter_orders_lines,access_inverter_orders_lines,model_inverter_orders_lines,,1,1,1,1
+access_extra_orders_lines,access_extra_orders_lines,model_extra_orders_lines,,1,1,1,1

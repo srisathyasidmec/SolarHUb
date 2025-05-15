@@ -124,6 +124,35 @@
                                 </div>
                             </div>
                         </page>
+                        <page string="Extra Order Lines">
+                            <field name="extraorder_lines">
+                                <list editable="bottom">
+                                    <field name="assurance_type"/>
+                                    <field name="sub_type" domain="[('assurance','=',assurance_type)]"/>
+                                    <field name="inverter_detail_quantity"/>
+                                    <field name="inverter_detail_price"/>
+
+                                </list>
+                                <form>
+                                    <field name="assurance_type"/>
+                                    <field name="sub_type"/>
+                                    <field name="inverter_detail_quantity"/>
+                                    <field name="inverter_detail_price"/>
+                                </form>
+                            </field>
+                            <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:4px; position: relative;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <span style="margin-left: 40px">
+                                            <strong>Sub Total:</strong>
+                                        </span>
+                                        <span style="margin-left: 30px; margin-top: 4px">
+                                            <field name="extra_sub_total" readonly="1" nolabel="1"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </page>
                     </notebook>
                 </sheet>
                 <group>
