@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-
+from datetime import date
 
 class SolarBattery(models.Model):
     _name = 'contact.diary'
@@ -12,3 +12,5 @@ class SolarBattery(models.Model):
     contact_number=fields.Char("CONTACT NUMBER")
     subject=fields.Char("SUBJECT")
     message=fields.Text("MESSAGE")
+
+    created_date = fields.Date("Created Date", default=fields.Date.today)

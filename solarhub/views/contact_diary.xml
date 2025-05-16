@@ -32,23 +32,24 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div style="background-color: #cceeff; padding: 10px; border-radius: 5px;">
-                            <strong>
+                            <h4>
                                 <field name="contact_name"/>
-                            </strong>
-                            <br/>
-                            Joining:
+                            </h4>
+                            <strong>Joining: </strong>
                             <field name="contact_email"/>
                             <br/>
-                            Gender:
+                            <strong>Contact Number: </strong>
                             <field name="contact_number"/>
                             <br/>
-                            Subject:
+                            <strong>Created Date: </strong>
+                            <field name="created_date"/>
+                            <br/>
+                            <strong>Subject: </strong>
                             <field name="subject"/>
                             <br/>
-                            Message:
+                            <strong>Message: </strong>
                             <field name="message"/>
                             <br/>
-
                         </div>
                     </t>
                 </templates>

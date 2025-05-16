@@ -189,7 +189,7 @@
                 <field name="order_date" optional="show"/>
                 <field name="delivery_date" optional="show"/>
                 <field name="installation_date" optional="show"/>
-                <field name="status" widget="badge" optional="show"/>
+                <field name="status" widget="badge" optional="show" decoration-success="status == 'completed'" decoration-warning="status == 'pending'"/>
             </list>
         </field>
     </record>
@@ -208,6 +208,7 @@
         <field name="name">Order</field>
         <field name="res_model">orders.solar</field>
         <field name="view_mode">list,form,calendar</field>
+<!--        <field name="groups_id" eval="[(4, ref('solarhub.group_solar'))]"/>-->
         <field name="view_id" ref="view_order_list"/>
     </record>
 </odoo>

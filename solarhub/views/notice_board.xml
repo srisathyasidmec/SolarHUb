@@ -33,10 +33,10 @@
                                 <field name="date_today"/>
                             </strong>
                             <br/>
-                            Title:
+                            <strong>Title: </strong>
                             <field name="title"/>
                             <br/>
-                            Description:
+                            <strong>Description: </strong>
                             <field name="description"/>
                             <br/>
 
