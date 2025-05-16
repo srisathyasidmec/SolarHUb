@@ -7,8 +7,8 @@ class SolarInspection(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     customer_email = fields.Char("Customer Email")
-    customer=fields.Many2one("res.partner","Customer",required="true")
-    user=fields.Many2one("res.users","User",required="true")
+    customer=fields.Many2one("res.partner","Customer",required=True)
+    user=fields.Many2one("res.users","User",required=True)
     inspection_date=fields.Date("Inspection Date")
     note=fields.Text("Note")
     order=fields.Many2one("solarhub.order","Order")

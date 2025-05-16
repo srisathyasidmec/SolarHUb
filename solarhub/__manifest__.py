@@ -1,8 +1,9 @@
 {
     'name':'solar hub management',
     'version':'18.0',
+    'license':'LGPL-3',
     'author':"krishnaveni and sri sathya",
-    'depends':['hr','contacts','mail',],
+    'depends':['hr','contacts','mail','board',],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
@@ -30,6 +31,7 @@
         'data/solarhub_confirm_mail.xml',
         "reports/solar_report_template.xml",
         "reports/report.xml",
+        "views/views_dashboard.xml",
         'views/menu.xml',
     ],
 }

@@ -8,8 +8,8 @@ class SolarBattery(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     battery_sequence=fields.Char("BATTERY", default="NEW")
-    company_name = fields.Char("Company Name",required="true")
-    model = fields.Char("Model Name",required="true")
+    company_name = fields.Char("Company Name",required=True)
+    model = fields.Char("Model Name",required=True)
     serial = fields.Many2many("stock.lot", string="Serial Number")
     price = fields.Float("Price")
     battery_type=fields.Char("Battery Type")
@@ -21,7 +21,7 @@ class SolarBattery(models.Model):
     years_of_Warranty=fields.Integer("Years Of Warranty")
     status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "status",compute="compute_status")
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         vals["battery_sequence"] = self.env['ir.sequence'].next_by_code('solar.battery')
         product = {'name': vals['battery_sequence'],

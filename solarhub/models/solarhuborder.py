@@ -15,7 +15,7 @@ class SolarHubOrders(models.Model):
     installation_date =fields.Date('Installation Date')
 
     service_type = fields.Many2one("system.service", "Service Type")
-    order_date = fields.Date("Order Date")
+    order_date = fields.Date("Order Date", default=fields.Date.today)
     employee_ids = fields.Many2many("hr.employee", string="Employee")
 
     property_type = fields.Many2one("system.property","Property Type")
@@ -80,7 +80,7 @@ class SolarHubOrders(models.Model):
             rec.taxtotal = (rec.inverter_total_cost + rec.battery_total_cost + rec.solar_total_cost) - rec.subtotal
             rec.grandtotal = rec.subtotal + rec.taxtotal + rec.assurance_total
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         vals["solar_order_sequence"] = self.env['ir.sequence'].next_by_code('solarhub.order')
         return super(SolarHubOrders, self).create(vals)
@@ -168,6 +168,3 @@ class SolarHubOrderLines(models.Model):
             rate = rec.sub_type.rate if rec.sub_type else 0.0
             rec.inverter_detail_price = quantity * rate
             rec.assurance_total = rec.inverter_detail_price
-
-
-

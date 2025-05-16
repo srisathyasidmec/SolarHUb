@@ -11,7 +11,7 @@ class Maintenance(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     customer_email = fields.Char("Customer Email")
-    customer = fields.Many2one("res.partner",string="Customer",required="true")
+    customer = fields.Many2one("res.partner",string="Customer",required=True)
     subject = fields.Char(string="Subject")
     delivery_date = fields.Date("Delivery Date")
     description =  fields.Text("Description")

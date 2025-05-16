@@ -10,8 +10,8 @@ class Inverter(models.Model):
 
     inverter_sequence= fields.Char("Inverter Sequence", default="NEW")
 
-    company_name = fields.Char("Company Name",required="true")
-    inverter_type=fields.Char("Inverter Type",required="true")
+    company_name = fields.Char("Company Name",required=True)
+    inverter_type=fields.Char("Inverter Type",required=True)
     price = fields.Float("Price")
     available_stocks = fields.Integer("Available Stocks")
 
@@ -29,7 +29,7 @@ class Inverter(models.Model):
     status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "Status",compute="compute_status")
 
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         vals["inverter_sequence"] = self.env['ir.sequence'].next_by_code('inverter')
         product = {'name': vals['inverter_sequence'],

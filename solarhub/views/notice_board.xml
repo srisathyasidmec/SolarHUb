@@ -27,16 +27,16 @@
                 <field name="description"/>
 
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="card">
                         <div style="background-color: #cceeff; padding: 10px; border-radius: 5px;">
                             <strong>
                                 <field name="date_today"/>
                             </strong>
                             <br/>
-                            Title:
+                            <strong>Title: </strong>
                             <field name="title"/>
                             <br/>
-                            Description:
+                            <strong>Description: </strong>
                             <field name="description"/>
                             <br/>
 

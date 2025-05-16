@@ -9,8 +9,8 @@ class SolarPanel(models.Model):
 
     solar_sequence= fields.Char("SOLAR PANEL", default="NEW")
 
-    company_name = fields.Char("Company Name",required="true")
-    model = fields.Char("Model Name",required="true")
+    company_name = fields.Char("Company Name",required=True)
+    model = fields.Char("Model Name",required=True)
     serial = fields.Many2many("stock.lot", string="Serial Number")
     panel = fields.Char("Panel Type")
     wattage= fields.Integer( "Wattage")
@@ -29,7 +29,7 @@ class SolarPanel(models.Model):
     years_of_Warranty = fields.Integer("Years Of Warranty")
     status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "Status",compute="compute_status")
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         vals["solar_sequence"] = self.env['ir.sequence'].next_by_code('solar.panel')
         product = {'name':vals['solar_sequence'],
