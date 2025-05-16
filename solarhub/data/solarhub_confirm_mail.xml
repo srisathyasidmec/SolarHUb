@@ -20,11 +20,10 @@
                                                style="background-color: white; padding: 0; border-collapse:separate;">
                                             <tr>
                                                 <td valign="middle">
-                                                    <span style="font-size: 10px;">Your Maintenance Request</span>
+                                                    <span style="font-size: 10px;">Your Order Request</span>
                                                     <br/>
                                                     <span style="font-size: 20px; font-weight: bold;"
                                                           t-out="object.customer_name.name or ''">Interest in your products
-                                                        for inspection
                                                     </span>
                                                 </td>
                                                 <td valign="middle" align="right">
@@ -55,23 +54,28 @@
                                                         Deco Addict</t>,
                                                         <br/>
                                                         <br/>
-                                                        Welcome to SolarHub Management
-                                                        It's great to meet you!Thank you for placing an order with
-                                                        SolarHub Management.
-                                                        <t t-out="object.delivery_date">Thank you</t>
+                                                        Welcome to <strong>SolarHub Management</strong> <br/>
+                                                        It's great to meet you! Thank you for placing an order with
+                                                        SolarHub Management on
+                                                        <t t-out="object.order_date"/>
                                                         <br/>
-                                                        Details:<br/>
+                                                        Thank you
+                                                        <br/>
+                                                        <strong>Details: </strong>
+                                                        <br/>
                                                         Service type:
-                                                        <t t-out="object.service_type.title">.</t>
+                                                        <t t-out="object.service_type.title"/>
                                                         <br/>
                                                         Property type:
-                                                        <t t-out="object.property_type.title">.</t>
+                                                        <t t-out="object.property_type.title"/>
                                                         <br/>
                                                         Order date:
-                                                        <t t-out="object.order_date">.</t>
+                                                        <t t-out="object.order_date"/>
                                                         <br/>
+                                                        Delivery date:
+                                                        <t t-out="object.delivery_date"/>
+                                                        <br/><br/>
                                                         Feel free to reach out at any time!
-                                                        <br/>
                                                         <br/>
                                                         Best,
                                                         <br/>
