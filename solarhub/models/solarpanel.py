@@ -29,7 +29,7 @@ class SolarPanel(models.Model):
     years_of_Warranty = fields.Integer("Years Of Warranty")
     status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "Status",compute="compute_status")
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         vals["solar_sequence"] = self.env['ir.sequence'].next_by_code('solar.panel')
         product = {'name':vals['solar_sequence'],

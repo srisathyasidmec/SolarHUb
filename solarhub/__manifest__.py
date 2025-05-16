@@ -1,6 +1,7 @@
 {
     'name':'solar hub management',
     'version':'18.0',
+    'license':'LGPL-3',
     'author':"krishnaveni and sri sathya",
     'depends':['hr','contacts','mail','board',],
     'data': [

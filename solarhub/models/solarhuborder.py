@@ -80,7 +80,7 @@ class SolarHubOrders(models.Model):
             rec.taxtotal = (rec.inverter_total_cost + rec.battery_total_cost + rec.solar_total_cost) - rec.subtotal
             rec.grandtotal = rec.subtotal + rec.taxtotal + rec.assurance_total
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         vals["solar_order_sequence"] = self.env['ir.sequence'].next_by_code('solarhub.order')
         return super(SolarHubOrders, self).create(vals)
