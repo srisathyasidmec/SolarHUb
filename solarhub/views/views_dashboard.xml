@@ -31,9 +31,6 @@
                         <action
                                 string="Solar Inspection"
                                 name="%(solarhub.act_solar_inspection)d"/>
-                        <action
-                                string="SolarHub Order Details"
-                                name="%(solarhub.act_solar_orders)d"/>
 
                     </column>
                     <column>

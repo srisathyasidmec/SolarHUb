@@ -15,7 +15,7 @@ class SolarHubOrders(models.Model):
     installation_date =fields.Date('Installation Date')
 
     service_type = fields.Many2one("system.service", "Service Type")
-    order_date = fields.Date("Order Date")
+    order_date = fields.Date("Order Date", default=fields.Date.today)
     employee_ids = fields.Many2many("hr.employee", string="Employee")
 
     property_type = fields.Many2one("system.property","Property Type")
@@ -168,6 +168,3 @@ class SolarHubOrderLines(models.Model):
             rate = rec.sub_type.rate if rec.sub_type else 0.0
             rec.inverter_detail_price = quantity * rate
             rec.assurance_total = rec.inverter_detail_price
-
-
-
