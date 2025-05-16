@@ -9,8 +9,8 @@ class SolarPanel(models.Model):
 
     solar_sequence= fields.Char("SOLAR PANEL", default="NEW")
 
-    company_name = fields.Char("Company Name",required="true")
-    model = fields.Char("Model Name",required="true")
+    company_name = fields.Char("Company Name",required=True)
+    model = fields.Char("Model Name",required=True)
     serial = fields.Many2many("stock.lot", string="Serial Number")
     panel = fields.Char("Panel Type")
     wattage= fields.Integer( "Wattage")

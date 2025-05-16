@@ -30,7 +30,7 @@
                 <field name="message"/>
 
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="card">
                         <div style="background-color: #cceeff; padding: 10px; border-radius: 5px;">
                             <h4>
                                 <field name="contact_name"/>
