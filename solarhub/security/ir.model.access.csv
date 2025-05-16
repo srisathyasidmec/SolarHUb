@@ -6,13 +6,13 @@ access_system_service,access_system_service,model_system_service,,1,1,1,1
 access_system_property,access_system_property,model_system_property,,1,1,1,1
 access_system_assurance,access_system_assurance,model_system_assurance,,1,1,1,1
 access_assurance_subtype,access_assurance_subtype,model_assurance_subtype,,1,1,1,1
-access_solarhub_order,access_solarhub_order,model_solarhub_order,solarhub.group_solarhub,1,1,1,1
+access_solarhub_order,access_solarhub_order,model_solarhub_order,,1,1,1,1
 access_solarhub_order_lines,access_solarhub_order_lines,model_solarhub_order_lines,,1,1,1,1
 access_contact_diary,access_contact_diary,model_contact_diary,,1,1,1,1
 access_notice_board,access_notice_board,model_notice_board,,1,1,1,1
 access_solar_inspection,access_solar_inspection,model_solar_inspection,,1,1,1,1
 access_solar_maintenance,access_solar_maintenance,model_solar_maintenance,,1,1,1,1
-access_orders_solar,access_orders_solar,model_orders_solar,solarhub.group_solar,1,1,1,1
+access_orders_solar,access_orders_solar,model_orders_solar,,1,1,1,1
 access_solar_orders_lines,access_solar_orders_lines,model_solar_orders_lines,,1,1,1,1
 access_battery_orders_lines,access_battery_orders_lines,model_battery_orders_lines,,1,1,1,1
 access_inverter_orders_lines,access_inverter_orders_lines,model_inverter_orders_lines,,1,1,1,1
