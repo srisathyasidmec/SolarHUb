@@ -17,6 +17,7 @@
         <field name="name">Order Details</field>
         <field name="res_model">solarhub.order</field>
         <field name="view_mode">calendar</field>
+        <field name="view_id" ref="solarhub.view_solar_calendar"/>
     </record>
 
     <record id="solarhub_dashboard_view" model="ir.ui.view">
@@ -25,19 +26,18 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Dashboard">
-                <board style="1-2">
+                <board style="2-2">
                     <column>
                         <action
                                 string="Solar Inspection"
                                 name="%(solarhub.act_solar_inspection)d"/>
-                        <action
-                                string="Solarhub orders"
-                                name="%(solarhub.act_solarhub_orders)d"/>
+
                     </column>
                     <column>
                         <action
-                                string="SolarHub Order Details"
-                                name="%(solarhub.act_solar_orders)d"/>
+                                string="Solarhub orders"
+                                name="%(solarhub.act_solarhub_orders)d"/>
+
                     </column>
                 </board>
             </form>
