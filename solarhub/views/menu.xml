@@ -2,6 +2,8 @@
 <odoo>
     <menuitem id="menu_solar" name="SolarHub"/>
     <menuitem id="menu_solar_business" name="Business management" parent="menu_solar" sequence="1"/>
+    <menuitem id="menu_solar_dashboard" name="Dashboard" parent="menu_solar" action="solar_dashboard" sequence="0"/>
+
     <menuitem id="menu_system" name="System Configuration" parent="menu_solar" sequence="2"/>
     <menuitem id="menu_employee" name="Employee" parent="menu_solar_business" action="action_solar_employee"
               sequence="1" groups="solarhub.group_solarhub_owner"/>
