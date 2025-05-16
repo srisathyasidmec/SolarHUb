@@ -4,14 +4,13 @@ from odoo import models, fields, api
 class SolarBattery(models.Model):
     _name = 'solar.battery'
     _description = 'solar battery'
-    # _rec_name="battery_type"
-    _rec_name = 'battery_sequence'
+    _rec_name = 'company_name'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     battery_sequence=fields.Char("BATTERY", default="NEW")
     company_name = fields.Char("Company Name",required="true")
     model = fields.Char("Model Name",required="true")
-    serial = fields.Char("Serial Number",required="true")
+    serial = fields.Many2many("stock.lot", string="Serial Number")
     price = fields.Float("Price")
     battery_type=fields.Char("Battery Type")
     capacity=fields.Char("Capacity")
@@ -19,7 +18,8 @@ class SolarBattery(models.Model):
     total_cost = fields.Float("Total Cost",compute='compute_total_cost')
     availablestock = fields.Integer("Available Stock")
     warrantycover = fields.Boolean("Warranty Covered")
-    warrantynotcover = fields.Boolean("Warranty not covered")
+    years_of_Warranty=fields.Integer("Years Of Warranty")
+    status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "status",compute="compute_status")
 
     @api.model
     def create(self, vals):
@@ -39,7 +39,6 @@ class SolarBattery(models.Model):
         price = vals.get('price')
 
         if battery_sequence and price is not None:
-            # Search the product.template with matching name or reference (adapt field as needed)
             template = self.env['product.template'].search([('name', '=', battery_sequence)], limit=1)
             if template:
                 template.list_price = price
@@ -51,3 +50,11 @@ class SolarBattery(models.Model):
         for rec in self:
             total_tax_percent = sum(rec.tax_ids.mapped('amount'))
             rec.total_cost = rec.price + (rec.price * total_tax_percent / 100)
+
+    @api.depends('availablestock')
+    def compute_status(self):
+        for i in self:
+            if i.availablestock > 0:
+                i.status = "available"
+            else:
+                i.status = "unavailable"

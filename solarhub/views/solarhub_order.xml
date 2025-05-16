@@ -4,6 +4,10 @@
         <field name="model">solarhub.order</field>
         <field name="arch" type="xml">
             <form string="SolarHub Order">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="pending,completed" />
+                    <button name="send_email" string="Send Email" type="object" class="btn-primary"/>
+                </header>
                 <sheet>
                     <sheet>
                         <group col="3">
@@ -13,8 +17,10 @@
                             <separator string="Customer" colspan="4"/>
                             <group>
                                 <field name="customer_name"/>
+                                <field name="customer_email"/>
                                 <field name="load_demand"/>
                                 <field name="installation_date"/>
+                                <field name="company_id"/>
                             </group>
                             <group>
                                 <field name="service_type"/>
@@ -54,7 +60,7 @@
                             <separator string="BATTERY DETAIL" colspan="4"/>
                             <group>
                                 <field name="battery_id"/>
-                                <field name="tax_ids" widget="many2many_tags"/>
+                                <field name="battery_tax_ids" widget="many2many_tags"/>
                             </group>
                             <group>
                                 <field name="battery_price"/>
@@ -70,7 +76,7 @@
                             <separator string="INVERTER DETAIL" colspan="4"/>
                             <group>
                                 <field name="inverter_id"/>
-                                <field name="tax_ids" widget="many2many_tags"/>
+                                <field name="inverter_tax_ids" widget="many2many_tags"/>
                             </group>
                             <group>
                                 <field name="inverter_price"/>
@@ -86,25 +92,70 @@
                             <field name="solarorder_lines">
                                 <list editable="bottom">
                                     <field name="assurance_type"/>
-                                    <field name="sub_type"/>
+                                    <field name="sub_type" domain="[('assurance','=',assurance_type)]"/>
                                     <field name="inverter_detail_quantity"/>
                                     <field name="inverter_detail_price"/>
+
                                 </list>
                                 <form>
                                     <field name="assurance_type"/>
                                     <field name="sub_type"/>
                                     <field name="inverter_detail_quantity"/>
                                     <field name="inverter_detail_price"/>
+
                                 </form>
                             </field>
                         </page>
+
                     </notebook>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:4px; position: relative;">
+                        <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span>
+                                    <strong>Assurance Amount:</strong>
+                                </span>
+                                <span>
+                                    <field name="assurance_total" readonly="1" nolabel="1"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </sheet>
-<!--                <div style="width: 30%; border: 1px solid black; padding: 10px; margin-top: 20px;">-->
-<!--                    <field name="subtotal" readonly="1"/>-->
-<!--                    <field name="amount_tax" readonly="1"/>-->
-<!--                    <field name="amount_total" readonly="1"/>-->
-<!--                </div>-->
+                <group>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 20px; margin-right:12px; position: relative;">
+                        <div style="background-color: #f0f0f0; padding: 20px; border-radius: 10px; width: 300px;">
+                            <!-- Sub Total -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span>
+                                    <strong>Untaxed Amount:</strong>
+                                </span>
+                                <span>
+                                    <field name="subtotal" readonly="1" nolabel="1"/>
+                                </span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span>
+                                    <strong>Tax Total:</strong>
+                                </span>
+                                <span>
+                                    <field name="taxtotal" readonly="1" nolabel="1"/>
+                                </span>
+                            </div>
+                            <hr/>
+                            <!-- Grand Total -->
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>
+                                    <strong style="color: teal;">Grand Total:</strong>
+                                </span>
+                                <span>
+                                    <field name="grandtotal" readonly="1" nolabel="1"/>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </group>
+
                 <chatter/>
             </form>
         </field>
@@ -124,6 +175,7 @@
                 <field name="order_date" optional="show"/>
                 <field name="delivery_date" optional="show"/>
                 <field name="installation_date" optional="show"/>
+                <field name="status" widget="badge" decoration-success="status == 'completed'" decoration-warning="status == 'pending'"/>
             </list>
         </field>
     </record>

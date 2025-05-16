@@ -8,6 +8,7 @@
                     <group>
                         <field name="title"/>
                         <field name="file"/>
+                        <field name="file_name"/>
                         <field name="description"/>
                     </group>
                 </sheet>
@@ -27,7 +28,7 @@
 
                 <templates>
                     <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click">
+                        <div style="background-color: #cceeff; padding: 10px; border-radius: 5px;">
                             <strong>
                                 <field name="date_today"/>
                             </strong>

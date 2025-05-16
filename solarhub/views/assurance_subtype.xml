@@ -8,7 +8,7 @@
                     <group>
                         <field name="assurance"/>
                         <field name="assurance_subtype"/>
-                        <field name="unit"/>
+                        <field name="unit_id"/>
                         <field name="rate"/>
                     </group>
                 </sheet>
@@ -25,7 +25,7 @@
             <list string="assurance_subtype">
                 <field name="assurance" optional="show"/>
                 <field name="assurance_subtype" optional="show"/>
-                <field name="unit" optional="show"/>
+                <field name="unit_id" optional="show"/>
                 <field name="rate" optional="show"/>
             </list>
         </field>

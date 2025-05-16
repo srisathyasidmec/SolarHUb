@@ -4,6 +4,9 @@
         <field name="model">solar.inspection</field>
         <field name="arch" type="xml">
             <form string="Inspection">
+                <header>
+                    <button name="send_email" string="Send Email" type="object" class="btn-primary"/>
+                </header>
                 <sheet>
                     <group>
                         <group>
@@ -11,6 +14,7 @@
                             <field name="user"/>
                         </group>
                         <group>
+                            <field name="customer_email"/>
                             <field name="order" domain="[('customer_name','=',customer)]"/>
                             <field name="inspection_date"/>
                         </group>
@@ -24,13 +28,24 @@
         </field>
     </record>
 
+    <record id="view_solar_panel_graph" model="ir.ui.view">
+        <field name="name">solarpanel_graph</field>
+        <field name="model">solar.inspection</field>
+        <field name="arch" type="xml">
+            <graph string="solarpanel analysis" sample="1">
+                <field name="customer"/>
+                <field name="inspection_date" interval="month"/>
+            </graph>
+        </field>
+    </record>
+
     <record id="view_inspection_list" model="ir.ui.view">
         <field name="name">Inspection</field>
         <field name="model">solar.inspection</field>
         <field name="arch" type="xml">
             <list string="Inspection">
                 <field name="customer" string="Customer" optional="show"/>
-                <field name="order" string="Order" optional="show" />
+                <field name="order" string="Order" optional="show"/>
                 <field name="user" string="User" optional="show"/>
                 <field name="inspection_date" string="Inspection Date" optional="show"/>
             </list>
@@ -40,7 +55,7 @@
     <record id="action_inspection" model="ir.actions.act_window">
         <field name="name">Inspection</field>
         <field name="res_model">solar.inspection</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,form,graph</field>
         <field name="view_id" ref="view_inspection_list"/>
     </record>
 </odoo>

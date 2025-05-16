@@ -1,27 +1,47 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
+        <!-- Single Module Category -->
         <record id="module_solarhub_category" model="ir.module.category">
             <field name="name">SolarHub</field>
-<!--            <field name="sequence">1</field>-->
-            <field name="description">Solar Hub Category></field>
+            <field name="sequence">1</field>
+            <field name="description">Solar Hub Category</field>
         </record>
 
+        <!-- Groups -->
         <record id="group_solarhub" model="res.groups">
             <field name="name">SolarHub Order</field>
             <field name="category_id" ref="solarhub.module_solarhub_category"/>
         </record>
 
-         <record model="ir.rule" id="res_partner_solarhub_rule">
-<!--            <field name="name">res.users.patient</field>-->
-            <field name="model_id" ref="model_solarhub_order"/>
-<!--            <field name="domain_force">[('create_uid','=', user.id)]</field>-->
+        <!-- Record Rule for solarhub.order -->
+        <record model="ir.rule" id="res_partner_solarhub_rule">
+            <field name="name">Full Access to SolarHub Orders</field>
+            <field name="model_id" ref="solarhub.model_solarhub_order"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
             <field name="groups" eval="[(4, ref('solarhub.group_solarhub'))]"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
             <field name="perm_create" eval="True"/>
             <field name="perm_unlink" eval="True"/>
         </record>
-    </data>
 
+        <record id="group_solar" model="res.groups">
+            <field name="name">Solar Orders</field>
+            <field name="category_id" ref="solarhub.module_solarhub_category"/>
+        </record>
+
+        <!-- Record Rule for orders.solar -->
+        <record model="ir.rule" id="res_partner_solar_rule">
+            <field name="name">Full Access to Solar Orders</field>
+            <field name="model_id" ref="solarhub.model_orders_solar"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('solarhub.group_solar'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+    </data>
 </odoo>

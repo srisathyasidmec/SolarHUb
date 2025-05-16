@@ -4,6 +4,9 @@
         <field name="model">inverter</field>
         <field name="arch" type="xml">
             <form string="Inverter">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="available,unavailable"/>
+                </header>
                 <sheet>
 
                     <div class="oe_title">
@@ -25,12 +28,12 @@
 <!--                            <field name="taxes" widget="many2many"/>-->
                             <field name="tax_ids" widget="many2many_tags"/>
                             <field name="warrantycover"/>
+                            <field name="years_of_Warranty" invisible="warrantycover == False"/>
                         </group>
                         <group>
-                            <field name="serial"/>
+                            <field name="serial" widget="many2many_tags" domain="[('product_id','=',inverter_sequence)]"/>
                             <field name="efficiency"/>
                             <field name="total_cost"/>
-                            <field name="warrantynotcover"/>
                         </group>
                     </group>
                 </sheet>
@@ -48,13 +51,15 @@
                 <field name="model" string="MODEL NAME" optional="show"/>
                 <field name="capacity" string="CAPACITY" optional="show"/>
                 <field name="company_name" string="COMPANY NAME" optional="show"/>
-                <field name="serial" string="SERIAL NUMBER" optional="show"/>
+                <field name="serial" widget="many2many_tags" string="SERIAL NUMBER" optional="show"/>
                 <field name="efficiency" string="EFFICIENCY" optional="show"/>
                 <field name="inverter_type" string="INVERTER TYPE" optional="show"/>
                 <field name="available_stocks" string="AVAILABLE STOCK" optional="show"/>
                 <field name="price" string="PRICE" optional="show"/>
                 <field name="tax_ids" string="TAX" widget="many2many_tax_tags" optional="show"/>
                 <field name="total_cost" string="Total Cost" optional="show"/>
+                <field name="years_of_Warranty" optional="show"/>
+                <field name="status" widget="badge" decoration-success="status == 'available'" decoration-warning="status == 'unavailable'"/>
             </list>
         </field>
     </record>

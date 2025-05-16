@@ -3,20 +3,20 @@ from odoo import models, fields, api
 
 class SolarPanel(models.Model):
     _name = 'solar.panel'
-    _description = 'solar panel'
-    _rec_name="solar_sequence"
+    _description = 'Solar Panel'
+    _rec_name="company_name"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     solar_sequence= fields.Char("SOLAR PANEL", default="NEW")
 
-    company_name = fields.Char("Company Name")
-    model = fields.Char("Model Name")
-    serial = fields.Char("Serial Number")
+    company_name = fields.Char("Company Name",required="true")
+    model = fields.Char("Model Name",required="true")
+    serial = fields.Many2many("stock.lot", string="Serial Number")
     panel = fields.Char("Panel Type")
     wattage= fields.Integer( "Wattage")
-    voltage = fields.Integer("Voltage")
-    current=fields.Integer("Current")
-    degrade=fields.Integer("Degradation rate")
+    voltage = fields.Float("Voltage")
+    current=fields.Float("Current")
+    degrade=fields.Float("Degradation rate")
     price=fields.Float("Price")
     tax_ids=fields.Many2many("account.tax",string="Tax")
     total_cost=fields.Float("Total Cost",compute="compute_total_cost")
@@ -26,7 +26,8 @@ class SolarPanel(models.Model):
     batterystorage=fields.Integer("Battery Storage")
     gridexport=fields.Integer("Grid Export")
     warrantycover=fields.Boolean("Warranty Covered")
-    warrantynotcover=fields.Boolean("Warranty not covered")
+    years_of_Warranty = fields.Integer("Years Of Warranty")
+    status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "Status",compute="compute_status")
 
     @api.model
     def create(self, vals):
@@ -35,7 +36,9 @@ class SolarPanel(models.Model):
                     'type': 'consu',
                    'solarhub_type': 'solar panel',
                    'list_price':vals['price'],
-                   'taxes_id':vals['tax_ids']}
+                   'taxes_id':vals['tax_ids'],
+                   # 'is_storable':'lot',
+                   }
         self.env['product.product'].create(product)
 
         return super(SolarPanel, self).create(vals)
@@ -59,5 +62,10 @@ class SolarPanel(models.Model):
             total_tax_percent = sum(rec.tax_ids.mapped('amount'))
             rec.total_cost = rec.price + (rec.price * total_tax_percent / 100)
 
-
-
+    @api.depends('availablestock')
+    def compute_status(self):
+        for i in self:
+            if i.availablestock > 0:
+                i.status="available"
+            else:
+                i.status="unavailable"

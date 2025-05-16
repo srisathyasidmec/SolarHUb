@@ -5,7 +5,7 @@ class Inverter(models.Model):
     _name = 'inverter'
     _description = 'Inverter'
     # _rec_name="inverter_type"
-    _rec_name = 'inverter_sequence'
+    _rec_name = 'company_name'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     inverter_sequence= fields.Char("Inverter Sequence", default="NEW")
@@ -21,11 +21,13 @@ class Inverter(models.Model):
     # tax = fields.Many2many("account.tax","Tax")
     tax_ids = fields.Many2many("account.tax", string="Tax")
     warrantycover=fields.Boolean("Warranty Covered")
+    years_of_Warranty = fields.Integer("Years Of Warranty")
 
-    serial = fields.Char("Serial Number")
+    serial = fields.Many2many("stock.lot",string="Serial Number")
     efficiency = fields.Float("Efficiency (Kwh)")
-    total_cost = fields.Float("Total Cost")
-    warrantynotcover=fields.Boolean("Warranty not covered")
+    total_cost = fields.Float("Total Cost",compute="compute_total_cost")
+    status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "Status",compute="compute_status")
+
 
     @api.model
     def create(self, vals):
@@ -57,3 +59,11 @@ class Inverter(models.Model):
         for rec in self:
             total_tax_percent = sum(rec.tax_ids.mapped('amount'))
             rec.total_cost = rec.price + (rec.price * total_tax_percent / 100)
+
+    @api.depends('available_stocks')
+    def compute_status(self):
+        for i in self:
+            if i.available_stocks > 0:
+                i.status = "available"
+            else:
+                i.status = "unavailable"
