@@ -29,7 +29,7 @@ class Inverter(models.Model):
     status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "Status",compute="compute_status")
 
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         vals["inverter_sequence"] = self.env['ir.sequence'].next_by_code('inverter')
         product = {'name': vals['inverter_sequence'],

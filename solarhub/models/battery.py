@@ -21,7 +21,7 @@ class SolarBattery(models.Model):
     years_of_Warranty=fields.Integer("Years Of Warranty")
     status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "status",compute="compute_status")
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         vals["battery_sequence"] = self.env['ir.sequence'].next_by_code('solar.battery')
         product = {'name': vals['battery_sequence'],
