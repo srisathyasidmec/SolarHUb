@@ -31,7 +31,7 @@
                                     <t t-esc="doc.company_name"/>
                                 </td>
                                 <td style="border: 1px solid black;">
-                                    <t t-esc="doc.serial"/>
+                                    <t t-esc="doc.serial or '' "/>
                                 </td>
                                 <td style="border: 1px solid black;">
                                     <t t-esc="doc.battery_type"/>
@@ -92,7 +92,7 @@
                                     <t t-esc="doc.company_name"/>
                                 </td>
                                 <td style="border: 1px solid black;">
-                                    <t t-esc="doc.serial"/>
+                                    <t t-esc="doc.serial or '' "/>
                                 </td>
                                 <td style="border: 1px solid black;">
                                     <t t-esc="doc.inverter_type"/>
@@ -152,7 +152,7 @@
                                     <t t-esc="doc.company_name"/>
                                 </td>
                                 <td style="border: 1px solid black;">
-                                    <t t-esc="doc.serial"/>
+                                    <t t-esc="doc.serial or '' "/>
                                 </td>
                                 <td style="border: 1px solid black;">
                                     <t t-esc="doc.panel"/>
@@ -212,7 +212,7 @@
                                     <t t-esc="doc.company_name"/>
                                 </td>
                                 <td style="border: 1px solid black;">
-                                    <t t-esc="doc.serial"/>
+                                    <t t-esc="doc.serial or '' "/>
                                 </td>
                                 <td style="border: 1px solid black;">
                                     <t t-esc="doc.panel"/>
