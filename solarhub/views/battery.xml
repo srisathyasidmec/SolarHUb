@@ -50,7 +50,7 @@
                 <field name="availablestock" optional="show" widget="integer"/>
                 <field name="price" optional="show" />
                 <field name="tax_ids" widget="many2many_tax_tags" optional="show"/>
-                <field name="years_of_Warranty" optional="show"/>
+                <field name="years_of_Warranty" optional="hide"/>
                 <field name="total_cost" optional="show"/>
                 <field name="status" widget="badge" decoration-success="status == 'available'" decoration-warning="status == 'unavailable'"/>
             </list>
