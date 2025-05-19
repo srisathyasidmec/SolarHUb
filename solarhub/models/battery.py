@@ -25,17 +25,15 @@ class SolarBattery(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             vals["battery_sequence"] = self.env['ir.sequence'].next_by_code('solar.battery')
-
-            product = {
-                'name': vals['battery_sequence'],
-                'type': 'consu',
-                'solarhub_type': 'battery',
-                'list_price': vals['price'],
-                'taxes_id': vals['tax_ids'],
-            }
+            product = {'name': vals['battery_sequence'],
+                       'type': 'consu',
+                       'solarhub_type':'battery',
+                       'list_price': vals['price'],
+                       'taxes_id':vals['tax_ids'],
+                       'is_storable':True,
+                       'tracking':'lot'}
 
             self.env['product.product'].create(product)
-
         return super(SolarBattery, self).create(vals_list)
 
     @api.model

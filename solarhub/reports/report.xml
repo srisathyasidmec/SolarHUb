@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="report_solar_battery_pdf" model="ir.actions.report">
-        <field name="name">PDF REPORT</field>
+        <field name="name">PDF Report</field>
         <field name="model">solar.battery</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">solarhub.report_solar_battery_template</field>
         <field name="report_file">solarhub.report_solar_battery_template</field>
         <field name="binding_model_id" ref="solarhub.model_solar_battery"/>
         <field name="binding_type">action</field>
+        <field name="paperformat_id" ref="solarhub.paperformat_label_sheet"/>
     </record>
 
     <record id="report_solar_inverter_pdf" model="ir.actions.report">
