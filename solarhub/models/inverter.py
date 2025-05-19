@@ -30,16 +30,19 @@ class Inverter(models.Model):
 
 
     @api.model_create_multi
-    def create(self, vals):
-        vals["inverter_sequence"] = self.env['ir.sequence'].next_by_code('inverter')
-        product = {'name': vals['inverter_sequence'],
-                   'type': 'consu',
-                   'solarhub_type': 'inverter',
-                   'list_price': vals['price'],
-                   'taxes_id':vals['tax_ids']}
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals["inverter_sequence"] = self.env['ir.sequence'].next_by_code('inverter')
+            product = {'name': vals['inverter_sequence'],
+                       'type': 'consu',
+                       'solarhub_type': 'inverter',
+                       'list_price': vals['price'],
+                       'taxes_id':vals['tax_ids'],
+                       'is_storable': True,
+                       'tracking': 'lot'}
 
-        self.env['product.product'].create(product)
-        return super(Inverter, self).create(vals)
+            self.env['product.product'].create(product)
+        return super(Inverter, self).create(vals_list)
 
     @api.model
     def write(self, vals):

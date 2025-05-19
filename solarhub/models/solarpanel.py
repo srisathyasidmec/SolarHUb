@@ -30,18 +30,18 @@ class SolarPanel(models.Model):
     status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "Status",compute="compute_status")
 
     @api.model_create_multi
-    def create(self, vals):
-        vals["solar_sequence"] = self.env['ir.sequence'].next_by_code('solar.panel')
-        product = {'name':vals['solar_sequence'],
-                    'type': 'consu',
-                   'solarhub_type': 'solar panel',
-                   'list_price':vals['price'],
-                   'taxes_id':vals['tax_ids'],
-                   # 'is_storable':'lot',
-                   }
-        self.env['product.product'].create(product)
-
-        return super(SolarPanel, self).create(vals)
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals["solar_sequence"] = self.env['ir.sequence'].next_by_code('solar.panel')
+            product = {'name':vals['solar_sequence'],
+                        'type': 'consu',
+                       'solarhub_type': 'solar panel',
+                       'list_price':vals['price'],
+                       'taxes_id':vals['tax_ids'],
+                       'is_storable': True,
+                       'tracking': 'lot'}
+            self.env['product.product'].create(product)
+        return super(SolarPanel, self).create(vals_list)
 
     @api.model
     def write(self, vals):
