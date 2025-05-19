@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="report_solar_battery_pdf" model="ir.actions.report">
-        <field name="name">Solar battery Report</field>
+        <field name="name">PDF REPORT</field>
         <field name="model">solar.battery</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">solarhub.report_solar_battery_template</field>

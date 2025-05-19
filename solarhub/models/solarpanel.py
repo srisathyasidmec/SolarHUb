@@ -69,3 +69,4 @@ class SolarPanel(models.Model):
                 i.status="available"
             else:
                 i.status="unavailable"
+

@@ -22,16 +22,21 @@ class SolarBattery(models.Model):
     status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "status",compute="compute_status")
 
     @api.model_create_multi
-    def create(self, vals):
-        vals["battery_sequence"] = self.env['ir.sequence'].next_by_code('solar.battery')
-        product = {'name': vals['battery_sequence'],
-                   'type': 'consu',
-                   'solarhub_type':'battery',
-                   'list_price': vals['price'],
-                   'taxes_id':vals['tax_ids']}
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals["battery_sequence"] = self.env['ir.sequence'].next_by_code('solar.battery')
 
-        self.env['product.product'].create(product)
-        return super(SolarBattery, self).create(vals)
+            product = {
+                'name': vals['battery_sequence'],
+                'type': 'consu',
+                'solarhub_type': 'battery',
+                'list_price': vals['price'],
+                'taxes_id': vals['tax_ids'],
+            }
+
+            self.env['product.product'].create(product)
+
+        return super(SolarBattery, self).create(vals_list)
 
     @api.model
     def write(self, vals):
