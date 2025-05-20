@@ -4,11 +4,11 @@ from odoo import models, fields, api
 class SolarBattery(models.Model):
     _name = 'solar.battery'
     _description = 'solar battery'
-    _rec_name = 'company_name'
+    _rec_name = 'brand_name_id'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     battery_sequence=fields.Char("BATTERY", default="NEW")
-    company_name = fields.Char("Company Name",required=True)
+    brand_name_id = fields.Many2one(comodel_name="solar.brand",string="Brand Name",required=True)
     model = fields.Char("Model Name",required=True)
     serial = fields.Many2many("stock.lot", string="Serial Number")
     price = fields.Float("Price")
