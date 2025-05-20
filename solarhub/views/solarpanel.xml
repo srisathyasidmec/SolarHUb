@@ -15,7 +15,7 @@
                             </h1>
                             <separator string="SOLAR PANEL" colspan="4"/>
                             <group>
-                                <field name="company_name"/>
+                                <field name="brand_name_id"/>
                                 <field name="panel"/>
                                 <field name="current"/>
                                 <field name="tax_ids" widget="many2many_tags"/>
@@ -70,13 +70,13 @@
             <list string="solarhub">
                 <field name="solar_sequence" optional="show" />
                 <field name="model" optional="show"/>
-                <field name="company_name" optional="show"/>
+                <field name="brand_name_id" optional="show"/>
                 <field name="serial" widget="many2many_tags" optional="show"/>
                 <field name="panel" optional="show"/>
                 <field name="availablestock" optional="show" widget="integer"/>
                 <field name="price" optional="show"/>
                 <field name="tax_ids" widget="many2many_tax_tags" optional="show"/>
-                <field name="years_of_Warranty" optional="show"/>
+                <field name="years_of_Warranty" optional="hide"/>
                 <field name="total_cost" optional="show"/>
                 <field name="status" widget="badge" decoration-success="status == 'available'" decoration-warning="status == 'unavailable'"/>
             </list>

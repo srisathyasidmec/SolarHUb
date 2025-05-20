@@ -26,6 +26,7 @@
     <menuitem id="menu_system_assurance" name="Assurance Type" action="action_system_assurance" parent="menu_system" groups="solarhub.group_solarhub_owner"/>
     <menuitem id="menu_system_assurance_subtype" name="Assurance SubType" action="action_system_assurance_subtype"
               parent="menu_system" groups="solarhub.group_solarhub_owner"/>
+    <menuitem id="menu_brand" name="Brand Type" action="action_solar_brand" parent="menu_system"/>
     <menuitem id="menu_system_tax" name="Item Tax" action="action_system_tax" parent="menu_system" groups="solarhub.group_solarhub_owner"/>
 
     <menuitem id="menu_solar_order" name="Order" action="action_order_solars" parent="menu_solar" sequence="3" groups="solarhub.group_solarhub_owner"/>

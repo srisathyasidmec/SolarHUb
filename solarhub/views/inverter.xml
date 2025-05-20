@@ -17,7 +17,7 @@
                     <group col="3">
                         <separator string="INVERTER" colspan="3"/>
                         <group>
-                            <field name="company_name"/>
+                            <field name="brand_name_id"/>
                             <field name="inverter_type"/>
                             <field name="price"/>
                             <field name="available_stocks"/>
@@ -50,7 +50,7 @@
                 <field name="inverter_sequence" string="INVERTER" optional="show"/>
                 <field name="model" string="MODEL NAME" optional="show"/>
                 <field name="capacity" string="CAPACITY" optional="show"/>
-                <field name="company_name" string="COMPANY NAME" optional="show"/>
+                <field name="brand_name_id" string="BRAND NAME" optional="show"/>
                 <field name="serial" widget="many2many_tags" string="SERIAL NUMBER" optional="show"/>
                 <field name="efficiency" string="EFFICIENCY" optional="show"/>
                 <field name="inverter_type" string="INVERTER TYPE" optional="show"/>
@@ -58,7 +58,7 @@
                 <field name="price" string="PRICE" optional="show"/>
                 <field name="tax_ids" string="TAX" widget="many2many_tax_tags" optional="show"/>
                 <field name="total_cost" string="Total Cost" optional="show"/>
-                <field name="years_of_Warranty" optional="show"/>
+                <field name="years_of_Warranty" optional="hide"/>
                 <field name="status" widget="badge" decoration-success="status == 'available'" decoration-warning="status == 'unavailable'"/>
             </list>
         </field>
