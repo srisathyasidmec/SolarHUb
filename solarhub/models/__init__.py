@@ -13,3 +13,4 @@ from . import maintenance
 from . import inspection
 from . import customer
 from . import orders_solar
+from . import brand

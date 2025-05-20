@@ -13,7 +13,7 @@
                     </h1>
                     <group col="3">
                         <group>
-                            <field name="company_name"/>
+                            <field name="brand_name_id"/>
                             <field name="battery_type"/>
                             <field name="tax_ids" widget="many2many_tags"/>
                             <field name="warrantycover"/>
@@ -44,7 +44,7 @@
             <list string="Battery">
                 <field name="battery_sequence" optional="show"/>
                 <field name="model" optional="show"/>
-                <field name="company_name" optional="show"/>
+                <field name="brand_name_id" optional="show"/>
                 <field name="serial" widget="many2many_tags" optional="show"/>
                 <field name="battery_type" optional="show"/>
                 <field name="availablestock" optional="show" widget="integer"/>

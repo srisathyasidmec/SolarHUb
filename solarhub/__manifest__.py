@@ -26,6 +26,7 @@
         "views/contact_diary.xml",
         "views/notice_board.xml",
         "views/inspection.xml",
+        "views/brand.xml",
         'data/inspection_confirm_mail.xml',
         'data/maintenance_confirm_mail.xml',
         'data/solarhub_confirm_mail.xml',

@@ -5,12 +5,12 @@ class Inverter(models.Model):
     _name = 'inverter'
     _description = 'Inverter'
     # _rec_name="inverter_type"
-    _rec_name = 'company_name'
+    _rec_name = 'brand_name_id'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     inverter_sequence= fields.Char("Inverter Sequence", default="NEW")
 
-    company_name = fields.Char("Company Name",required=True)
+    brand_name_id = fields.Many2one(comodel_name="solar.brand",string="Brand Name",required=True)
     inverter_type=fields.Char("Inverter Type",required=True)
     price = fields.Float("Price")
     available_stocks = fields.Integer("Available Stocks")

@@ -4,12 +4,12 @@ from odoo import models, fields, api
 class SolarPanel(models.Model):
     _name = 'solar.panel'
     _description = 'Solar Panel'
-    _rec_name="company_name"
+    _rec_name="brand_name_id"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     solar_sequence= fields.Char("SOLAR PANEL", default="NEW")
 
-    company_name = fields.Char("Company Name",required=True)
+    brand_name_id = fields.Many2one("solar.brand","Brand Name",required=True)
     model = fields.Char("Model Name",required=True)
     serial = fields.Many2many("stock.lot", string="Serial Number")
     panel = fields.Char("Panel Type")
