@@ -3,7 +3,7 @@
     'version':'18.0',
     'license':'LGPL-3',
     'author':"krishnaveni and sri sathya",
-    'depends':['hr','contacts','mail','board',],
+    'depends':['hr','contacts','mail','board','sale_management','stock'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',

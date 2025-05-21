@@ -8,7 +8,6 @@
         <field name="report_file">solarhub.report_solar_battery_template</field>
         <field name="binding_model_id" ref="solarhub.model_solar_battery"/>
         <field name="binding_type">action</field>
-        <field name="paperformat_id" ref="solarhub.paperformat_label_sheet"/>
     </record>
 
     <record id="report_solar_inverter_pdf" model="ir.actions.report">
