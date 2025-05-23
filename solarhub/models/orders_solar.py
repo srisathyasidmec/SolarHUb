@@ -70,7 +70,8 @@ class OrdersSolar(models.Model):
 
     @api.model_create_multi
     def create(self, vals):
-        vals["solar_order_sequence"] = self.env['ir.sequence'].next_by_code('orders.solar')
+        for val in vals:
+            val["solar_order_sequence"] = self.env['ir.sequence'].next_by_code('orders.solar')
         return super(OrdersSolar, self).create(vals)
 
 #
