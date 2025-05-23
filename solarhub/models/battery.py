@@ -28,8 +28,8 @@ class SolarBattery(models.Model):
             product = {'name': vals['battery_sequence'],
                        'type': 'consu',
                        'solarhub_type':'battery',
-                       'list_price': vals['price'],
-                       'taxes_id':vals['tax_ids'],
+                       'list_price': vals.get('price',0),
+                       'taxes_id':[(6, 0, vals.get('tax_ids', []))],
                        'is_storable':True,
                        'tracking':'lot'}
 

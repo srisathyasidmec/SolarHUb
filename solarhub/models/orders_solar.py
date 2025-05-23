@@ -70,7 +70,8 @@ class OrdersSolar(models.Model):
 
     @api.model_create_multi
     def create(self, vals):
-        vals["solar_order_sequence"] = self.env['ir.sequence'].next_by_code('orders.solar')
+        for val in vals:
+            val["solar_order_sequence"] = self.env['ir.sequence'].next_by_code('orders.solar')
         return super(OrdersSolar, self).create(vals)
 
 #
@@ -111,7 +112,7 @@ class BatteryOrdersLines(models.Model):
 
     battery_id = fields.Many2one("solar.battery","Battery")
     battery_tax_ids = fields.Many2many("account.tax", string="Tax")
-    battery_price = fields.Float("Price")
+    battery_price = fields.Float("Price",default=0)
     battery_total_cost = fields.Float("Total Cost", compute="compute_battery_total_cost")
     battery_quantity = fields.Integer("Quantity", default="1")
     battery_order = fields.Many2one("orders.solar", "Battery Orders")

@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="act_solar_inspection" model="ir.actions.act_window">
-        <field name="name">Solar Inspection</field>
-        <field name="res_model">solar.inspection</field>
-        <field name="view_mode">graph</field>
-        <field name="view_id" ref="solarhub.view_solar_panel_graph"/>
-    </record>
 
-    <record id="act_solarhub_orders" model="ir.actions.act_window">
+    <record id="act_solar_orders" model="ir.actions.act_window">
         <field name="name">SolarHub order</field>
-        <field name="res_model">solarhub.order</field>
+        <field name="res_model">orders.solar</field>
         <field name="view_mode">list,form</field>
     </record>
 
-    <record id="act_solar_orders" model="ir.actions.act_window">
+    <record id="act_solarhuborders" model="ir.actions.act_window">
         <field name="name">Order Details</field>
-        <field name="res_model">solarhub.order</field>
+        <field name="res_model">orders.solar</field>
         <field name="view_mode">graph</field>
-        <field name="view_id" ref="solarhub.view_solarhub_graph"/>
+        <field name="view_id" ref="solarhub.view_order_solar_graph"/>
     </record>
 
     <record id="solarhub_dashboard_view" model="ir.ui.view">
@@ -29,17 +23,11 @@
                 <board style="2-2">
                     <column>
                         <action
-                                string="Solar Inspection"
-                                name="%(solarhub.act_solar_inspection)d"/>
+                                string="Solar Orders"
+                                name="%(solarhub.act_solarhuborders)d"/>
                         <action
                                 string="Solarhub orders"
                                 name="%(solarhub.act_solar_orders)d"/>
-
-                    </column>
-                    <column>
-                        <action
-                                string="Solarhub orders"
-                                name="%(solarhub.act_solarhub_orders)d"/>
 
                     </column>
                 </board>

@@ -17,7 +17,7 @@ class SolarPanel(models.Model):
     voltage = fields.Float("Voltage")
     current=fields.Float("Current")
     degrade=fields.Float("Degradation rate")
-    price=fields.Float("Price")
+    price=fields.Float("Price",default=0)
     tax_ids=fields.Many2many("account.tax",string="Tax")
     total_cost=fields.Float("Total Cost",compute="compute_total_cost")
     availablestock=fields.Integer("Available Stock")
@@ -29,19 +29,6 @@ class SolarPanel(models.Model):
     years_of_Warranty = fields.Integer("Years Of Warranty")
     status = fields.Selection([("available", "Available"), ("unavailable", "Unavailable")], "Status",compute="compute_status")
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            vals["solar_sequence"] = self.env['ir.sequence'].next_by_code('solar.panel')
-            product = {'name':vals['solar_sequence'],
-                        'type': 'consu',
-                       'solarhub_type': 'solar panel',
-                       'list_price':vals['price'],
-                       'taxes_id':vals['tax_ids'],
-                       'is_storable': True,
-                       'tracking': 'lot'}
-            self.env['product.product'].create(product)
-        return super(SolarPanel, self).create(vals_list)
 
     @api.model
     def write(self, vals):
@@ -69,3 +56,19 @@ class SolarPanel(models.Model):
                 i.status="available"
             else:
                 i.status="unavailable"
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals["solar_sequence"] = self.env['ir.sequence'].next_by_code('solar.panel') or '/'
+            product_vals = {
+                'name': vals["solar_sequence"],
+                'type': 'consu',
+                'solarhub_type': 'solar panel',
+                'list_price': vals.get('price', 0.0),
+                'taxes_id': [(6, 0, vals.get('tax_ids', []))],
+                'is_storable': True,
+                'tracking': 'lot',
+            }
+            self.env['product.product'].create(product_vals)
+        return super(SolarPanel, self).create(vals_list)
