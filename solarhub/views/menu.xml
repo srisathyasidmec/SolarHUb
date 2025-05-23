@@ -15,8 +15,8 @@
     <menuitem id="menu_inverter" name="Inverter" action="action_inverter" parent="menu_solar_business" sequence="5" groups="solarhub.group_solarhub_owner"/>
     <menuitem id="menu_contact_diary" name="Contact Diary" action="action_solar_contact" parent="menu_solar_business" sequence="9"/>
     <menuitem id="menu_solar_notice" name="Notice Board" action="action_solar_notice" parent="menu_solar_business" sequence="10"/>
-    <menuitem id="menu_solarhub_order" name="Order" action="action_solarhub_order" parent="menu_solar_business" groups="solarhub.group_solarhub_owner"
-              sequence="6"/>
+    <menuitem id="menu_solarhub_order" name="Order" action="action_solarhub_order" parent="menu_solar_business"
+              sequence="6" groups="solarhub.group_solarhub_owner"/>
     <menuitem id="menu_solar_inspection" name="Inspection" action="action_inspection" parent="menu_solar_business" sequence="8" groups="solarhub.group_solarhub_owner"/>
     <menuitem id="menu_solar_maintenance" name="Maintenance" action="action_solar_maintenance" parent="menu_solar_business"
               sequence="7" groups="solarhub.group_solarhub_owner"/>
@@ -26,9 +26,9 @@
     <menuitem id="menu_system_assurance" name="Assurance Type" action="action_system_assurance" parent="menu_system" groups="solarhub.group_solarhub_owner"/>
     <menuitem id="menu_system_assurance_subtype" name="Assurance SubType" action="action_system_assurance_subtype"
               parent="menu_system" groups="solarhub.group_solarhub_owner"/>
-    <menuitem id="menu_brand" name="Brand Type" action="action_solar_brand" parent="menu_system"/>
+    <menuitem id="menu_brand" name="Brand Type" action="action_solar_brand" parent="menu_system" groups="solarhub.group_solarhub_owner"/>
     <menuitem id="menu_system_tax" name="Item Tax" action="action_system_tax" parent="menu_system" groups="solarhub.group_solarhub_owner"/>
 
-    <menuitem id="menu_solar_order" name="Order" action="action_order_solars" parent="menu_solar" sequence="3" groups="solarhub.group_solarhub_owner"/>
+    <menuitem id="menu_solar_order" name="Order" action="action_order_solars" parent="menu_solar" sequence="3" groups="solarhub.group_solar"/>
 
 </odoo>

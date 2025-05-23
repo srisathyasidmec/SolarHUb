@@ -20,7 +20,6 @@
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="company_id"/>
             </xpath>
-
         </field>
     </record>
 </odoo>
