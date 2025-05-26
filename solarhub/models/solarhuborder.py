@@ -27,7 +27,7 @@ class SolarHubOrders(models.Model):
     solar_panel = fields.Many2one("solar.panel", "Solar Panel")
     tax_ids = fields.Many2many("account.tax", string="Tax")
 
-    solar_price = fields.Float("Price")
+    solar_price = fields.Float("Price",default=5)
     solar_total_cost = fields.Float("Total Cost",compute="compute_solar_total_cost")
 
     solar_quantity = fields.Integer("Quantity", default="1")
@@ -81,9 +81,10 @@ class SolarHubOrders(models.Model):
             rec.grandtotal = rec.subtotal + rec.taxtotal + rec.assurance_total
 
     @api.model_create_multi
-    def create(self, vals):
-        vals["solar_order_sequence"] = self.env['ir.sequence'].next_by_code('solarhub.order')
-        return super(SolarHubOrders, self).create(vals)
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals["solar_order_sequence"] = self.env['ir.sequence'].next_by_code('solarhub.order') or '/'
+        return super(SolarHubOrders, self).create(vals_list)
 
     @api.depends('battery_price', 'battery_tax_ids')
     def compute_battery_total_cost(self):
