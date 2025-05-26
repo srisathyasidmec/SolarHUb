@@ -20,7 +20,7 @@ class Maintenance(models.Model):
     user = fields.Many2one("res.users", "User")
 
 
-    order = fields.Many2one("solarhub.order",string="Order")
+    order = fields.Many2one("orders.solar",string="Order")
     requests_date = fields.Date("Requests Date")
     maintenance_fee = fields.Selection(selection=[('paid','Paid'),('free','Free')], string="Maintenance")
     status = fields.Selection([("pending", "Pending"), ("completed", "Completed")], "status",compute='status_date')
