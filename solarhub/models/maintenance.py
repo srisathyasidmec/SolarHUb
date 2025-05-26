@@ -1,8 +1,5 @@
 from odoo import models, fields, api
 from datetime import date
-from odoo.osv import expression
-
-
 
 class Maintenance(models.Model):
     _name = "solar.maintenance"
