@@ -11,7 +11,7 @@ class SolarInspection(models.Model):
     user=fields.Many2one("res.users","User",required=True)
     inspection_date=fields.Date("Inspection Date")
     note=fields.Text("Note")
-    order=fields.Many2one("solarhub.order","Order")
+    order=fields.Many2one("orders.solar","Order")
 
     company_id = fields.Many2one("res.company","Company Name")
 
